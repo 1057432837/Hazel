@@ -1,0 +1,15 @@
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\context.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\context.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\egl_context.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\egl_context.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\init.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\init.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\input.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\input.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\monitor.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\monitor.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\osmesa_context.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\osmesa_context.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\vulkan.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\vulkan.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\wgl_context.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\wgl_context.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\win32_init.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\win32_init.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\win32_joystick.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\win32_joystick.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\win32_monitor.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\win32_monitor.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\win32_thread.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\win32_thread.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\win32_time.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\win32_time.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\win32_window.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\win32_window.obj
+D:\Workspace\Hazel\Hazel\vendor\GLFW\src\window.c;D:\Workspace\Hazel\Hazel\vendor\GLFW\bin-int\Debug-windows-x86_64\GLFW\window.obj
