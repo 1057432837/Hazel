@@ -4,7 +4,6 @@
 #include "Hazel/Core.h"
 
 namespace Hazel {
-
 	#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::type; }\
 								virtual EventType GetEventType() const override { return GetStaticType(); }\
 								virtual const char* GetName() const override { return #type; }
@@ -17,6 +16,7 @@ namespace Hazel {
 		AppTick, AppUpdate, AppRender,
 		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
+
 	};
 
 	enum EventCategory {
@@ -26,11 +26,13 @@ namespace Hazel {
 		EventCategoryKeyboard    = BIT(2),
 		EventCategoryMouse       = BIT(3),
 		EventCategoryMouseButton = BIT(4)
+
 	};
 
 	class HAZEL_API Event
 	{
 		friend class EventDispatcher;
+
 	public:
 		//virtual ~Event() = default;
 		bool Handled = false;
@@ -72,7 +74,6 @@ namespace Hazel {
 	};
 
 	inline std::ostream& operator<<(std::ostream& os, const Event& e) {
-
 		return os << e.ToString();
 
 	}

@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "Hazel/Events/ApplicationEvent.h"
 #include "Hazel/LayerStack.h"
+#include "Hazel/ImGui/ImGuiLayer.h"	
 
 namespace Hazel {
 	class HAZEL_API Application
@@ -36,6 +37,8 @@ namespace Hazel {
 
 	private:
 		std::unique_ptr<Window> m_Window;
+
+		ImGuiLayer* m_ImGuiLayer;
 
 		bool m_Running = true;
 
