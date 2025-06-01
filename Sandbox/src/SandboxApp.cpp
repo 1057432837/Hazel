@@ -20,6 +20,7 @@ class ExampleLayer : public Hazel::Layer
 public:
 	ExampleLayer() : Layer("Example") {
 		//auto cam = camera(5.0f, { 0.5f, 0.5f });
+
 	}
 	
 	void OnUpdate() override {
@@ -29,6 +30,7 @@ public:
 		{
 			HZ_TRACE("Tab key is pressed! (poll)");
 		}
+
 	}
 
 	void OnEvent(Hazel::Event& event) override {
@@ -41,6 +43,7 @@ public:
 			}
 			HZ_TRACE("{0}", (char)e.GetKeyCode());
 		}
+
 	}
 
 };
@@ -50,10 +53,9 @@ class Sandbox : public Hazel::Application
 public:
 	Sandbox() {
 		PushLayer(new ExampleLayer());
-	}
-	~Sandbox() {
 
 	}
+	~Sandbox() { }
 
 private:
 
@@ -61,4 +63,5 @@ private:
 
 Hazel::Application* Hazel::CreateApplication() {
 	return new Sandbox();
+
 }
