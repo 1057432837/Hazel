@@ -28,11 +28,8 @@ namespace Hazel {
 			std::stringstream ss;
 			ss << "KeyPressedEvent: " << m_KeyCode << " (" << m_RepeatCount << "repeats)";
 			return ss.str();
+
 		}
-		
-		//static EventType GetStaticType() { return EventType::KeyPressed; }
-		//virtual EventType GetEventType() const override { return GetStaticType(); }
-		//virtual const char* GetName() const override { return "KeyPressed"; }
 
 		EVENT_CLASS_TYPE(KeyPressed)
 
@@ -50,6 +47,7 @@ namespace Hazel {
 			std::stringstream ss;
 			ss << "KeyReleasedEvent: " << m_KeyCode;
 			return ss.str();
+
 		}
 
 		EVENT_CLASS_TYPE(KeyReleased)
