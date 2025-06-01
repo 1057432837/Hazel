@@ -57,6 +57,9 @@ namespace Hazel {
         static bool show = true;
         ImGui::ShowDemoWindow(&show);
 
+        ImGui::Begin("");
+        ImGui::End();
+
     }
 
     void ImGuiLayer::Begin() {

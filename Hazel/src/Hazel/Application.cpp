@@ -3,12 +3,10 @@
 
 #include "Application.h"
 #include "Hazel/Log.h"
-
 #include "Input.h"
 
 namespace Hazel {
-
-#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
+	#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 	Application* Application::s_Instance = nullptr;
 
@@ -20,11 +18,10 @@ namespace Hazel {
 
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
+
 	}
 
-	Application::~Application() {
-
-		}
+	Application::~Application() { }
 
 	void Application::Run() {
 			while (m_Running) {

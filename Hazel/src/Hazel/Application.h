@@ -50,4 +50,5 @@ namespace Hazel {
 	};
 
 	Application* CreateApplication();
+
 }

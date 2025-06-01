@@ -1,4 +1,6 @@
-#include <Hazel.h>
+#include "imgui/imgui.h"
+
+#include "Hazel.h"
 
 //#include <glm/vec3.hpp> // glm::vec3
 //#include <glm/vec4.hpp> // glm::vec4
@@ -22,26 +24,36 @@ public:
 		//auto cam = camera(5.0f, { 0.5f, 0.5f });
 
 	}
-	
+
 	void OnUpdate() override {
 		//HZ_INFO("ExampleLayer::Update");
 
 		if (Hazel::Input::IsKeyPressed(HZ_KEY_TAB))
 		{
-			HZ_TRACE("Tab key is pressed! (poll)");
+			HZ_CLIENT_TRACE("Tab key is pressed! (poll)");
+
 		}
+
+	}
+
+	virtual void OnImGuiRender() override {
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
 
 	}
 
 	void OnEvent(Hazel::Event& event) override {
 		if (event.GetEventType() == Hazel::EventType::KeyPressed)
 		{
-			Hazel::KeyPressedEvent& e = (Hazel::KeyPressedEvent&) event;
+			Hazel::KeyPressedEvent& e = (Hazel::KeyPressedEvent&)event;
 			if (e.GetKeyCode() == HZ_KEY_TAB)
 			{
-				HZ_TRACE("Tab key is pressed (event)!");
+				HZ_CLIENT_TRACE("Tab key is pressed (event)!");
+
 			}
-			HZ_TRACE("{0}", (char)e.GetKeyCode());
+			HZ_CLIENT_TRACE("{0}", (char)e.GetKeyCode());
+
 		}
 
 	}
@@ -55,12 +67,15 @@ public:
 		PushLayer(new ExampleLayer());
 
 	}
-	~Sandbox() { }
+	~Sandbox() {}
 
 private:
 
 };
 
+
+
+//调用Application.h的CreateApplication()实例化并返回到入口函数
 Hazel::Application* Hazel::CreateApplication() {
 	return new Sandbox();
 
