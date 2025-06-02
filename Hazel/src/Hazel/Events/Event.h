@@ -29,7 +29,7 @@ namespace Hazel {
 
 	};
 
-	class HAZEL_API Event
+	class HAZEL_API Event //基类抽象类
 	{
 		friend class EventDispatcher;
 

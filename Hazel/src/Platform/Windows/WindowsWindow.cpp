@@ -78,7 +78,9 @@ namespace Hazel {
 			int success = glfwInit();
 			HZ_CORE_ASSERT(success, "Could not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
+
 			s_GLFWInitialized = true;
+
 		}
 
 		m_Window = glfwCreateWindow((int)m_Data.Width, (int)m_Data.Height, m_Data.Title.c_str(), nullptr, nullptr);

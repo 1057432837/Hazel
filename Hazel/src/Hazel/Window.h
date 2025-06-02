@@ -15,7 +15,7 @@ namespace Hazel {
 		WindowProps(const std::string& title = "Hazel Engine", unsigned int width = 1280, unsigned int height = 720) : Title(title), Width(width), Height(height) { }
 	};
 
-	class HAZEL_API Window	//抽象窗口类应有的方法
+	class HAZEL_API Window
 	{
 	public:
 		virtual ~Window() { }
