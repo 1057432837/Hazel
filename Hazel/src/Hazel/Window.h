@@ -6,21 +6,21 @@
 #include "Hazel/Events/Event.h"
 
 namespace Hazel {
-	struct WindowProps	//窗口应有的属性
+	struct WindowProps
 	{
 		std::string Title;
 		unsigned int Width;
 		unsigned int Height;
 
-		WindowProps(const std::string& title = "Hazel Engine", unsigned int width = 1280, unsigned int height = 720) : Title(title), Width(width), Height(height) {}	//全参构造函数
+		WindowProps(const std::string& title = "Hazel Engine", unsigned int width = 1280, unsigned int height = 720) : Title(title), Width(width), Height(height) { }
 	};
 
 	class HAZEL_API Window	//抽象窗口类应有的方法
 	{
 	public:
-		using EventCallbackFn = std::function<void(Event&)>;
+		virtual ~Window() { }
 
-		virtual ~Window() {}
+		using EventCallbackFn = std::function<void(Event&)>;
 
 		virtual void OnUpdate() = 0;
 

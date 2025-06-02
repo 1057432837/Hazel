@@ -1,6 +1,5 @@
 ﻿#pragma once
 
-#include <memory>
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
 
@@ -26,9 +25,9 @@ namespace Hazel {
 
 		~Log();
 
-		static std::shared_ptr<spdlog::logger>& GetCoreLogger();
+		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger();
 
-		static std::shared_ptr<spdlog::logger>& GetClientLogger();
+		inline static std::shared_ptr<spdlog::logger>& GetClientLogger();
 
 		static void Init();
 
