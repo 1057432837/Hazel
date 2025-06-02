@@ -8,40 +8,62 @@
 #include "Hazel/Events/ApplicationEvent.h"
 
 namespace Hazel {
-
 	static bool s_GLFWInitialized = false;
 
-	static void GLFWErrorCallback(int error, const char* description) {
-		HZ_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
+	Window* Window::Create(const WindowProps& props) {
+		return new WindowsWindow(props);
+
 	}
 
-	inline unsigned int WindowsWindow::GetWidth() const {
-		return m_Data.Width;
+	WindowsWindow::WindowsWindow(const WindowProps& props) {
+		Init(props);
+
 	}
 
-	inline unsigned int WindowsWindow::GetHeight() const {
-		return m_Data.Height;
-	}
+	WindowsWindow::~WindowsWindow() {
+		Shutdown();
 
-	bool WindowsWindow::IsVSync() const {
-		return m_Data.VSync;
 	}
 
 	void WindowsWindow::OnUpdate() {
 		glfwPollEvents();
 		glfwSwapBuffers(m_Window);
+
+	}
+
+	inline unsigned int WindowsWindow::GetWidth() const {
+		return m_Data.Width;
+
+	}
+
+	inline unsigned int WindowsWindow::GetHeight() const {
+		return m_Data.Height;
+
+	}
+
+	bool WindowsWindow::IsVSync() const {
+		return m_Data.VSync;
+
 	}
 
 	void WindowsWindow::SetVSync(bool enabled) {
 		if (enabled)
 		{
 			glfwSwapInterval(1);
+
 		}
 		else
 		{
 			glfwSwapInterval(0);
+
 		}
 		m_Data.VSync = enabled;
+
+	}
+
+	static void GLFWErrorCallback(int error, const char* description) {
+		HZ_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
+
 	}
 
 	void WindowsWindow::Init(const WindowProps& props) {
@@ -149,20 +171,9 @@ namespace Hazel {
 		});
 	}
 
-	WindowsWindow::WindowsWindow(const WindowProps& props) {
-		Init(props);
-	}
-
-	Window* Window::Create(const WindowProps& props) {
-		return new WindowsWindow(props);
-	}
-
 	void WindowsWindow::Shutdown() {
 		glfwDestroyWindow(m_Window);
-	}
 
-	WindowsWindow::~WindowsWindow() {
-		Shutdown();
 	}
 
 }

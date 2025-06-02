@@ -11,19 +11,19 @@ namespace Hazel {
 	class WindowsWindow : public Window
 	{
 	public:
+		WindowsWindow(const WindowProps& props);
+
+		virtual ~WindowsWindow();
+
+		void OnUpdate() override;
+
 		inline unsigned int GetWidth() const override;
 
 		inline unsigned int GetHeight() const override;
 
 		bool IsVSync() const override;
 
-		void OnUpdate() override;
-
 		void SetVSync(bool enabled) override;
-
-		WindowsWindow(const WindowProps& props);
-
-		virtual ~WindowsWindow();
 
 		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
 
@@ -44,6 +44,7 @@ namespace Hazel {
 		virtual void Init(const WindowProps& props);
 
 		virtual void Shutdown();
+
 	};
 
 }
