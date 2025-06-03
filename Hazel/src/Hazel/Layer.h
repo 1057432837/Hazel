@@ -11,15 +11,15 @@ namespace Hazel {
 
 		virtual ~Layer();
 
-		virtual void OnAttach() { }
+		inline virtual void OnAttach();
 
-		virtual void OnDetach() { }
+		inline virtual void OnDetach();
 
-		virtual void OnUpdate() { }
+		inline virtual void OnUpdate();
 
-		virtual void OnImGuiRender() { };
+		inline virtual void OnImGuiRender();
 
-		virtual void OnEvent(Event& event) {}
+		inline virtual void OnEvent(Event& event);
 
 		inline const std::string& GetName() const { return m_DebugName; }
 
