@@ -31,22 +31,27 @@ namespace Hazel {
 				for (Layer* layer : m_LayerStack)
 				{
 					layer->OnUpdate();
+
 				}
 
 				m_ImGuiLayer->Begin();
 				for (Layer* layer : m_LayerStack)
 				{
 					layer->OnImGuiRender();
+
 				}
 				m_ImGuiLayer->End();
 
 				m_Window->OnUpdate();
+
 			}
+
 		}
 
 	bool Application::OnWindowClose(WindowCloseEvent& e) {
 			m_Running = false;
 			return true;
+
 		}
 
 	void Application::OnEvent(Event& e) {
@@ -59,8 +64,11 @@ namespace Hazel {
 				if (e.Handled)
 				{
 					break;
+
 				}
+
 			}
+
 		}
 
 	void Application::PushLayer(Layer* layer) {

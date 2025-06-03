@@ -10,11 +10,6 @@
 namespace Hazel {
 	static bool s_GLFWInitialized = false;
 
-	Window* Window::Create(const WindowProps& props) {
-		return new WindowsWindow(props);
-
-	}
-
 	WindowsWindow::WindowsWindow(const WindowProps& props) {
 		Init(props);
 
@@ -22,6 +17,11 @@ namespace Hazel {
 
 	WindowsWindow::~WindowsWindow() {
 		Shutdown();
+
+	}
+
+	Window* Window::Create(const WindowProps& props) {
+		return new WindowsWindow(props);
 
 	}
 
@@ -100,6 +100,7 @@ namespace Hazel {
 			WindowResizeEvent event(width, height);
 
 			data.EventCallback(event);
+
 		});
 
 		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window) {
@@ -108,6 +109,7 @@ namespace Hazel {
 			WindowCloseEvent event;
 
 			data.EventCallback(event);
+
 		});
 
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -119,18 +121,25 @@ namespace Hazel {
 					KeyPressedEvent event(key, 0);
 					data.EventCallback(event);
 					break;
+
 				}
+
 				case GLFW_RELEASE: {
 					KeyReleasedEvent event(key);
 					data.EventCallback(event);
 					break;
+
 				}
+
 				case GLFW_REPEAT: {
 					KeyPressedEvent event(key, 1);
 					data.EventCallback(event);
 					break;
+
 				}
+
 			}
+
 		});
 
 		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode) {
@@ -149,13 +158,18 @@ namespace Hazel {
 					MouseButtonPressedEvent event(button);
 					data.EventCallback(event);
 					break;
+
 				}
+
 				case GLFW_RELEASE: {
 					MouseButtonReleasedEvent event(button);
 					data.EventCallback(event);
 					break;
+
 				}
+
 			}
+
 		});
 
 		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xOffset, double yOffset) {
@@ -163,6 +177,7 @@ namespace Hazel {
 
 			MouseScrolledEvent event((float)xOffset, (float)yOffset);
 			data.EventCallback(event);
+
 		});
 
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xPos, double yPos) {
@@ -170,7 +185,9 @@ namespace Hazel {
 
 			MouseMovedEvent event((float)xPos, (float)yPos);
 			data.EventCallback(event);
+
 		});
+
 	}
 
 	void WindowsWindow::Shutdown() {
