@@ -61,6 +61,16 @@ namespace Hazel {
 
 	}
 
+	inline void WindowsWindow::SetEventCallback(const EventCallbackFn& callback) {
+		m_Data.EventCallback = callback;
+
+	}
+
+	inline void* WindowsWindow::GetNativeWindow() const {
+		return m_Window;
+
+	}
+
 	static void GLFWErrorCallback(int error, const char* description) {
 		HZ_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
 

@@ -3,7 +3,6 @@
 #include "Hazel/Core.h"
 
 namespace Hazel {
-
 	class HAZEL_API Input
 	{
 	public:
@@ -30,6 +29,7 @@ namespace Hazel {
 
 	private:
 		static Input* s_Instance;
+
 	};
 
 }

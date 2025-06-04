@@ -25,9 +25,9 @@ namespace Hazel {
 
 		void SetVSync(bool enabled) override;
 
-		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
+		inline void SetEventCallback(const EventCallbackFn& callback);
 
-		inline virtual void* GetNativeWindow() const { return m_Window; };
+		inline virtual void* GetNativeWindow() const;
 
 	private:
 		struct WindowData
