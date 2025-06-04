@@ -23,17 +23,9 @@ namespace Hazel {
 
 		void PushOverlay(Layer* layer);
 
-		inline static Application& Get() {
+		inline static Application& Get();
 
-			return *s_Instance;
-
-		}
-
-		inline Window& GetWindow() {
-
-			return *m_Window;
-
-		}
+		inline Window& GetWindow();
 
 	private:
 		std::unique_ptr<Window> m_Window;
