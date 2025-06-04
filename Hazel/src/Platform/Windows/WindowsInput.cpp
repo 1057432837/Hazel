@@ -12,6 +12,7 @@ namespace Hazel {
 		auto state = glfwGetKey(window, keycode);
 
 		return state == GLFW_PRESS || state == GLFW_REPEAT;
+
 	}
 
 	bool WindowsInput::IsMouseButtonPressedImpl(int button) {
@@ -19,6 +20,7 @@ namespace Hazel {
 		auto state = glfwGetMouseButton(window, button);
 
 		return state == GLFW_PRESS;
+
 	}
 
 	std::pair<float, float> WindowsInput::GetMousePositionImpl() {
@@ -27,6 +29,7 @@ namespace Hazel {
 		glfwGetCursorPos(window, &xpos, &ypos);
 
 		return { (float)xpos, (float)ypos };
+
 	}
 
 	float WindowsInput::GetMouseXImpl() {
@@ -36,11 +39,14 @@ namespace Hazel {
 		auto[x, y] = GetMousePositionImpl();
 
 		return x;
+
 	}
 
 	float WindowsInput::GetMouseYImpl() {
 		auto [x, y] = GetMousePositionImpl();
 
 		return y;
+
 	}
+
 }
