@@ -25,7 +25,7 @@ namespace Hazel {
 
 		void SetVSync(bool enabled) override;
 
-		inline void SetEventCallback(const EventCallbackFn& callback);
+		inline void SetEventCallback(const EventCallbackFn& callback) override;
 
 		inline virtual void* GetNativeWindow() const;
 
