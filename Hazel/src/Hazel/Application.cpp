@@ -83,14 +83,4 @@ namespace Hazel {
 
 		}
 
-	inline Application& Application::Get() {
-		return *s_Instance;
-
-	}
-
-	inline Window& Application::GetWindow() {
-		return *m_Window;
-
-	}
-
 }
