@@ -4,6 +4,7 @@ D:\Workspace\Hazel\Hazel\src\Hazel\ImGui\ImGuiLayer.cpp;D:\Workspace\Hazel\bin-i
 D:\Workspace\Hazel\Hazel\src\Hazel\Layer.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\Layer.obj
 D:\Workspace\Hazel\Hazel\src\Hazel\LayerStack.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\LayerStack.obj
 D:\Workspace\Hazel\Hazel\src\Hazel\Log.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\Log.obj
+D:\Workspace\Hazel\Hazel\src\Platform\OpenGL\OpenGLContext.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\OpenGLContext.obj
 D:\Workspace\Hazel\Hazel\src\Platform\Windows\WindowsInput.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\WindowsInput.obj
 D:\Workspace\Hazel\Hazel\src\Platform\Windows\WindowsWindow.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\WindowsWindow.obj
 D:\Workspace\Hazel\Hazel\src\hzpch.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\hzpch.obj

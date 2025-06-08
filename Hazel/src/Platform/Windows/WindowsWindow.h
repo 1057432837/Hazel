@@ -4,6 +4,7 @@
 
 #include "Hazel/Log.h"
 #include "Hazel/Window.h"
+#include "Hazel/Renderer/GraphicsContext.h"
 
 struct GLFWwindow;
 
@@ -40,6 +41,8 @@ namespace Hazel {
 		}m_Data;
 
 		GLFWwindow* m_Window;
+
+		GraphicsContext* m_Context;
 
 		virtual void Init(const WindowProps& props);
 
