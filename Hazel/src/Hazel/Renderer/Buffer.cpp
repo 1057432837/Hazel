@@ -16,7 +16,6 @@ namespace Hazel {
 		}
 
 		case RendererAPI::OpenGL: {
-			HZ_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
 			return new OpenGLVertexBuffer(vertices, size);
 
 		}
@@ -38,7 +37,6 @@ namespace Hazel {
 		}
 
 		case RendererAPI::OpenGL: {
-			HZ_CORE_ASSERT(false, "RendererAPI::None is currently not supported!");
 			return new OpenGLIndexBuffer(indices, size);
 
 		}
