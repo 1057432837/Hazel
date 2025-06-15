@@ -11,6 +11,8 @@ namespace Hazel {
 	}
 
 	OpenGLVertexArray::~OpenGLVertexArray() {
+		glDeleteVertexArrays(1, &m_RendererID);
+
 	}
 
 	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type) {
@@ -112,7 +114,7 @@ namespace Hazel {
 		glBindVertexArray(m_RendererID);
 		indexBuffer->Bind();
 
-		m_IndexBuffers = indexBuffer;
+		m_IndexBuffer = indexBuffer;
 
 	}
 
