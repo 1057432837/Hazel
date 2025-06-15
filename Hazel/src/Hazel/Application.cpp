@@ -19,55 +19,61 @@ namespace Hazel {
 		m_ImGuiLayer = new ImGuiLayer();
 		PushOverlay(m_ImGuiLayer);
 
-		m_VertexArray.reset(VertexArray::Create());
-
-		float vertices[3 * 7] = {
-			-0.5f, -0.5f,  0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
-			 0.5f, -0.5f,  0.0f, 0.0f, 0.0f, 1.0f, 1.0f,
-			 0.0f,  0.5f,  0.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-
-		};
-
-		std::shared_ptr<VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
-
-		BufferLayout layout = {
-		{ ShaderDataType::Float3, "a_Position" },
-		{ ShaderDataType::Float4, "a_Color" },
-
-		};
-		vertexBuffer->SetLayout(layout);
-		m_VertexArray->AddVertexBuffer(vertexBuffer);
-
-		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<IndexBuffer> indexBuffer;
-		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
-		m_VertexArray->SetIndexBuffer(indexBuffer);
-
-		m_SquareVA.reset(VertexArray::Create());
-
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f,  0.0f,
-			 0.5f, -0.5f,  0.0f,
-			 0.5f,  0.5f,  0.0f,
-			-0.5f,  0.5f,  0.0f
-
-		};
-
-		std::shared_ptr<VertexBuffer> squareVB;
-		squareVB.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-		BufferLayout squareVBLayout = {
-		{ ShaderDataType::Float3, "a_Position" },
-
-		};
-		squareVB->SetLayout(squareVBLayout);
-		m_SquareVA->AddVertexBuffer(squareVB);
-
-		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<IndexBuffer> squareIB;
-		squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
-		m_SquareVA->SetIndexBuffer(squareIB);
-
+/*------------------------------------------------------------------------------------------------------*/
+		m_VertexArray.reset(VertexArray::Create());														//
+																										//
+		float vertices[3 * 7] = {																		//
+			-0.5f, -0.5f,  0.0f, 1.0f, 0.0f, 1.0f, 1.0f,												//
+			 0.5f, -0.5f,  0.0f, 0.0f, 0.0f, 1.0f, 1.0f,												//
+			 0.0f,  0.5f,  0.0f, 1.0f, 1.0f, 0.0f, 1.0f,												//
+																										//
+		};																								//
+																										//
+		std::shared_ptr<VertexBuffer> vertexBuffer;														//
+		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));							//
+																										//
+		BufferLayout layout = {																			//
+		{ ShaderDataType::Float3, "a_Position" },														//
+		{ ShaderDataType::Float4, "a_Color" },															//
+																										//
+		};																								//
+																										//
+		vertexBuffer->SetLayout(layout);																//
+		m_VertexArray->AddVertexBuffer(vertexBuffer);													//
+																										//
+		uint32_t indices[3] = { 0, 1, 2 };																//
+		std::shared_ptr<IndexBuffer> indexBuffer;														//
+		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));			//
+		m_VertexArray->SetIndexBuffer(indexBuffer);														//
+																										//
+/*------------------------------------------------------------------------------------------------------*/
+		m_SquareVA.reset(VertexArray::Create());														//
+																										//
+		float squareVertices[3 * 4] = {																	//
+			-0.5f, -0.5f,  0.0f,																		//
+			 0.5f, -0.5f,  0.0f,																		//
+			 0.5f,  0.5f,  0.0f,																		//
+			-0.5f,  0.5f,  0.0f																			//
+																										//
+		};																								//
+																										//
+		std::shared_ptr<VertexBuffer> squareVB;															//
+		squareVB.reset(VertexBuffer::Create(squareVertices, sizeof(squareVertices)));					//
+																										//
+		BufferLayout squareVBLayout = {																	//
+		{ ShaderDataType::Float3, "a_Position" },														//
+																										//
+		};																								//
+																										//
+		squareVB->SetLayout(squareVBLayout);															//
+		m_SquareVA->AddVertexBuffer(squareVB);															//
+																										//
+		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };												//
+		std::shared_ptr<IndexBuffer> squareIB;															//
+		squareIB.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));	//
+		m_SquareVA->SetIndexBuffer(squareIB);															//
+																										//
+/*------------------------------------------------------------------------------------------------------*/
 		std::string vertexSrc = R"(
 			#version 330 core
 			
