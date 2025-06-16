@@ -5,11 +5,14 @@ D:\Workspace\Hazel\Hazel\src\Hazel\Layer.cpp;D:\Workspace\Hazel\bin-int\Debug-wi
 D:\Workspace\Hazel\Hazel\src\Hazel\LayerStack.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\LayerStack.obj
 D:\Workspace\Hazel\Hazel\src\Hazel\Log.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\Log.obj
 D:\Workspace\Hazel\Hazel\src\Hazel\Renderer\Buffer.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\Buffer.obj
+D:\Workspace\Hazel\Hazel\src\Hazel\Renderer\RenderCommand.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\RenderCommand.obj
 D:\Workspace\Hazel\Hazel\src\Hazel\Renderer\Renderer.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\Renderer.obj
+D:\Workspace\Hazel\Hazel\src\Hazel\Renderer\RendererAPI.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\RendererAPI.obj
 D:\Workspace\Hazel\Hazel\src\Hazel\Renderer\Shader.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\Shader.obj
 D:\Workspace\Hazel\Hazel\src\Hazel\Renderer\VertexArray.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\VertexArray.obj
 D:\Workspace\Hazel\Hazel\src\Platform\OpenGL\OpenGLBuffer.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\OpenGLBuffer.obj
 D:\Workspace\Hazel\Hazel\src\Platform\OpenGL\OpenGLContext.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\OpenGLContext.obj
+D:\Workspace\Hazel\Hazel\src\Platform\OpenGL\OpenGLRendererAPI.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\OpenGLRendererAPI.obj
 D:\Workspace\Hazel\Hazel\src\Platform\OpenGL\OpenGLVertexArray.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\OpenGLVertexArray.obj
 D:\Workspace\Hazel\Hazel\src\Platform\Windows\WindowsInput.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\WindowsInput.obj
 D:\Workspace\Hazel\Hazel\src\Platform\Windows\WindowsWindow.cpp;D:\Workspace\Hazel\bin-int\Debug-windows-x86_64\Hazel\WindowsWindow.obj
