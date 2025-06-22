@@ -6,13 +6,9 @@
 #include "Hazel/Events/ApplicationEvent.h"
 #include "Hazel/LayerStack.h"
 #include "Hazel/ImGui/ImGuiLayer.h"	
-#include "Hazel/Renderer/Shader.h"
-#include "Hazel/Renderer/Buffer.h"
-#include "Hazel/Renderer/VertexArray.h"
-#include "Hazel/Renderer/OrthoGraphicCamera.h"
 
 namespace Hazel {
-	class HAZEL_API Application
+	class Application
 	{
 	public:
 		Application();
