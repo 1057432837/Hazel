@@ -135,36 +135,36 @@ public:
 
 	}
 
-	void OnUpdate() override {
-		if (Hazel::Input::IsKeyPressed(HZ_KEY_LEFT))
+	void OnUpdate(Hazel::Timestep ts) override {
+		if (Hazel::Input::IsKeyPressed(HZ_KEY_A))
 		{
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
 
-		}else if (Hazel::Input::IsKeyPressed(HZ_KEY_RIGHT))
+		}else if (Hazel::Input::IsKeyPressed(HZ_KEY_D))
 		{
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * ts;
 
 		}
 
-		if (Hazel::Input::IsKeyPressed(HZ_KEY_UP))
+		if (Hazel::Input::IsKeyPressed(HZ_KEY_W))
 		{
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * ts;
 
-		}else if (Hazel::Input::IsKeyPressed(HZ_KEY_DOWN))
+		}else if (Hazel::Input::IsKeyPressed(HZ_KEY_S))
 		{
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
 
 		}
 		
-		if (Hazel::Input::IsKeyPressed(HZ_KEY_A))
+		if (Hazel::Input::IsKeyPressed(HZ_KEY_LEFT))
 		{
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * ts;
 
 		}
 
-		if (Hazel::Input::IsKeyPressed(HZ_KEY_D))
+		if (Hazel::Input::IsKeyPressed(HZ_KEY_RIGHT))
 		{
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
 
 		}
 
@@ -206,9 +206,9 @@ private:
 
 	float m_CameraRotation = 0.0f;
 
-	float m_CameraMoveSpeed = 0.1f;
+	float m_CameraMoveSpeed = 5.0f;
 
-	float m_CameraRotationSpeed = 2.0f;
+	float m_CameraRotationSpeed = 180.0f;
 
 };
 

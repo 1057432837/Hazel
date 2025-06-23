@@ -2,6 +2,7 @@
 
 #include "Hazel/Core.h"
 #include "Hazel/Events/Event.h"
+#include "Hazel/Core/Timestep.h"
 
 namespace Hazel {
 	class HAZEL_API Layer
@@ -15,7 +16,7 @@ namespace Hazel {
 
 		inline virtual void OnDetach();
 
-		inline virtual void OnUpdate();
+		inline virtual void OnUpdate(Timestep ts);
 
 		inline virtual void OnImGuiRender();
 
