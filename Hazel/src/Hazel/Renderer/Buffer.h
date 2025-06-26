@@ -184,7 +184,7 @@ namespace Hazel {
 	class VertexBuffer
 	{
 	public:
-		virtual ~VertexBuffer() = default;
+		virtual ~VertexBuffer();
 
 		virtual void Bind() const = 0;
 

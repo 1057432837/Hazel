@@ -1,5 +1,6 @@
 #include "imgui/imgui.h"
 #include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
 
 #include "Hazel.h"
 #include "Platform/OpenGL/OpenGLShader.h"
@@ -212,7 +213,9 @@ public:
 	}
 
 	virtual void OnImGuiRender() override {
-
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
 	}
 
 	void OnEvent(Hazel::Event& event) override {

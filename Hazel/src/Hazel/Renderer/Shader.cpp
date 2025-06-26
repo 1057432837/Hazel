@@ -5,10 +5,6 @@
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Hazel {
-	VertexArray::~VertexArray() {
-
-	}
-
 	Shader* Shader::Create(const std::string& vertexSrc, const std::string& fragmentSrc) {
 		switch (Renderer::GetAPI())
 		{
