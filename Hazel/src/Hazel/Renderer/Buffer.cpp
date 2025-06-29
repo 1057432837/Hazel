@@ -61,14 +61,6 @@ namespace Hazel {
 
 	}
 
-	const BufferLayout& VertexBuffer::GetLayout() const {
-
-	}
-
-	void VertexBuffer::SetLayout(const BufferLayout& layout) {
-
-	}
-
 	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size) {
 		switch (Renderer::GetAPI())
 		{
@@ -99,10 +91,6 @@ namespace Hazel {
 	}
 
 	void IndexBuffer::Unbind() const {
-
-	}
-
-	uint32_t IndexBuffer::GetCount() const {
 
 	}
 
