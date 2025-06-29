@@ -5,16 +5,6 @@
 #include "OpenGLVertexArray.h"
 
 namespace Hazel {
-	OpenGLVertexArray::OpenGLVertexArray() {
-		glCreateVertexArrays(1, &m_RendererID);
-
-	}
-
-	OpenGLVertexArray::~OpenGLVertexArray() {
-		glDeleteVertexArrays(1, &m_RendererID);
-
-	}
-
 	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type) {
 		switch (type)
 		{
@@ -77,6 +67,16 @@ namespace Hazel {
 
 		HZ_CORE_ASSERT(false, "Unknown ShaderDataType!");
 		return 0;
+
+	}
+
+	OpenGLVertexArray::OpenGLVertexArray() {
+		glCreateVertexArrays(1, &m_RendererID);
+
+	}
+
+	OpenGLVertexArray::~OpenGLVertexArray() {
+		glDeleteVertexArrays(1, &m_RendererID);
 
 	}
 
