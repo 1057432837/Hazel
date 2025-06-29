@@ -13,4 +13,16 @@ namespace Hazel {
 
 	}
 
+	void RendererAPI::SetClearColor(const glm::vec4& color) {
+
+	}
+
+	void RendererAPI::Clear() {
+
+	}
+
+	void RendererAPI::DrawIndexed(const Ref<VertexArray>& vertexArray) {
+
+	}
+
 }

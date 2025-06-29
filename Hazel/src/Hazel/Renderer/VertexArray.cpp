@@ -5,6 +5,34 @@
 #include "Platform/OpenGL/OpenGLVertexArray.h"
 
 namespace Hazel {
+	VertexArray::~VertexArray() {
+
+	}
+
+	void VertexArray::Bind() const {
+
+	}
+
+	void VertexArray::Unbind() const {
+
+	}
+
+	void VertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vertexBuffer) {
+
+	}
+
+	void VertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) {
+
+	}
+
+	//const std::vector<Ref<VertexBuffer>>& VertexArray::GetVertexBuffers() const {
+
+	//}
+
+	//const Ref<IndexBuffer>& VertexArray::GetIndexBuffer() const {
+
+	//}
+
 	VertexArray* VertexArray::Create() {
 		switch (Renderer::GetAPI())
 		{

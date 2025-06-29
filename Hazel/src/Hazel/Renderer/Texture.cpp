@@ -1,23 +1,19 @@
 #include "hzpch.h"
 
-#include "Shader.h"
+#include "Texture.h"
 #include "Renderer.h"
-#include "Platform/OpenGL/OpenGLShader.h"
+#include "Platform/OpenGL/OpenGLTexture.h"
 
 namespace Hazel {
-	Shader::~Shader() {
+	Texture::~Texture() {
 
 	}
 
-	void Shader::Bind() const {
+	void Texture::Bind(uint32_t slot) const {
 
 	}
 
-	void Shader::Unbind() const {
-
-	}
-
-	Shader* Shader::Create(const std::string& vertexSrc, const std::string& fragmentSrc) {
+	Ref<Texture2D> Texture2D::Create(const std::string& path) {
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None: {
@@ -27,7 +23,7 @@ namespace Hazel {
 		}
 
 		case RendererAPI::API::OpenGL: {
-			return new OpenGLShader(vertexSrc, fragmentSrc);
+			return std::make_shared<OpenGLTexture2D>(path);
 
 		}
 
