@@ -13,6 +13,14 @@ namespace Hazel {
 
 	}
 
+	Texture2D::Texture2D() {
+
+	}
+
+	Texture2D::~Texture2D() {
+
+	}
+
 	Ref<Texture2D> Texture2D::Create(const std::string& path) {
 		switch (Renderer::GetAPI())
 		{

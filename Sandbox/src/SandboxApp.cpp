@@ -165,16 +165,21 @@ public:
 																												//
 			in vec2 v_TexCoord;																					//
 																												//
-			uniform vec3 u_Color;																				//
+			uniform sampler2D u_Texture;																		//
 																												//
 			void main() {																						//
-				color = vec4(v_TexCoord, 0.0, 1.0);																//
+				color = texture(u_Texture, v_TexCoord);															//
 																												//
 			}																									//
 																												//
 		)";																										//
 																												//
 		m_TextureShader.reset(Hazel::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));			//
+																												//
+		m_Texture = Hazel::Texture2D::Create("assets/textures/avatar.jpg");										//
+																												//
+		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_TextureShader)->Bind();								//
+		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_TextureShader)->UploadUniformInt("m_Texture", 0);		//
 																												//
 		/*------------------------------------------------------------------------------------------------------*/
 
@@ -245,6 +250,7 @@ public:
 		}
 
 		/*Hazel::Renderer::Submit(m_Shader, m_VertexArray);*/
+		m_Texture->Bind();
 		Hazel::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		Hazel::Renderer::EndScene();
@@ -269,6 +275,8 @@ private:
 	Hazel::Ref<Hazel::Shader> m_FlatColorShader, m_TextureShader;
 
 	Hazel::Ref<Hazel::VertexArray> m_SquareVA;
+
+	Hazel::Ref<Hazel::Texture2D> m_Texture;
 
 	Hazel::OrthoGraphicCamera m_Camera;
 
