@@ -53,6 +53,22 @@ namespace Hazel {
 	
 	}
 
+	void VertexBuffer::Bind() const {
+
+	}
+
+	void VertexBuffer::Unbind() const {
+
+	}
+
+	const BufferLayout& VertexBuffer::GetLayout() const {
+
+	}
+
+	void VertexBuffer::SetLayout(const BufferLayout& layout) {
+
+	}
+
 	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size) {
 		switch (Renderer::GetAPI())
 		{
@@ -76,6 +92,18 @@ namespace Hazel {
 
 	IndexBuffer::~IndexBuffer() {
 	
+	}
+
+	void IndexBuffer::Bind() const {
+
+	}
+
+	void IndexBuffer::Unbind() const {
+
+	}
+
+	uint32_t IndexBuffer::GetCount() const {
+
 	}
 
 	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t size) {
