@@ -5,6 +5,10 @@
 #include "Platform/OpenGL/OpenGLVertexArray.h"
 
 namespace Hazel {
+	VertexArray::VertexArray() {
+
+	}
+
 	VertexArray::~VertexArray() {
 
 	}

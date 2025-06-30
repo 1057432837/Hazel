@@ -5,6 +5,10 @@
 #include "Platform/OpenGL/OpenGLShader.h"
 
 namespace Hazel {
+	Shader::Shader() {
+
+	}
+
 	Shader::~Shader() {
 
 	}

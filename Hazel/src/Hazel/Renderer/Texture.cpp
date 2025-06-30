@@ -5,6 +5,10 @@
 #include "Platform/OpenGL/OpenGLTexture.h"
 
 namespace Hazel {
+	Texture::Texture() {
+
+	}
+
 	Texture::~Texture() {
 
 	}

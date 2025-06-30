@@ -10,19 +10,19 @@ namespace Hazel {
 
 		~OrthoGraphicCamera();
 
-		const glm::vec3& GetPosition() const;
+		const glm::vec3& GetPosition() const { return m_Position; }
 
-		void SetPosition(const glm::vec3& position);
+		void SetPosition(const glm::vec3& position) { m_Position = position; RecalculateViewMatrix(); }
 
-		float GetRotation() const;
+		float GetRotation() const { return m_Rotation; }
 
-		void SetRotation(float rotation);
+		void SetRotation(float rotation) { m_Rotation = rotation; RecalculateViewMatrix(); }
 
-		const glm::mat4& GetProjectionMatrix() const;
+		const glm::mat4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
 
-		const glm::mat4& GetViewMatrix() const;
+		const glm::mat4& GetViewMatrix() const { return m_ViewMatrix; }
 
-		const glm::mat4& GetViewProjectionMatrix() const;
+		const glm::mat4& GetViewProjectionMatrix() const { return m_ViewProjectionMatrix; }
 
 	private:
 		glm::vec3 m_Position = {0.0f, 0.0f, 0.0f};

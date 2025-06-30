@@ -5,7 +5,9 @@
 namespace Hazel {
 	class Shader
 	{
-	public:		
+	public:
+		Shader();
+
 		virtual ~Shader();
 
 		virtual void Bind() const = 0;
