@@ -14,9 +14,9 @@ namespace Hazel {
 
 		virtual void Unbind() const override;
 
-		virtual const BufferLayout& GetLayout() const override;
+		virtual const BufferLayout& GetLayout() const { return m_Layout; };
 
-		virtual void SetLayout(const BufferLayout& layout) override;
+		virtual void SetLayout(const BufferLayout& layout) { m_Layout = layout; };
 
 	private:
 		uint32_t m_RendererID;
@@ -36,7 +36,7 @@ namespace Hazel {
 
 		virtual void Unbind() const override;
 
-		virtual uint32_t GetCount() const;
+		virtual uint32_t GetCount() const { return m_Count; }
 
 	private:
 		uint32_t m_RendererID;

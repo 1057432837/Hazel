@@ -29,16 +29,6 @@ namespace Hazel {
 
 	}
 
-	const std::vector<Ref<VertexBuffer>>& VertexArray::GetVertexBuffers() const {
-		return std::vector<Ref<VertexBuffer>>();
-
-	}
-
-	const Ref<IndexBuffer>& VertexArray::GetIndexBuffer() const {
-		return Ref<IndexBuffer>();
-
-	}
-
 	VertexArray* VertexArray::Create() {
 		switch (Renderer::GetAPI())
 		{
