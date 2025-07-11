@@ -20,6 +20,6 @@
 #include "Hazel/Renderer/Texture.h"
 #include "Hazel/Renderer/VertexArray.h"
 
-#include "Hazel/Renderer/OrthoGraphicCamera.h"
+#include "Hazel/OrthoGraphicCameraController.h"
 
 #include "Hazel/EntryPoint.h"

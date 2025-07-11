@@ -14,7 +14,7 @@ namespace Hazel {
 
 		static void Init();
 
-		static void BeginScene(OrthoGraphicCamera& camera);
+		static void BeginScene(OrthographicCamera& camera);
 
 		static void EndScene();
 

@@ -3,12 +3,12 @@
 #include "glm/glm.hpp"
 
 namespace Hazel {
-	class OrthoGraphicCamera
+	class OrthographicCamera
 	{
 	public:
-		OrthoGraphicCamera(float left, float right, float bottom, float top);
+		OrthographicCamera(float left, float right, float bottom, float top);
 
-		~OrthoGraphicCamera();
+		~OrthographicCamera();
 
 		const glm::vec3& GetPosition() const { return m_Position; }
 
@@ -17,6 +17,8 @@ namespace Hazel {
 		float GetRotation() const { return m_Rotation; }
 
 		void SetRotation(float rotation) { m_Rotation = rotation; RecalculateViewMatrix(); }
+
+		void SetProjection(float left, float right, float bottom, float top);
 
 		const glm::mat4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
 
