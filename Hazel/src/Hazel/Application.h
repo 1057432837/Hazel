@@ -35,7 +35,11 @@ namespace Hazel {
 
 		bool m_Running = true;
 
+		bool m_Minimized = false;
+
 		bool OnWindowClose(WindowCloseEvent& e);
+
+		bool OnWindowResize(WindowResizeEvent& e);
 
 		LayerStack m_LayerStack;
 
