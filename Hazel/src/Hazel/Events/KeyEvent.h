@@ -6,6 +6,10 @@ namespace Hazel {
 	class HAZEL_API KeyEvent : public Event
 	{
 	public:
+		KeyEvent() = default;
+
+		~KeyEvent() = default;
+
 		inline int GetKeyCode() const { return m_KeyCode; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
@@ -20,6 +24,10 @@ namespace Hazel {
 	class HAZEL_API KeyPressedEvent : public KeyEvent
 	{
 	public:
+		KeyPressedEvent() = default;
+
+		~KeyPressedEvent() = default;
+
 		KeyPressedEvent(int keycode, int repeatCount) : KeyEvent(keycode), m_RepeatCount(repeatCount) { }
 
 		inline int GetRepeatCount() const { return m_RepeatCount; }
@@ -41,6 +49,10 @@ namespace Hazel {
 	class HAZEL_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
+		KeyReleasedEvent() = default;
+
+		~KeyReleasedEvent() = default;
+
 		KeyReleasedEvent(int keycode) : KeyEvent(keycode){ };
 
 		std::string ToString() const override {
@@ -57,6 +69,10 @@ namespace Hazel {
 	class HAZEL_API KeyTypedEvent : public KeyEvent
 	{
 	public:
+		KeyTypedEvent() = default;
+
+		~KeyTypedEvent() = default;
+
 		KeyTypedEvent(int keycode) : KeyEvent(keycode) { }
 
 		std::string ToString() const override {
@@ -64,10 +80,6 @@ namespace Hazel {
 			ss << "KeyTypedEvent: " << m_KeyCode;
 			return ss.str();
 		}
-
-		//static EventType GetStaticType() { return EventType::KeyPressed; }
-		//virtual EventType GetEventType() const override { return GetStaticType(); }
-		//virtual const char* GetName() const override { return "KeyPressed"; }
 
 		EVENT_CLASS_TYPE(KeyTyped)
 
