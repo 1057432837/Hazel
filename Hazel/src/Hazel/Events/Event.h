@@ -29,13 +29,16 @@ namespace Hazel {
 
 	};
 
-	class HAZEL_API Event //基类抽象类
+	class HAZEL_API Event
 	{
 		friend class EventDispatcher;
 
 	public:
-
 		bool Handled = false;
+
+		Event() = default;
+
+		~Event() = default;
 
 		virtual EventType GetEventType() const = 0;
 
@@ -45,24 +48,25 @@ namespace Hazel {
 
 		virtual std::string ToString() const { return GetName(); }
 
-		inline bool IsInCategory(EventCategory category) {
-			return GetCategoryFlags() & category;
+		inline bool IsInCategory(EventCategory category) { return GetCategoryFlags() & category; }
 
-		}
+	private:
 
 	};
 
 	class EventDispatcher
 	{
 		template<typename T>
-
 		using EventFn = std::function<bool(T&)>;
 
 	public:
+		EventDispatcher() = default;
+
+		~EventDispatcher() = default;
+
 		EventDispatcher(Event& event) : m_Event(event){ }
 
 		template<typename T>
-
 		bool Dispatch(EventFn<T> func) {
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{
