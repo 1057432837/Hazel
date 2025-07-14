@@ -6,6 +6,10 @@ namespace Hazel {
 	class HAZEL_API WindowResizeEvent : public Event
 	{
 	public:
+		WindowResizeEvent() = default;
+
+		~WindowResizeEvent() = default;
+
 		WindowResizeEvent(unsigned int width, unsigned int height) : m_Width(width), m_Height(height) { }
 
 		inline unsigned int GetWidth() const { return m_Width; }
@@ -31,7 +35,9 @@ namespace Hazel {
 	class HAZEL_API WindowCloseEvent : public Event
 	{
 	public:
-		WindowCloseEvent() { }
+		WindowCloseEvent() = default;
+
+		~WindowCloseEvent() = default;
 
 		EVENT_CLASS_TYPE(WindowClose)
 
@@ -42,7 +48,9 @@ namespace Hazel {
 	class HAZEL_API AppTickEvent : public Event
 	{
 	public:
-		AppTickEvent() { }
+		AppTickEvent() = default;
+
+		~AppTickEvent() = default;
 
 		EVENT_CLASS_TYPE(AppTick)
 
@@ -53,7 +61,9 @@ namespace Hazel {
 	class HAZEL_API AppUpdateEvent : public Event
 	{
 	public:
-		AppUpdateEvent() { }
+		AppUpdateEvent() = default;
+
+		~AppUpdateEvent() = default;
 
 		EVENT_CLASS_TYPE(AppUpdate)
 
@@ -64,7 +74,9 @@ namespace Hazel {
 	class HAZEL_API AppRenderEvent : public Event
 	{
 	public:
-		AppRenderEvent() { }
+		AppRenderEvent() = default;
+
+		~AppRenderEvent() = default;
 
 		EVENT_CLASS_TYPE(AppRender)
 
