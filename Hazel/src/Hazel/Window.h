@@ -18,7 +18,9 @@ namespace Hazel {
 	class HAZEL_API Window
 	{
 	public:
-		virtual ~Window() { }
+		Window() = default;
+
+		virtual ~Window() = default;
 
 		using EventCallbackFn = std::function<void(Event&)>;
 

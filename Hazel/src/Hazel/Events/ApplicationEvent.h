@@ -43,6 +43,8 @@ namespace Hazel {
 
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
+	private:
+
 	};
 
 	class HAZEL_API AppTickEvent : public Event
@@ -55,6 +57,8 @@ namespace Hazel {
 		EVENT_CLASS_TYPE(AppTick)
 
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+
+	private:
 
 	};
 
@@ -69,6 +73,8 @@ namespace Hazel {
 
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
+	private:
+
 	};
 	
 	class HAZEL_API AppRenderEvent : public Event
@@ -81,6 +87,8 @@ namespace Hazel {
 		EVENT_CLASS_TYPE(AppRender)
 
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+
+	private:
 
 	};
 

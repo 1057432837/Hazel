@@ -64,6 +64,8 @@ namespace Hazel {
 
 		EVENT_CLASS_TYPE(KeyReleased)
 
+	private:
+
 	};
 
 	class HAZEL_API KeyTypedEvent : public KeyEvent
@@ -82,6 +84,8 @@ namespace Hazel {
 		}
 
 		EVENT_CLASS_TYPE(KeyTyped)
+
+	private:
 
 	};
 

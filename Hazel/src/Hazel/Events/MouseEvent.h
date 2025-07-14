@@ -97,6 +97,8 @@ namespace Hazel {
 
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 
+	private:
+
 	};
 
 	class HAZEL_API MouseButtonReleasedEvent : public MouseButtonEvent
@@ -116,6 +118,8 @@ namespace Hazel {
 		}
 
 		EVENT_CLASS_TYPE(MouseButtonReleased)
+
+	private:
 
 	};
 
