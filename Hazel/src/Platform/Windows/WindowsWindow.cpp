@@ -9,8 +9,7 @@
 namespace Hazel {
 	static bool s_GLFWInitialized = false;
 
-	WindowsWindow::WindowsWindow(const WindowProps& props) {
-		Init(props);
+	WindowsWindow::WindowsWindow() {
 
 	}
 
@@ -19,54 +18,14 @@ namespace Hazel {
 
 	}
 
-	Window* Window::Create(const WindowProps& props) {
-		return new WindowsWindow(props);
+	WindowsWindow::WindowsWindow(const WindowProps& props) {
+		Init(props);
 
 	}
 
 	void WindowsWindow::OnUpdate() {
 		glfwPollEvents();
 		m_Context->SwapBuffers();
-
-	}
-
-	inline unsigned int WindowsWindow::GetWidth() const {
-		return m_Data.Width;
-
-	}
-
-	inline unsigned int WindowsWindow::GetHeight() const {
-		return m_Data.Height;
-
-	}
-
-	bool WindowsWindow::IsVSync() const {
-		return m_Data.VSync;
-
-	}
-
-	void WindowsWindow::SetVSync(bool enabled) {
-		if (enabled)
-		{
-			glfwSwapInterval(1);
-
-		}
-		else
-		{
-			glfwSwapInterval(0);
-
-		}
-		m_Data.VSync = enabled;
-
-	}
-
-	inline void WindowsWindow::SetEventCallback(const EventCallbackFn& callback) {
-		m_Data.EventCallback = callback;
-
-	}
-
-	inline void* WindowsWindow::GetNativeWindow() const {
-		return m_Window;
 
 	}
 
@@ -201,6 +160,11 @@ namespace Hazel {
 
 	void WindowsWindow::Shutdown() {
 		glfwDestroyWindow(m_Window);
+
+	}
+
+	Window* Window::Create(const WindowProps& props) {
+		return new WindowsWindow(props);
 
 	}
 

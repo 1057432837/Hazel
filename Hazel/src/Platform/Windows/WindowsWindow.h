@@ -12,23 +12,38 @@ namespace Hazel {
 	class WindowsWindow : public Window
 	{
 	public:
-		WindowsWindow(const WindowProps& props);
+		WindowsWindow();
 
 		virtual ~WindowsWindow();
 
+		WindowsWindow(const WindowProps& props);
+
 		void OnUpdate() override;
 
-		inline unsigned int GetWidth() const override;
+		inline unsigned int GetWidth() const { return m_Data.Width; }
 
-		inline unsigned int GetHeight() const override;
+		inline unsigned int GetHeight() const { return m_Data.Height; }
 
-		bool IsVSync() const override;
+		bool IsVSync() const { return m_Data.VSync; }
 
-		void SetVSync(bool enabled) override;
+		void SetVSync(bool enabled) {
+			if (enabled)
+			{
+				glfwSwapInterval(1);
 
-		inline void SetEventCallback(const EventCallbackFn& callback) override;
+			}
+			else
+			{
+				glfwSwapInterval(0);
 
-		inline virtual void* GetNativeWindow() const;
+			}
+			m_Data.VSync = enabled;
+
+		}
+
+		inline void SetEventCallback(const EventCallbackFn& callback) { m_Data.EventCallback = callback; }
+
+		inline virtual void* GetNativeWindow() const { return m_Window; }
 
 	private:
 		struct WindowData
