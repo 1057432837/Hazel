@@ -40,6 +40,8 @@ namespace Hazel {
 		
 		static Window* Create(const WindowProps& props = WindowProps());
 
+	private:
+
 	};
 
 }
