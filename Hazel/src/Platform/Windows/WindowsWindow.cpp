@@ -59,6 +59,18 @@ namespace Hazel {
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
+		glfwSetWindowPosCallback(m_Window, [](GLFWwindow* window, int XPos, int YPos) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			data.XPos = XPos;
+			data.YPos = YPos;
+
+			WindowMovedEvent event(XPos, YPos);
+
+			data.EventCallback(event);
+
+		});
+
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
@@ -77,6 +89,21 @@ namespace Hazel {
 			WindowCloseEvent event;
 
 			data.EventCallback(event);
+
+		});
+
+		glfwSetWindowFocusCallback(m_Window, [](GLFWwindow* window, int focused) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			if (focused)
+			{
+				WindowFocusEvent event;
+				data.EventCallback(event);
+			}
+			else
+			{
+				WindowLostFocusEvent event;
+				data.EventCallback(event);
+			}
 
 		});
 

@@ -50,6 +50,8 @@ namespace Hazel {
 		{
 			std::string Title;
 			unsigned int Width, Height;
+			unsigned int XPos, YPos;
+			bool IsFocused;
 			bool VSync;
 
 			EventCallbackFn EventCallback;
