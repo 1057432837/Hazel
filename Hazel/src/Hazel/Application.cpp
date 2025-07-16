@@ -14,8 +14,25 @@ namespace Hazel {
 	Application::Application() {
 		HZ_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
+
 		m_Window = Scope<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
+
+		int x, y;
+		std::ifstream ifs("WindowPosition.cfg");
+		if (ifs.is_open())
+		{
+			std::string line;
+			if (std::getline(ifs, line)) {
+				std::istringstream iss(line);
+				iss >> x >> y;
+
+			}
+
+			ifs.close();
+
+		}
+		m_Window->SetPosition(x, y);
 
 		Renderer::Init();
 
@@ -57,6 +74,18 @@ namespace Hazel {
 
 	}
 
+	bool Application::OnWindowMoved(WindowMovedEvent& e) {
+		std::ofstream ofs("WindowPosition.cfg");
+		if (ofs.is_open()) {
+			ofs << e.GetXPos() << " " << e.GetYPos() << std::endl;
+			ofs.close();
+
+		}
+		
+		return false;
+
+	}
+
 	bool Application::OnWindowClose(WindowCloseEvent& e) {
 		m_Running = false;
 		return true;
@@ -79,6 +108,7 @@ namespace Hazel {
 
 	void Application::OnEvent(Event& e) {
 		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowMovedEvent>(BIND_EVENT_FN(OnWindowMoved));
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
 

@@ -20,6 +20,8 @@ namespace Hazel {
 
 		void OnUpdate() override;
 
+		inline void SetPosition(unsigned int xPos, unsigned int yPos) const { glfwSetWindowPos(m_Window, xPos, yPos); }
+
 		inline unsigned int GetWidth() const { return m_Data.Width; }
 
 		inline unsigned int GetHeight() const { return m_Data.Height; }

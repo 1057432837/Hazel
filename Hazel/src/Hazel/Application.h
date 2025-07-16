@@ -39,6 +39,8 @@ namespace Hazel {
 
 		bool m_Minimized = false;
 
+		bool OnWindowMoved(WindowMovedEvent& e);
+
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		bool OnWindowResize(WindowResizeEvent& e);
