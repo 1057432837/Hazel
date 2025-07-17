@@ -18,21 +18,33 @@ namespace Hazel {
 		m_Window = Scope<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
 
-		int x, y;
+		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+		if (!monitor)
+		{
+			return;
+
+		}
+		int monitorX, monitorY, monitorW, monitorH;
+		glfwGetMonitorWorkarea(monitor, &monitorX, &monitorY, &monitorW, &monitorH);
+
+		unsigned int windowX = monitorW - m_Window->GetWidth() / 2;
+		unsigned int windowY = monitorH - m_Window->GetHeight() / 2;
+
 		std::ifstream ifs("WindowPosition.cfg");
 		if (ifs.is_open())
 		{
 			std::string line;
 			if (std::getline(ifs, line)) {
 				std::istringstream iss(line);
-				iss >> x >> y;
+				iss >> windowX >> windowY;
 
 			}
 
 			ifs.close();
 
 		}
-		m_Window->SetPosition(x, y);
+
+		m_Window->SetPosition(windowX, windowY);
 
 		Renderer::Init();
 
@@ -81,7 +93,7 @@ namespace Hazel {
 			ofs.close();
 
 		}
-		
+
 		return false;
 
 	}
