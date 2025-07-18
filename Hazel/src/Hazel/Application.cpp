@@ -24,11 +24,12 @@ namespace Hazel {
 			return;
 
 		}
+
 		int monitorX, monitorY, monitorW, monitorH;
 		glfwGetMonitorWorkarea(monitor, &monitorX, &monitorY, &monitorW, &monitorH);
 
-		unsigned int windowX = monitorW - m_Window->GetWidth() / 2;
-		unsigned int windowY = monitorH - m_Window->GetHeight() / 2;
+		unsigned int windowX = monitorW / 2 - m_Window->GetWidth() / 2;
+		unsigned int windowY = monitorH / 2 - m_Window->GetHeight() / 2;
 
 		std::ifstream ifs("WindowPosition.cfg");
 		if (ifs.is_open())
