@@ -5,7 +5,15 @@
 #include "Hazel/Application.h"
 
 namespace Hazel {
-	Input* Input::s_Instance = new WindowsInput();
+	Input* Input::s_Instance = Create();
+
+	WindowsInput::WindowsInput() {
+
+	}
+
+	WindowsInput::~WindowsInput() {
+
+	}
 
 	bool WindowsInput::IsKeyPressedImpl(int keycode) {
 		auto window = static_cast<GLFWwindow*> (Application::Get().GetWindow().GetNativeWindow());
@@ -46,6 +54,11 @@ namespace Hazel {
 		auto [x, y] = GetMousePositionImpl();
 
 		return y;
+
+	}
+
+	Input* Input::Create() {
+		return new WindowsInput();
 
 	}
 

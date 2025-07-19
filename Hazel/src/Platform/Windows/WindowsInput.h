@@ -5,6 +5,11 @@
 namespace Hazel {
 	class WindowsInput : public Input
 	{
+	public:
+		WindowsInput();
+
+		~WindowsInput();
+
 	protected:
 		virtual bool IsKeyPressedImpl(int keycode) override;
 
@@ -15,6 +20,8 @@ namespace Hazel {
 		virtual float GetMouseXImpl() override;
 
 		virtual float GetMouseYImpl() override;
+
+	private:
 
 	};
 
