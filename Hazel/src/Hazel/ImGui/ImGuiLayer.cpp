@@ -11,7 +11,7 @@
 
 namespace Hazel {
 	ImGuiLayer::ImGuiLayer() : Layer("ImGuiLayer") {
-    
+        
     }
 
 	ImGuiLayer::~ImGuiLayer() {

@@ -8,9 +8,11 @@ namespace Hazel {
 	class HAZEL_API Layer
 	{
 	public:
-		Layer(const std::string& name = "Layer");
+		Layer();
 
 		virtual ~Layer();
+
+		Layer(const std::string& name = "Layer");
 
 		inline virtual void OnAttach();
 
