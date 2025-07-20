@@ -11,7 +11,7 @@
 
 namespace Hazel {
 	ImGuiLayer::ImGuiLayer() : Layer("ImGuiLayer") {
-        
+
     }
 
 	ImGuiLayer::~ImGuiLayer() {
@@ -88,5 +88,10 @@ namespace Hazel {
         }
 
     }
+
+    Layer* Layer::Create() {
+        return new ImGuiLayer();
+
+	}
 
 }

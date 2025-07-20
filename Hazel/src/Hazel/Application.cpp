@@ -49,7 +49,7 @@ namespace Hazel {
 
 		Renderer::Init();
 
-		m_ImGuiLayer = new ImGuiLayer();
+		m_ImGuiLayer = static_cast<ImGuiLayer*>(Layer::Create());
 		PushOverlay(m_ImGuiLayer);
 
 	}

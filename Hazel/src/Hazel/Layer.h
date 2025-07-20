@@ -26,6 +26,8 @@ namespace Hazel {
 
 		inline const std::string& GetName() const { return m_DebugName; }
 
+		static Layer* Create();
+
 	protected:
 		std::string m_DebugName;
 
