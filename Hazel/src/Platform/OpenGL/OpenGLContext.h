@@ -8,9 +8,11 @@ namespace Hazel {
 	class OpenGLContext : public GraphicsContext
 	{
 	public:
-		OpenGLContext(GLFWwindow* windowHandle);
+		OpenGLContext();
 
-		~OpenGLContext();
+		virtual ~OpenGLContext();
+
+		OpenGLContext(GLFWwindow* windowHandle);
 
 		virtual void Init() override;
 

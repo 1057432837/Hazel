@@ -9,12 +9,16 @@
 #include "OpenGLContext.h"
 
 namespace Hazel {
-	OpenGLContext::OpenGLContext(GLFWwindow* windowHandle) : m_WindowHandle(windowHandle) {
-		HZ_CORE_ASSERT(windowHandle, "Window handle is null!");
+	OpenGLContext::OpenGLContext() {
 
 	}
 
 	OpenGLContext::~OpenGLContext() {
+
+	}
+
+	OpenGLContext::OpenGLContext(GLFWwindow* windowHandle) : m_WindowHandle(windowHandle) {
+		HZ_CORE_ASSERT(windowHandle, "Window handle is null!");
 
 	}
 
@@ -32,6 +36,11 @@ namespace Hazel {
 
 	void OpenGLContext::SwapBuffers() {
 		glfwSwapBuffers(m_WindowHandle);
+
+	}
+
+	GraphicsContext* GraphicsContext::Create(GLFWwindow* windowHandle) {
+		return new OpenGLContext(windowHandle);
 
 	}
 
