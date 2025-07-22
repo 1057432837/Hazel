@@ -125,16 +125,13 @@ public:
 		m_SquareVA.reset(Hazel::VertexArray::Create());																	//
 		m_SquareVB.reset(Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));							//
 		m_SquareIB.reset(Hazel::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));			//
+		m_FlatColorShader = Hazel::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);	//´¿É«
+		m_Texture = Hazel::Texture2D::Create("assets/textures/avatar.jpg");												//
+		m_TextureShader = Hazel::Shader::Create("assets/shaders/Texture.glsl");											//ÎÆÀíÉ«
 																														//
 		m_SquareVB->SetLayout(squareVBLayout);																			//
 		m_SquareVA->SetIndexBuffer(m_SquareIB);																			//
 		m_SquareVA->AddVertexBuffer(m_SquareVB);																		//
-																														//
-		m_FlatColorShader = Hazel::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);	//
-																														//
-		m_TextureShader = Hazel::Shader::Create("assets/shaders/Texture.glsl");											//
-																														//
-		m_Texture = Hazel::Texture2D::Create("assets/textures/avatar.jpg");												//
 																														//
 		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_TextureShader)->Bind();										//
 		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_TextureShader)->UploadUniformInt("m_Texture", 0);				//
@@ -213,9 +210,11 @@ private:
 
 	Hazel::Ref<Hazel::IndexBuffer> m_SquareIB;
 
-	Hazel::Ref<Hazel::Shader> m_FlatColorShader, m_TextureShader;
+	Hazel::Ref<Hazel::Shader> m_FlatColorShader;
 
 	Hazel::Ref<Hazel::Texture2D> m_Texture;
+
+	Hazel::Ref<Hazel::Shader> m_TextureShader;
 
 	Hazel::OrthographicCameraController m_CameraController;
 
