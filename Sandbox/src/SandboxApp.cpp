@@ -80,11 +80,11 @@ public:
 																														//
 		};																												//
 																														//
-		m_SquareVBLayout.reset(Hazel::BufferLayout::Create({																			//
+		m_SquareVBLayout.reset(Hazel::BufferLayout::Create({															//
 			{ Hazel::ShaderDataType::Float3, "a_Position" },															//
 			{ Hazel::ShaderDataType::Float2, "a_TexCoord" }																//
-			//
-			}));																												//
+																														//
+			}));																										//
 																														//
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };																//
 																														//
@@ -129,7 +129,7 @@ public:
 		m_Texture = Hazel::Texture2D::Create("assets/textures/avatar.jpg");												//
 		m_TextureShader = Hazel::Shader::Create("assets/shaders/Texture.glsl");											//ÎÆÀíÉ«
 																														//
-		m_SquareVB->SetLayout(m_SquareVBLayout);																			//
+		m_SquareVB->SetLayout(m_SquareVBLayout);																		//
 		m_SquareVA->SetIndexBuffer(m_SquareIB);																			//
 		m_SquareVA->AddVertexBuffer(m_SquareVB);																		//
 																														//
