@@ -10,8 +10,6 @@ class ExampleLayer : public Hazel::Layer
 public:
 	ExampleLayer() : Layer("Example"), m_CameraController(1280.0f / 720.0f, true) {
 		/*--------------------------------------------------------------------------------------------------------------*/
-		m_VertexArray.reset(Hazel::VertexArray::Create());																//
-																														//
 		float vertices[3 * 7] = {																						//
 			-0.5f, -0.5f,  0.0f, 1.0f, 0.0f, 1.0f, 1.0f,																//
 			 0.5f, -0.5f,  0.0f, 0.0f, 0.0f, 1.0f, 1.0f,																//
@@ -19,22 +17,13 @@ public:
 																														//
 		};																												//
 																														//
-		Hazel::Ref<Hazel::VertexBuffer> vertexBuffer;																	//
-		vertexBuffer.reset(Hazel::VertexBuffer::Create(vertices, sizeof(vertices)));									//
-																														//
 		Hazel::BufferLayout layout = {																					//
-		{ Hazel::ShaderDataType::Float3, "a_Position" },																//
-		{ Hazel::ShaderDataType::Float4, "a_Color" },																	//
+			{ Hazel::ShaderDataType::Float3, "a_Position" },															//
+			{ Hazel::ShaderDataType::Float4, "a_Color" },																//
 																														//
 		};																												//
 																														//
-		vertexBuffer->SetLayout(layout);																				//
-		m_VertexArray->AddVertexBuffer(vertexBuffer);																	//
-																														//
 		uint32_t indices[3] = { 0, 1, 2 };																				//
-		Hazel::Ref<Hazel::IndexBuffer> indexBuffer;																		//
-		indexBuffer.reset(Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));						//
-		m_VertexArray->SetIndexBuffer(indexBuffer);																		//
 																														//
 		std::string vertexSrc = R"(																						//
 			#version 330 core																							//
@@ -73,7 +62,14 @@ public:
 																														//
 		)";																												//
 																														//
+		m_VertexArray.reset(Hazel::VertexArray::Create());																//
+		m_VertexBuffer.reset(Hazel::VertexBuffer::Create(vertices, sizeof(vertices)));									//
+		m_IndexBuffer.reset(Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));					//
 		m_Shader = Hazel::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);										//
+																														//
+		m_VertexBuffer->SetLayout(layout);																				//
+		m_VertexArray->SetIndexBuffer(m_IndexBuffer);																	//
+		m_VertexArray->AddVertexBuffer(m_VertexBuffer);																	//
 																														//
 		/*--------------------------------------------------------------------------------------------------------------*/
 		m_SquareVA.reset(Hazel::VertexArray::Create());																	//
@@ -210,6 +206,10 @@ private:
 
 	Hazel::Ref<Hazel::VertexArray> m_VertexArray;
 
+	Hazel::Ref<Hazel::VertexBuffer> m_VertexBuffer;
+
+	Hazel::Ref<Hazel::IndexBuffer> m_IndexBuffer;
+
 	Hazel::Ref<Hazel::Shader> m_FlatColorShader, m_TextureShader;
 
 	Hazel::Ref<Hazel::VertexArray> m_SquareVA;
@@ -238,7 +238,6 @@ private:
 
 };
 
-//调用Application.h的CreateApplication()实例化并返回到入口函数
 Hazel::Application* Hazel::CreateApplication() {
 	return new Sandbox();
 
