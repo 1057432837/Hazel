@@ -158,7 +158,7 @@ namespace Hazel {
 	public:
 		BufferLayout();
 
-		~BufferLayout();
+		virtual ~BufferLayout();
 
 		BufferLayout(const std::initializer_list<BufferElement>& elements);
 
