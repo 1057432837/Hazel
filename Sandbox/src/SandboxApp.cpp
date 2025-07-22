@@ -199,13 +199,13 @@ public:
 	};
 
 private:
-	Hazel::Ref<Hazel::Shader> m_Shader;
-
 	Hazel::Ref<Hazel::VertexArray> m_VertexArray;
 
 	Hazel::Ref<Hazel::VertexBuffer> m_VertexBuffer;
 
 	Hazel::Ref<Hazel::IndexBuffer> m_IndexBuffer;
+
+	Hazel::Ref<Hazel::Shader> m_Shader;
 
 	Hazel::Ref<Hazel::VertexArray> m_SquareVA;
 
