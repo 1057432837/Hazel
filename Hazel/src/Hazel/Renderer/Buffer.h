@@ -174,6 +174,8 @@ namespace Hazel {
 
 		std::vector<BufferElement>::const_iterator end() const { return m_Elements.end(); }
 
+		static BufferLayout* Create(const std::initializer_list<BufferElement>& elements);
+
 	private:
 		std::vector<BufferElement> m_Elements;
 
@@ -194,14 +196,14 @@ namespace Hazel {
 
 		virtual void Unbind() const = 0;
 
-		virtual const BufferLayout& GetLayout() const { return m_Layout; }
+		virtual const Ref<Hazel::BufferLayout> GetLayout() const { return m_Layout; }
 
-		virtual void SetLayout(const BufferLayout& layout) { m_Layout = layout; }
+		virtual void SetLayout(const Ref<Hazel::BufferLayout> layout) { m_Layout = layout; }
 
 		static VertexBuffer* Create(float* vertices, uint32_t size);
 
 	private:
-		BufferLayout m_Layout;
+		Ref<Hazel::BufferLayout> m_Layout;
 
 	};
 

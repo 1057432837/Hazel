@@ -19,6 +19,11 @@ namespace Hazel {
 
 	}
 
+	BufferLayout* BufferLayout::Create(const std::initializer_list<BufferElement>& elements) {
+		return new BufferLayout(elements);
+
+	}
+
 	void BufferLayout::CalculateOffsetAndStride() {
 		uint32_t offset = 0;
 		m_Stride = 0;
