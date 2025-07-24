@@ -39,4 +39,9 @@ namespace Hazel {
 
 	}
 
+	static RendererAPI* Create() {
+		return new OpenGLRendererAPI();
+
+	}
+
 }
