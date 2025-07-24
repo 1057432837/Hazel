@@ -62,16 +62,14 @@ public:
 																														//
 		)";																												//
 																														//
-		m_VertexBuffer.reset(Hazel::VertexBuffer::Create(vertices, sizeof(vertices)));									//
-		m_VertexBuffer->SetLayout(m_Layout);																			//
-																														//
-		m_IndexBuffer.reset(Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));					//
-		m_VertexArray->SetIndexBuffer(m_IndexBuffer);																	//
-																														//
 		m_VertexArray.reset(Hazel::VertexArray::Create());																//
-		m_VertexArray->AddVertexBuffer(m_VertexBuffer);																	//
-																														//
+		m_VertexBuffer.reset(Hazel::VertexBuffer::Create(vertices, sizeof(vertices)));									//
+		m_IndexBuffer.reset(Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));					//
 		m_Shader = Hazel::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);										//
+																														//
+		m_VertexBuffer->SetLayout(m_Layout);																			//
+		m_VertexArray->SetIndexBuffer(m_IndexBuffer);																	//
+		m_VertexArray->AddVertexBuffer(m_VertexBuffer);																	//
 																														//
 		/*--------------------------------------------------------------------------------------------------------------*/
 		float squareVertices[5 * 4] = {																					//
@@ -124,18 +122,16 @@ public:
 																														//
 		)";																												//
 																														//
-		m_SquareVB.reset(Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));							//
-		m_SquareVB->SetLayout(m_SquareVBLayout);																		//
-																														//
-		m_SquareIB.reset(Hazel::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));			//
-		m_SquareVA->SetIndexBuffer(m_SquareIB);																			//
-																														//
 		m_SquareVA.reset(Hazel::VertexArray::Create());																	//
-		m_SquareVA->AddVertexBuffer(m_SquareVB);																		//
-																														//
+		m_SquareVB.reset(Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));							//
+		m_SquareIB.reset(Hazel::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));			//
 		m_FlatColorShader = Hazel::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);	//´¿É«
 		m_Texture = Hazel::Texture2D::Create("assets/textures/avatar.jpg");												//
 		m_TextureShader = Hazel::Shader::Create("assets/shaders/Texture.glsl");											//ÎÆÀíÉ«
+																														//
+		m_SquareVB->SetLayout(m_SquareVBLayout);																		//
+		m_SquareVA->SetIndexBuffer(m_SquareIB);																			//
+		m_SquareVA->AddVertexBuffer(m_SquareVB);																		//
 																														//
 		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_TextureShader)->Bind();										//
 		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_TextureShader)->UploadUniformInt("m_Texture", 0);				//
