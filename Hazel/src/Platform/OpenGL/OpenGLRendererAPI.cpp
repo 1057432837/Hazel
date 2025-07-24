@@ -19,6 +19,12 @@ namespace Hazel {
 
 	}
 
+	void OpenGLRendererAPI::Flush(const glm::vec4& color) {
+		SetClearColor(color);
+		Clear();
+
+	}
+
 	void OpenGLRendererAPI::SetClearColor(const glm::vec4& color) {
 		glClearColor(color.r, color.g, color.b, color.a);
 

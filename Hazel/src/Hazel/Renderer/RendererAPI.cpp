@@ -19,6 +19,10 @@ namespace Hazel {
 
 	}
 
+	void RendererAPI::Flush(const glm::vec4& color) {
+
+	}
+
 	void RendererAPI::SetClearColor(const glm::vec4& color) {
 
 	}

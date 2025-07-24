@@ -19,6 +19,11 @@ namespace Hazel {
 
 	}
 
+	void Renderer::Flush(const glm::vec4& color) {
+		RenderCommand::Flush(color);
+
+	}
+
 	void Renderer::BeginScene(OrthographicCamera& camera) {
 		m_SceneData->ViewProjectionMatrix = camera.GetViewProjectionMatrix();
 

@@ -14,6 +14,8 @@ namespace Hazel {
 
 		static void Init();
 
+		static void Flush(const glm::vec4& color);
+
 		static void BeginScene(OrthographicCamera& camera);
 
 		static void EndScene();

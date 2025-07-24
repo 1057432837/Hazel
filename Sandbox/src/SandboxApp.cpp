@@ -143,8 +143,7 @@ public:
 	void OnUpdate(Hazel::Timestep ts) override {
 		m_CameraController.OnUpdate(ts);
 
-		Hazel::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-		Hazel::RenderCommand::Clear();
+		Hazel::Renderer::Flush({ 0.1f, 0.1f, 0.1f, 1 });
 
 		Hazel::Renderer::BeginScene(m_CameraController.GetCamera());
 		//Hazel::Renderer::BeginScene(m_Scene);
