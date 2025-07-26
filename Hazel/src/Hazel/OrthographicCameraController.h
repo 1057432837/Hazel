@@ -9,9 +9,11 @@ namespace Hazel {
 	class OrthographicCameraController
 	{
 	public:
-		OrthographicCameraController(float aspectRatio, bool rotation = false);
+		OrthographicCameraController();
 
 		~OrthographicCameraController();
+
+		OrthographicCameraController(float aspectRatio, bool rotation = false);
 
 		void OnUpdate(Timestep ts);
 
@@ -25,6 +27,8 @@ namespace Hazel {
 
 		float GetZoomLevel(float level) { return m_ZoomLevel; }
 
+		static OrthographicCameraController* Create(float aspectRatio, bool rotation);
+		
 	private:
 		float m_AspectRatio;
 

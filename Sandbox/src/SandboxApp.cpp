@@ -8,7 +8,7 @@
 class ExampleLayer : public Hazel::Layer
 {
 public:
-	ExampleLayer() : Layer("Example"), m_CameraController(1280.0f / 720.0f, true) {
+	ExampleLayer() : Layer("Example") {
 		/*--------------------------------------------------------------------------------------------------------------*/
 		float vertices[3 * 7] = {																						//
 			-0.5f, -0.5f,  0.0f, 1.0f, 0.0f, 1.0f, 1.0f,																//
@@ -137,15 +137,16 @@ public:
 		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_TextureShader)->UploadUniformInt("m_Texture", 0);				//
 																														//
 		/*--------------------------------------------------------------------------------------------------------------*/
+		m_CameraController.reset(new Hazel::OrthographicCameraController(1280.0f / 720.0f, true));
 
 	}
 
 	void OnUpdate(Hazel::Timestep ts) override {
-		m_CameraController.OnUpdate(ts);
+		m_CameraController->OnUpdate(ts);
 
 		Hazel::Renderer::Flush({ 0.1f, 0.1f, 0.1f, 1 });
 
-		Hazel::Renderer::BeginScene(m_CameraController.GetCamera());
+		Hazel::Renderer::BeginScene(m_CameraController->GetCamera());
 		//Hazel::Renderer::BeginScene(m_Scene);
 		//Hazel::Renderer2D::BeginScene(m_Camera);
 		//Hazel::Renderer2D::DrawQuad();
@@ -190,7 +191,7 @@ public:
 	}
 
 	void OnEvent(Hazel::Event& e) override {
-		m_CameraController.OnEvent(e);
+		m_CameraController->OnEvent(e);
 
 	};
 
@@ -219,7 +220,7 @@ private:
 
 	Hazel::Ref<Hazel::Shader> m_TextureShader;
 
-	Hazel::OrthographicCameraController m_CameraController;
+	Hazel::Ref<Hazel::OrthographicCameraController> m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 

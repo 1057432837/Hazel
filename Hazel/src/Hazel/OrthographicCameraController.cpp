@@ -5,11 +5,15 @@
 #include "Hazel/KeyCodes.h"
 
 namespace Hazel {
-	OrthographicCameraController::OrthographicCameraController(float aspectRatio, bool rotation) : m_AspectRatio(aspectRatio), m_Camera(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel), m_Rotation(rotation) {
+	OrthographicCameraController::OrthographicCameraController() {
 
 	}
 
 	OrthographicCameraController::~OrthographicCameraController() {
+
+	}
+
+	OrthographicCameraController::OrthographicCameraController(float aspectRatio, bool rotation) : m_AspectRatio(aspectRatio), m_Camera(-m_AspectRatio * m_ZoomLevel, m_AspectRatio* m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel), m_Rotation(rotation) {
 
 	}
 
@@ -78,6 +82,11 @@ namespace Hazel {
 		m_AspectRatio -= (float)e.GetWidth() / (float)e.GetHeight();
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 		return false;
+
+	}
+
+	OrthographicCameraController* OrthographicCameraController::Create(float aspectRatio, bool rotation = false) {
+		return new OrthographicCameraController(aspectRatio, rotation);
 
 	}
 
