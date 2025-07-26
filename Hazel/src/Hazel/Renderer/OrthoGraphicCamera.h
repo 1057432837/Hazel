@@ -1,14 +1,17 @@
 #pragma once
 
 #include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 namespace Hazel {
 	class OrthographicCamera
 	{
 	public:
-		OrthographicCamera(float left, float right, float bottom, float top);
+		OrthographicCamera();
 
 		~OrthographicCamera();
+
+		OrthographicCamera(float left, float right, float bottom, float top);
 
 		const glm::vec3& GetPosition() const { return m_Position; }
 
@@ -18,13 +21,15 @@ namespace Hazel {
 
 		void SetRotation(float rotation) { m_Rotation = rotation; RecalculateViewMatrix(); }
 
-		void SetProjection(float left, float right, float bottom, float top);
+		void SetProjection(float left, float right, float bottom, float top) { m_ProjectionMatrix = glm::ortho(left, right, bottom, top, -1.0f, 1.0f); m_ViewProjectionMatrix = m_ProjectionMatrix * m_ViewMatrix; }
 
 		const glm::mat4& GetProjectionMatrix() const { return m_ProjectionMatrix; }
 
 		const glm::mat4& GetViewMatrix() const { return m_ViewMatrix; }
 
 		const glm::mat4& GetViewProjectionMatrix() const { return m_ViewProjectionMatrix; }
+
+		static OrthographicCamera Create(float left, float right, float bottom, float top);
 
 	private:
 		glm::vec3 m_Position = {0.0f, 0.0f, 0.0f};
