@@ -147,21 +147,12 @@ public:
 		Hazel::Renderer::Flush({ 0.1f, 0.1f, 0.1f, 1 });
 
 		Hazel::Renderer::BeginScene(m_CameraController->GetCamera());
-		//Hazel::Renderer::BeginScene(m_Scene);
-		//Hazel::Renderer2D::BeginScene(m_Camera);
-		//Hazel::Renderer2D::DrawQuad();
-		//Hazel::Renderer2D::DrawCircle();
 
+		/*--------------------------------------------------------------------------------------------------------------------*/
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
 		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_FlatColorShader)->Bind();
 		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
-
-		//Hazel::MaterialRef material = new Hazel::Material(m_FlatColorShader);
-		//Hazel::MaterialInstanceRef mi = new Hazel::MaterialInstanceRef(material);
-		//mi->SetValue("u_Color", redColor);
-		//mi->SetTexture("u_AlbedoMap", texture);
-		//squareMesh->SetMaterial(mi);
 
 		for (int y = 0; y < 20; y++)
 		{
@@ -177,6 +168,7 @@ public:
 
 		/*Hazel::Renderer::Submit(m_Shader, m_VertexArray);*/
 		m_Texture->Bind();
+		/*--------------------------------------------------------------------------------------------------------------------*/
 		Hazel::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		Hazel::Renderer::EndScene();
