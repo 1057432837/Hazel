@@ -3,12 +3,15 @@
 #include "Timestep.h"
 
 namespace Hazel {
-
-	Timestep::Timestep(float time = 0.0f) : m_Time(time) {
+	Timestep::Timestep() {
 
 	}
 
 	Timestep::~Timestep() {
+
+	}
+
+	Timestep::Timestep(float time) : m_Time(time) {
 
 	}
 

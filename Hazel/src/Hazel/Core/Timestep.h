@@ -5,9 +5,11 @@ namespace Hazel {
 	class Timestep
 	{
 	public:
-		Timestep(float time);
+		Timestep();
 
 		~Timestep();
+
+		Timestep(float time = 0.0f);
 
 		float GetSeconds() const;
 
