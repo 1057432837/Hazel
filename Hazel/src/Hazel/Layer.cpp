@@ -15,24 +15,4 @@ namespace Hazel {
 
 	}
 
-	inline void Layer::OnAttach() {
-
-	}
-
-	inline void Layer::OnDetach() {
-
-	}
-
-	inline void Layer::OnUpdate(Timestep ts) {
-
-	}
-
-	inline void Layer::OnImGuiRender() {
-
-	}
-
-	inline void Layer::OnEvent(Event& event) {
-
-	}
-
 }

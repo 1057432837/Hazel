@@ -14,15 +14,15 @@ namespace Hazel {
 
 		Layer(const std::string& name = "Layer");
 
-		inline virtual void OnAttach();
+		inline virtual void OnAttach() { }
 
-		inline virtual void OnDetach();
+		inline virtual void OnDetach() { }
 
-		inline virtual void OnUpdate(Timestep ts);
+		inline virtual void OnUpdate(Timestep ts) { }
 
-		inline virtual void OnImGuiRender();
+		inline virtual void OnImGuiRender() { }
 
-		inline virtual void OnEvent(Event& event);
+		inline virtual void OnEvent(Event& event) { }
 
 		inline const std::string& GetName() const { return m_DebugName; }
 
