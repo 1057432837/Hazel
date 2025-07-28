@@ -15,19 +15,4 @@ namespace Hazel {
 
 	}
 
-	float Timestep::GetSeconds() const {
-		return m_Time;
-	
-	}
-
-	float Timestep::GetMilliseconds() const {
-		return m_Time * 1000.0f;
-	
-	}
-
-	Timestep::operator float() const {
-		return m_Time;
-	
-	}
-
 }
