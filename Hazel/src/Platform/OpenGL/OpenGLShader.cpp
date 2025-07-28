@@ -25,6 +25,15 @@ namespace Hazel {
 
 	}
 
+	OpenGLShader::OpenGLShader() {
+
+	}
+
+	OpenGLShader::~OpenGLShader() {
+		glDeleteProgram(0);
+
+	}
+
 	OpenGLShader::OpenGLShader(const std::string& filepath) {
 		std::string source = ReadFile(filepath);
 		auto shaderSources = PreProcess(source);
@@ -43,11 +52,6 @@ namespace Hazel {
 		sources[GL_VERTEX_SHADER] = vertexSrc;
 		sources[GL_FRAGMENT_SHADER] = fragmentSrc;
 		Compile(sources);
-
-	}
-
-	OpenGLShader::~OpenGLShader() {
-		glDeleteProgram(0);
 
 	}
 
