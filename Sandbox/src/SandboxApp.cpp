@@ -17,11 +17,11 @@ public:
 																														//
 		};																												//
 																														//
-		m_Layout.reset(Hazel::BufferLayout::Create({																	//
+		m_Layout = Hazel::BufferLayout::Create({																		//
 			{ Hazel::ShaderDataType::Float3, "a_Position" },															//
 			{ Hazel::ShaderDataType::Float4, "a_Color" },																//
 																														//
-			}));  																										//
+		});  																											//
 																														//
 		uint32_t indices[3] = { 0, 1, 2 };																				//
 																														//
@@ -62,10 +62,10 @@ public:
 																														//
 		)";																												//
 																														//
-		m_VertexArray = Hazel::VertexArray::Create();																	//
+		m_VertexArray  = Hazel::VertexArray::Create();																	//
 		m_VertexBuffer = Hazel::VertexBuffer::Create(vertices, sizeof(vertices));										//
-		m_IndexBuffer = Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));						//
-		m_Shader = Hazel::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);										//
+		m_IndexBuffer  = Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));						//
+		m_Shader       = Hazel::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);								//
 																														//
 		m_VertexBuffer->SetLayout(m_Layout);																			//
 		m_VertexArray->SetIndexBuffer(m_IndexBuffer);																	//
@@ -80,11 +80,11 @@ public:
 																														//
 		};																												//
 																														//
-		m_SquareVBLayout.reset(Hazel::BufferLayout::Create({															//
+		m_SquareVBLayout = Hazel::BufferLayout::Create({																//
 			{ Hazel::ShaderDataType::Float3, "a_Position" },															//
 			{ Hazel::ShaderDataType::Float2, "a_TexCoord" }																//
 																														//
-			}));																										//
+		});																												//
 																														//
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };																//
 																														//
@@ -122,12 +122,12 @@ public:
 																														//
 		)";																												//
 																														//
-		m_SquareVA = Hazel::VertexArray::Create();																		//
-		m_SquareVB = Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices));								//
-		m_SquareIB = Hazel::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));				//
+		m_SquareVA        = Hazel::VertexArray::Create();																//
+		m_SquareVB        = Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices));						//
+		m_SquareIB        = Hazel::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));		//
 		m_FlatColorShader = Hazel::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);	//纯色
-		m_Texture = Hazel::Texture2D::Create("assets/textures/avatar.jpg");												//
-		m_TextureShader = Hazel::Shader::Create("assets/shaders/Texture.glsl");											//纹理色
+		m_Texture         = Hazel::Texture2D::Create("assets/textures/avatar.jpg");										//
+		m_TextureShader   = Hazel::Shader::Create("assets/shaders/Texture.glsl");										//纹理色
 																														//
 		m_SquareVB->SetLayout(m_SquareVBLayout);																		//
 		m_SquareVA->SetIndexBuffer(m_SquareIB);																			//

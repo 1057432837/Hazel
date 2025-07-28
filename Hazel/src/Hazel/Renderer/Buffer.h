@@ -174,7 +174,7 @@ namespace Hazel {
 
 		std::vector<BufferElement>::const_iterator end() const { return m_Elements.end(); }
 
-		static BufferLayout* Create(const std::initializer_list<BufferElement>& elements);
+		static Ref<BufferLayout> Create(const std::initializer_list<BufferElement>& elements);
 
 	private:
 		std::vector<BufferElement> m_Elements;

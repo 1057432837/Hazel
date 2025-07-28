@@ -19,8 +19,8 @@ namespace Hazel {
 
 	}
 
-	BufferLayout* BufferLayout::Create(const std::initializer_list<BufferElement>& elements) {
-		return new BufferLayout(elements);
+	Ref<BufferLayout> BufferLayout::Create(const std::initializer_list<BufferElement>& elements) {
+		return std::make_shared<BufferLayout>(elements);
 
 	}
 
