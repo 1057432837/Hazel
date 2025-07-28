@@ -24,7 +24,7 @@ namespace Hazel {
 
 		virtual const Ref<IndexBuffer>& GetIndexBuffer() const { return Ref<IndexBuffer>(); }
 
-		static VertexArray* Create();
+		static Ref<VertexArray> Create();
 
 	private:
 
