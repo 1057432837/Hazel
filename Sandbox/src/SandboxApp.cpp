@@ -133,8 +133,8 @@ public:
 		m_SquareVA->SetIndexBuffer(m_SquareIB);																			//
 		m_SquareVA->AddVertexBuffer(m_SquareVB);																		//
 																														//
-		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_TextureShader)->Bind();										//
-		std::dynamic_pointer_cast<Hazel::OpenGLShader>(m_TextureShader)->UploadUniformInt("m_Texture", 0);				//
+		Hazel::Cast<Hazel::OpenGLShader>(m_TextureShader)->Bind();														//
+		Hazel::Cast<Hazel::OpenGLShader>(m_TextureShader)->UploadUniformInt("m_Texture", 0);							//
 																														//
 		/*--------------------------------------------------------------------------------------------------------------*/
 		m_CameraController.reset(new Hazel::OrthographicCameraController(1280.0f / 720.0f, true));
