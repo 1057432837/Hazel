@@ -35,4 +35,10 @@ namespace Hazel {
 	template<typename T>
 	using Ref = std::shared_ptr<T>;
 
+	template <typename T2, typename T1>
+	Ref<T2> Cast(Ref<T1> const& ptr) {
+		return std::dynamic_pointer_cast<T2>(ptr);
+
+	}
+
 }
