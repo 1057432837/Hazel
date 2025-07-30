@@ -35,7 +35,7 @@ namespace Hazel {
 		}
 
 		case RendererAPI::API::OpenGL: {
-			return std::make_shared<OpenGLTexture2D>(path);
+			return Make<OpenGLTexture2D>(path);
 
 		}
 

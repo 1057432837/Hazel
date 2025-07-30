@@ -41,4 +41,10 @@ namespace Hazel {
 
 	}
 
+	template <typename T, typename... Args>
+	Ref<T> Make(Args&&... args) {
+		return std::make_shared<T>(std::forward<Args>(args)...);
+
+	}
+
 }
