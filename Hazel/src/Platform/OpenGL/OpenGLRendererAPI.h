@@ -8,7 +8,7 @@ namespace Hazel {
 	public:
 		OpenGLRendererAPI();
 
-		~OpenGLRendererAPI();
+		virtual ~OpenGLRendererAPI();
 
 		virtual void Init() override;
 

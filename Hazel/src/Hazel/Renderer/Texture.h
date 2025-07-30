@@ -30,7 +30,7 @@ namespace Hazel {
 	public:
 		Texture2D();
 
-		~Texture2D();
+		virtual ~Texture2D();
 
 		static Ref<Texture2D> Create(const std::string& path);
 

@@ -8,7 +8,7 @@ namespace Hazel {
 	public:
 		Input() = default;
 
-		~Input() = default;
+		virtual ~Input() = default;
 
 		inline static bool IsKeyPressed(int keycode) { return s_Instance->IsKeyPressedImpl(keycode); }
 

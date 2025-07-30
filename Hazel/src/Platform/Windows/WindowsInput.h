@@ -8,7 +8,7 @@ namespace Hazel {
 	public:
 		WindowsInput();
 
-		~WindowsInput();
+		virtual ~WindowsInput();
 
 	protected:
 		virtual bool IsKeyPressedImpl(int keycode) override;
