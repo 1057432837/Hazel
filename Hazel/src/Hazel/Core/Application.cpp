@@ -30,7 +30,7 @@ namespace Hazel {
 		unsigned int windowX = monitorW / 2 - m_Window->GetWidth() / 2;
 		unsigned int windowY = monitorH / 2 - m_Window->GetHeight() / 2;
 
-		std::ifstream ifs("WindowConfig.cfg");
+		std::ifstream ifs("../cfg/WindowConfig.cfg");
 		if (ifs.is_open())
 		{
 			std::string line;
@@ -87,7 +87,7 @@ namespace Hazel {
 	}
 
 	bool Application::OnWindowMoved(WindowMovedEvent& e) {
-		std::ofstream ofs("WindowConfig.cfg");
+		std::ofstream ofs("../cfg/WindowConfig.cfg");
 		if (ofs.is_open()) {
 			ofs << e.GetXPos() << " " << e.GetYPos() << std::endl;
 			ofs.close();
