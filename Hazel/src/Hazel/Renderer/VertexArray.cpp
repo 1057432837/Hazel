@@ -39,7 +39,7 @@ namespace Hazel {
 		}
 
 		case RendererAPI::API::OpenGL: {
-			return Make<OpenGLVertexArray>();
+			return MakeRef<OpenGLVertexArray>();
 
 		}
 

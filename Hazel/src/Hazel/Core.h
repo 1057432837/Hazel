@@ -35,15 +35,21 @@ namespace Hazel {
 	template<typename T>
 	using Ref = std::shared_ptr<T>;
 
-	template <typename T2, typename T1>
-	Ref<T2> Cast(Ref<T1> const& ptr) {
-		return std::dynamic_pointer_cast<T2>(ptr);
+	template <typename T, typename... Args>
+	Scope<T> MakeScope(Args&&... args) {
+		return std::make_unique<T>(std::forward<Args>(args)...);
 
 	}
 
 	template <typename T, typename... Args>
-	Ref<T> Make(Args&&... args) {
+	Ref<T> MakeRef(Args&&... args) {
 		return std::make_shared<T>(std::forward<Args>(args)...);
+
+	}
+
+	template <typename T2, typename T1>
+	Ref<T2> Cast(Ref<T1> const& ptr) {
+		return std::dynamic_pointer_cast<T2>(ptr);
 
 	}
 

@@ -35,7 +35,7 @@ namespace Hazel {
 		}
 
 		case RendererAPI::API::OpenGL: {
-			return Make<OpenGLTexture2D>(path);
+			return MakeRef<OpenGLTexture2D>(path);
 
 		}
 

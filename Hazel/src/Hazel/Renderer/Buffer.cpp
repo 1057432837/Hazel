@@ -20,7 +20,7 @@ namespace Hazel {
 	}
 
 	Ref<BufferLayout> BufferLayout::Create(const std::initializer_list<BufferElement>& elements) {
-		return Make<BufferLayout>(elements);
+		return MakeRef<BufferLayout>(elements);
 
 	}
 
@@ -64,7 +64,7 @@ namespace Hazel {
 		}
 
 		case RendererAPI::API::OpenGL: {
-			return Make<OpenGLVertexBuffer>(vertices, size);
+			return MakeRef<OpenGLVertexBuffer>(vertices, size);
 
 		}
 
@@ -101,7 +101,7 @@ namespace Hazel {
 		}
 
 		case RendererAPI::API::OpenGL: {
-			return Make<OpenGLIndexBuffer>(indices, size);
+			return MakeRef<OpenGLIndexBuffer>(indices, size);
 
 		}
 

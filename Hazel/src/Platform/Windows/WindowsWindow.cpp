@@ -189,8 +189,8 @@ namespace Hazel {
 
 	}
 
-	Window* Window::Create(const WindowProps& props) {
-		return new WindowsWindow(props);
+	Scope<Window> Window::Create(const WindowProps& props) {
+		return MakeScope<WindowsWindow>(props);
 
 	}
 
