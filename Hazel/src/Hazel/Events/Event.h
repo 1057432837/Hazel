@@ -1,7 +1,7 @@
 #pragma once
 
 #include "hzpch.h"
-#include "Hazel/Core.h"
+#include "Hazel/Core/Core.h"
 
 namespace Hazel {
 	#define EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return EventType::type; }\

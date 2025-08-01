@@ -1,7 +1,6 @@
 #include "hzpch.h"
 
 #include "OpenGLShaderType.h"
-#include "Hazel/Log.h"
 
 namespace Hazel {
     GLenum ShaderTypeFromString(const std::string& type) {

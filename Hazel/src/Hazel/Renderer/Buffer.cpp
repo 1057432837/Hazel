@@ -1,6 +1,5 @@
 #include "hzpch.h"
 
-#include "Hazel/Log.h"
 #include "Buffer.h"
 #include "Renderer.h"
 #include "Platform/OpenGL/OpenGLBuffer.h"

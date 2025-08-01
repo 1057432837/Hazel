@@ -4,8 +4,7 @@
 #include "glad/glad.h"
 #include "GL/GL.h"
 
-#include "Hazel/Core.h"
-#include "Hazel/Log.h"
+#include "Hazel/Core/Core.h"
 #include "OpenGLContext.h"
 
 namespace Hazel {
