@@ -3,7 +3,9 @@
 #include "glm/gtc/type_ptr.hpp"
 
 #include "Hazel.h"
+#include "Hazel/Core/EntryPoint.h"
 #include "Platform/OpenGL/OpenGLShader.h"
+#include "Sandbox2D.h"
 
 class ExampleLayer : public Hazel::Layer
 {
@@ -222,7 +224,7 @@ class Sandbox : public Hazel::Application
 {
 public:
 	Sandbox() {
-		PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 
 	}
 

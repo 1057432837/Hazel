@@ -22,5 +22,3 @@
 #include "Hazel/Renderer/VertexArray.h"
 
 #include "Hazel/Renderer/OrthoGraphicCameraController.h"
-
-#include "Hazel/Core/EntryPoint.h"
