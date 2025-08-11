@@ -38,6 +38,12 @@ namespace Hazel {
 
 		void UploadUniformMat4(const std::string& name, const glm::mat4& matrix);
 
+		virtual void SetFloat3(const std::string& name, const glm::vec3& value) override;
+
+		virtual void SetFloat4(const std::string& name, const glm::vec4& value) override;
+
+		virtual void SetMat4(const std::string& name, const glm::mat4& value) override;
+
 	private:
 		uint32_t m_RendererID;
 
