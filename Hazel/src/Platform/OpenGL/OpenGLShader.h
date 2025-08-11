@@ -44,6 +44,8 @@ namespace Hazel {
 
 		virtual void SetMat4(const std::string& name, const glm::mat4& value) override;
 
+		virtual void SetInt(const std::string& name, int value) override;
+
 	private:
 		uint32_t m_RendererID;
 

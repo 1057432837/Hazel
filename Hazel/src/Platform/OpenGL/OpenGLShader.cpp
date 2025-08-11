@@ -105,6 +105,11 @@ namespace Hazel {
 
 	}
 
+	void OpenGLShader::SetInt(const std::string& name, int value) {
+		UploadUniformInt(name, value);
+
+	}
+
 	std::string OpenGLShader::ReadFile(const std::string& filepath) {
 		std::string result;
 		std::ifstream in(filepath, std::ios::in | std::ios::binary);
