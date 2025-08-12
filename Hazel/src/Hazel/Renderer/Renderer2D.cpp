@@ -47,19 +47,20 @@ namespace Hazel {
 																													//
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };															//
 																													//
+		uint32_t whiteTextureData = 0xffffffff;																		//
+																													//
 		s_Data->QuadVertexArray   = VertexArray::Create();															//
 		s_Data->QuadVertexBuffer  = VertexBuffer::Create(squareVertices, sizeof(squareVertices));					//
 		s_Data->QuadIndexBuffer   = IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));	//
 		s_Data->TextureShader     = Shader::Create("assets/shaders/Texture.glsl");									//
 		s_Data->WhiteTexture      = Texture2D::Create(1, 1);														//
-		uint32_t whiteTextureData = 0xffffffff;																		//
-		s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));											//
 																													//
 		s_Data->QuadVertexBuffer->SetLayout(s_Data->QuadBufferLayout);												//
 		s_Data->QuadVertexArray->SetIndexBuffer(s_Data->QuadIndexBuffer);											//
 		s_Data->QuadVertexArray->AddVertexBuffer(s_Data->QuadVertexBuffer);											//
 		s_Data->TextureShader->Bind();																				//
 		s_Data->TextureShader->SetInt("u_Texture", 0);																//
+		s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));											//
 																													//
 		/*----------------------------------------------------------------------------------------------------------*/
 
