@@ -14,8 +14,8 @@ namespace Hazel {
 		Ref<VertexBuffer> QuadVertexBuffer;
 		Ref<IndexBuffer> QuadIndexBuffer;
 		Ref<BufferLayout> QuadBufferLayout;
-		Ref<Shader> FlatColorShader;
 		Ref<Shader> TextureShader;
+		Ref<Texture2D> WhiteTexture;
 		
 	}*s_Data;
 
@@ -28,38 +28,40 @@ namespace Hazel {
 	}
 
 	void Renderer2D::Init() {
-		/*------------------------------------------------------------------------------------------------------*/
-		s_Data = new Renderer2DStorage();																		//
-																												//
-		float squareVertices[5 * 4] = {																			//
-			-0.5f, -0.5f,  0.0f, 0.0f, 0.0f,																	//
-			 0.5f, -0.5f,  0.0f, 1.0f, 0.0f,																	//
-			 0.5f,  0.5f,  0.0f, 1.0f, 1.0f,																	//
-			-0.5f,  0.5f,  0.0f, 0.0f, 1.0f																		//
-																												//
-		};																										//
-																												//
-		s_Data->QuadBufferLayout = BufferLayout::Create({														//
-			{ ShaderDataType::Float3, "a_Position" },															//
-			{ ShaderDataType::Float2, "a_TexCoord" },															//
-																												//
-		});																										//
-																												//
-		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };														//
-																												//
-		s_Data->QuadVertexArray  = VertexArray::Create();														//
-		s_Data->QuadVertexBuffer = VertexBuffer::Create(squareVertices, sizeof(squareVertices));				//
-		s_Data->QuadIndexBuffer  = IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));//
-		s_Data->FlatColorShader  = Shader::Create("assets/shaders/FlatColor.glsl");								//
-		s_Data->TextureShader    = Shader::Create("assets/shaders/Texture.glsl");								//
-																												//
-		s_Data->QuadVertexBuffer->SetLayout(s_Data->QuadBufferLayout);											//
-		s_Data->QuadVertexArray->SetIndexBuffer(s_Data->QuadIndexBuffer);										//
-		s_Data->QuadVertexArray->AddVertexBuffer(s_Data->QuadVertexBuffer);										//
-		s_Data->TextureShader->Bind();																			//
-		s_Data->TextureShader->SetInt("u_Texture", 0);															//
-																												//
-		/*------------------------------------------------------------------------------------------------------*/
+		/*----------------------------------------------------------------------------------------------------------*/
+		s_Data = new Renderer2DStorage();																			//
+																													//
+		float squareVertices[5 * 4] = {																				//
+			-0.5f, -0.5f,  0.0f, 0.0f, 0.0f,																		//
+			 0.5f, -0.5f,  0.0f, 1.0f, 0.0f,																		//
+			 0.5f,  0.5f,  0.0f, 1.0f, 1.0f,																		//
+			-0.5f,  0.5f,  0.0f, 0.0f, 1.0f																			//
+																													//
+		};																											//
+																													//
+		s_Data->QuadBufferLayout = BufferLayout::Create({															//
+			{ ShaderDataType::Float3, "a_Position" },																//
+			{ ShaderDataType::Float2, "a_TexCoord" },																//
+																													//
+		});																											//
+																													//
+		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };															//
+																													//
+		s_Data->QuadVertexArray   = VertexArray::Create();															//
+		s_Data->QuadVertexBuffer  = VertexBuffer::Create(squareVertices, sizeof(squareVertices));					//
+		s_Data->QuadIndexBuffer   = IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));	//
+		s_Data->TextureShader     = Shader::Create("assets/shaders/Texture.glsl");									//
+		s_Data->WhiteTexture      = Texture2D::Create(1, 1);														//
+		uint32_t whiteTextureData = 0xffffffff;																		//
+		s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));											//
+																													//
+		s_Data->QuadVertexBuffer->SetLayout(s_Data->QuadBufferLayout);												//
+		s_Data->QuadVertexArray->SetIndexBuffer(s_Data->QuadIndexBuffer);											//
+		s_Data->QuadVertexArray->AddVertexBuffer(s_Data->QuadVertexBuffer);											//
+		s_Data->TextureShader->Bind();																				//
+		s_Data->TextureShader->SetInt("u_Texture", 0);																//
+																													//
+		/*----------------------------------------------------------------------------------------------------------*/
 
 	}
 
@@ -69,9 +71,6 @@ namespace Hazel {
 	}
 
 	void Renderer2D::BeginScene(const OrthographicCamera& camera) {
-		s_Data->FlatColorShader->Bind();
-		s_Data->FlatColorShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
-
 		s_Data->TextureShader->Bind();
 		s_Data->TextureShader->SetMat4("u_ViewProjection", camera.GetViewProjectionMatrix());
 
@@ -87,11 +86,11 @@ namespace Hazel {
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color) {
-		s_Data->FlatColorShader->Bind();
-		s_Data->FlatColorShader->SetFloat4("u_Color", color);
+		s_Data->TextureShader->SetFloat4("u_Color", color);
+		s_Data->WhiteTexture->Bind();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-		s_Data->FlatColorShader->SetMat4("u_Transform", transform);
+		s_Data->TextureShader->SetMat4("u_Transform", transform);
 
 		s_Data->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data->QuadVertexArray);
@@ -103,12 +102,11 @@ namespace Hazel {
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture) {
-		s_Data->TextureShader->Bind();
+		s_Data->TextureShader->SetFloat4("u_Color", glm::vec4(1.0f));
+		texture->Bind();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 		s_Data->TextureShader->SetMat4("u_Transform", transform);
-
-		texture->Bind();
 
 		s_Data->QuadVertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data->QuadVertexArray);

@@ -190,7 +190,7 @@ namespace Hazel {
 	}
 
 	Scope<Window> Window::Create(const WindowProps& props) {
-		return MakeScope<WindowsWindow>(props);
+		return CreateScope<WindowsWindow>(props);
 
 	}
 

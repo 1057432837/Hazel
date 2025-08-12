@@ -31,7 +31,7 @@ namespace Hazel {
 		}
 
 		case RendererAPI::API::OpenGL: {
-			return MakeRef<OpenGLShader>(filepath);
+			return CreateRef<OpenGLShader>(filepath);
 
 		}
 
@@ -52,7 +52,7 @@ namespace Hazel {
 		}
 
 		case RendererAPI::API::OpenGL: {
-			return MakeRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
+			return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
 
 		}
 
