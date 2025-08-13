@@ -4,7 +4,6 @@
 
 #include "Sandbox2D.h"
 #include "Platform/OpenGL/OpenGLShader.h"
-#include "Hazel/Core/Timer.h"
 
 #define PROFILE_SCOPE(name) Hazel::Timer timer##__LINE__(name, [&](ProfileResult profileResult) { m_ProfileResults.push_back(profileResult); })
 
@@ -27,22 +26,22 @@ void Sandbox2D::OnDetach() {
 }
 
 void Sandbox2D::OnUpdate(Hazel::Timestep ts) {
-	PROFILE_SCOPE("Sandbox2D::OnUpdate");
+	HZ_PROFILE_FUNCTION();
 
 	{
-		PROFILE_SCOPE("CameraController::OnUpdate");
+		HZ_PROFILE_SCOPE("CameraController::OnUpdate");
 		m_CameraController->OnUpdate(ts);
 
 	}
 	
 	{
-		PROFILE_SCOPE("Renderer Prep");
+		HZ_PROFILE_SCOPE("Renderer Prep");
 		Hazel::Renderer::Flush({ 0.1f, 0.1f, 0.1f, 1 });
 
 	}
 	
 	{
-		PROFILE_SCOPE("Renderer Draw");
+		HZ_PROFILE_SCOPE("Renderer Draw");
 		Hazel::Renderer2D::BeginScene(m_CameraController->GetCamera());
 
 		Hazel::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
@@ -56,19 +55,10 @@ void Sandbox2D::OnUpdate(Hazel::Timestep ts) {
 }
 
 void Sandbox2D::OnImGuiRender() {
+	HZ_PROFILE_FUNCTION();
+
 	ImGui::Begin("Settings");
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
-	
-	for (auto& result : m_ProfileResults)
-	{
-		char label[50];
-		strcpy(label, "%0.3fms ");
-		strcat(label, result.Name);
-		ImGui::Text(label, result.Time);
-
-	}
-	m_ProfileResults.clear();
-	
 	ImGui::End();
 
 }
