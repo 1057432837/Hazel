@@ -28,6 +28,8 @@ namespace Hazel {
 		bool IsVSync() const { return m_Data.VSync; }
 
 		void SetVSync(bool enabled) {
+			HZ_PROFILE_FUNCTION();
+			
 			if (enabled)
 			{
 				glfwSwapInterval(1);
