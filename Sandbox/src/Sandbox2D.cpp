@@ -17,22 +17,21 @@ Sandbox2D::~Sandbox2D() {
 }
 
 void Sandbox2D::OnAttach() {
+	HZ_PROFILE_FUNCTION();
+
 	m_CheckerboardTexture = Hazel::Texture2D::Create("assets/textures/avatar.jpg");
 
 }
 
 void Sandbox2D::OnDetach() {
+	HZ_PROFILE_FUNCTION();
 
 }
 
 void Sandbox2D::OnUpdate(Hazel::Timestep ts) {
 	HZ_PROFILE_FUNCTION();
 
-	{
-		HZ_PROFILE_SCOPE("CameraController::OnUpdate");
-		m_CameraController->OnUpdate(ts);
-
-	}
+	m_CameraController->OnUpdate(ts);
 	
 	{
 		HZ_PROFILE_SCOPE("Renderer Prep");
