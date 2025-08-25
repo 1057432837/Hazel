@@ -34,6 +34,8 @@ private:
 
 	Hazel::Ref<Hazel::Texture2D> m_CheckerboardTexture;
 
+	Hazel::Ref<Hazel::Renderer2D> m_Renderer2D;
+
 	struct ProfileResult
 	{
 		const char* Name;

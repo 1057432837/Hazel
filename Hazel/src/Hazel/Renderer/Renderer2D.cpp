@@ -168,4 +168,9 @@ namespace Hazel {
 
 	}
 
+	Ref<Renderer2D> Renderer2D::Create() {
+		return CreateRef<Renderer2D>();
+
+	}
+
 }
