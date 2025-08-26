@@ -198,6 +198,10 @@ namespace Hazel {
 
 		virtual void SetLayout(const Ref<Hazel::BufferLayout> layout) { m_Layout = layout; }
 
+		virtual void SetData(const void* data, uint32_t size) = 0;
+
+		static Ref<VertexBuffer> Create(uint32_t size);
+
 		static Ref<VertexBuffer> Create(float* vertices, uint32_t size);
 
 	private:
@@ -218,7 +222,7 @@ namespace Hazel {
 
 		virtual uint32_t GetCount() const { return m_Count; }
 
-		static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t size);
+		static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t count);
 
 	private:
 		uint32_t m_Count;
