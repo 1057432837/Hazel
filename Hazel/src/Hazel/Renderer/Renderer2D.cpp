@@ -81,7 +81,6 @@ namespace Hazel {
 		}																											//
 																													//
 		uint32_t whiteTextureData = 0xffffffff;																		//
-		s_Data.TextureSlots[0] = s_Data.WhiteTexture;																//
 																													//
 		int32_t samplers[s_Data.MaxTextureSlots];																	//
 		for (uint32_t i = 0; i < s_Data.MaxTextureSlots; i++) {														//
@@ -101,6 +100,8 @@ namespace Hazel {
 		s_Data.TextureShader->Bind();																				//
 		s_Data.TextureShader->SetIntArray("u_Textures", samplers, s_Data.MaxTextureSlots);							//
 		s_Data.WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));											//
+																													//
+		s_Data.TextureSlots[0] = s_Data.WhiteTexture;																//
 																													//
 		delete[] quadIndices;																						//
 																													//
