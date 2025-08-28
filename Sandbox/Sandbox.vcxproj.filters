@@ -21,4 +21,7 @@
     <ClInclude Include="src\Sandbox2D.h" />
     <ClInclude Include="src\SandboxApp.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="E:\Download\Checkerboard.png" />
+  </ItemGroup>
 </Project>
