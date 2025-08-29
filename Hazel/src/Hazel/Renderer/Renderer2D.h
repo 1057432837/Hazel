@@ -2,8 +2,45 @@
 
 #include "OrthographicCamera.h"
 #include "Texture.h"
+#include "VertexArray.h"
+#include "Shader.h"
 
 namespace Hazel {
+	struct QuadVertex
+	{
+		glm::vec3 Position;
+		glm::vec4 Color;
+		glm::vec2 TexCoord;
+		float TexIndex;
+		float TilingFactor;
+
+	};
+
+	struct Renderer2DData
+	{
+		const uint32_t MaxQuads = 10000;
+		const uint32_t MaxVertices = MaxQuads * 4;
+		const uint32_t MaxIndices = MaxQuads * 6;
+		static const uint32_t MaxTextureSlots = 32;
+
+		uint32_t QuadIndexCount = 0;
+		QuadVertex* QuadVertexBufferBase = nullptr;
+		QuadVertex* QuadVertexBufferPtr = nullptr;
+
+		std::array<Ref<Texture2D>, MaxTextureSlots> TextureSlots;
+		uint32_t TextureSlotIndex = 1;
+
+		Ref<VertexArray> QuadVertexArray;
+		Ref<VertexBuffer> QuadVertexBuffer;
+		Ref<IndexBuffer> QuadIndexBuffer;
+		Ref<BufferLayout> QuadBufferLayout;
+		Ref<Shader> TextureShader;
+		Ref<Texture2D> WhiteTexture;
+
+		glm::vec4 QuadVertexPositions[4];
+
+	};
+
 	class Renderer2D
 	{
 	public:
