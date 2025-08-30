@@ -131,7 +131,7 @@ namespace Hazel {
 	}
 
 	void Renderer2D::Quad(const glm::mat4 transform, const glm::vec4& color, const float texIndex, const float tilingFactor) {
-		if (s_Data.QuadIndexCount > Renderer2DData::MaxIndices)
+		if (s_Data.QuadIndexCount >= Renderer2DData::MaxIndices)
 		{
 			FlushAndReset();
 
