@@ -8,7 +8,7 @@
 #include "RenderCommand.h"
 
 namespace Hazel {
-	Renderer2DData s_Data;
+	Renderer2DData Renderer2D::s_Data;
 
 	Renderer2D::Renderer2D() {
 
@@ -117,9 +117,26 @@ namespace Hazel {
 		}
 
 		RenderCommand::DrawIndexed(s_Data.QuadVertexArray, s_Data.QuadIndexCount);
+		s_Data.Stats.DrawCalls++;
+
+	}
+
+	void Renderer2D::FlushAndReset() {
+		EndScene();
+
+		s_Data.QuadIndexCount = 0;
+		s_Data.QuadVertexBufferPtr = s_Data.QuadVertexBufferBase;
+		s_Data.TextureSlotIndex = 1;
+
 	}
 
 	void Renderer2D::Quad(const glm::mat4 transform, const glm::vec4& color, const float texIndex, const float tilingFactor) {
+		if (s_Data.QuadIndexCount > Renderer2DData::MaxIndices)
+		{
+			FlushAndReset();
+
+		}
+		
 		s_Data.QuadVertexBufferPtr->Position     = transform * s_Data.QuadVertexPositions[0];
 		s_Data.QuadVertexBufferPtr->Color        = color;
 		s_Data.QuadVertexBufferPtr->TexCoord     = { 0.0f, 0.0f };
@@ -149,6 +166,8 @@ namespace Hazel {
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadIndexCount += 6;
+
+		s_Data.Stats.QuadCount++;
 
 	}
 
@@ -268,6 +287,11 @@ namespace Hazel {
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), glm::radians(rotation), { 0.0f, 0.0f, 1.0f }) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
 		Quad(transform, color, textureIndex, tilingFactor);
+
+	}
+
+	void Renderer2D::ResetStats() {
+		memset(&s_Data.Stats, 0, sizeof(Statistics));
 
 	}
 

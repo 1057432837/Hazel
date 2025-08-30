@@ -16,11 +16,21 @@ namespace Hazel {
 
 	};
 
+	struct Statistics
+	{
+		uint32_t DrawCalls = 0;
+		uint32_t QuadCount = 0;
+
+		uint32_t GetTotalVertexCount() { return QuadCount * 4; }
+		uint32_t GetTotalIndexCount() { return QuadCount * 6; }
+
+	};
+
 	struct Renderer2DData
 	{
-		const uint32_t MaxQuads = 10000;
-		const uint32_t MaxVertices = MaxQuads * 4;
-		const uint32_t MaxIndices = MaxQuads * 6;
+		static const uint32_t MaxQuads = 10000;
+		static const uint32_t MaxVertices = MaxQuads * 4;
+		static const uint32_t MaxIndices = MaxQuads * 6;
 		static const uint32_t MaxTextureSlots = 32;
 
 		uint32_t QuadIndexCount = 0;
@@ -38,6 +48,8 @@ namespace Hazel {
 		Ref<Texture2D> WhiteTexture;
 
 		glm::vec4 QuadVertexPositions[4];
+
+		Statistics Stats;
 
 	};
 
@@ -76,9 +88,16 @@ namespace Hazel {
 
 		static void DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f));
 
+		static void ResetStats();
+
+		static Statistics GetStats() { return s_Data.Stats; }
+
 		static Ref<Renderer2D> Create();
 
 	private:
+		static Renderer2DData s_Data;
+
+		static void FlushAndReset();
 
 	};
 
