@@ -365,3 +365,4 @@ FodyWeavers.xsd
 # files
 cache/
 bin-int/
+Sandbox/imgui.ini
