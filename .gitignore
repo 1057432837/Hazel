@@ -33,9 +33,13 @@
 *.lib
 
 # Executables
-*.exe
 *.out
 *.app
 
 # debug information files
 *.dwo
+
+/bin
+/bin-int
+/cache
+/.vs
