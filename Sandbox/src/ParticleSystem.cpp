@@ -31,13 +31,16 @@ private:
 std::mt19937 Random::s_RandomEngine;
 std::uniform_int_distribution<std::mt19937::result_type> Random::s_Distribution;
 
-ParticleSystem::ParticleSystem()
-{
-	m_ParticlePool.resize(1000);
+//ParticleSystem::ParticleSystem() {
+//
+//}
+
+ParticleSystem::~ParticleSystem() {
 
 }
 
-ParticleSystem::~ParticleSystem() {
+ParticleSystem::ParticleSystem(uint32_t maxParticles) : m_PoolIndex(maxParticles - 1) {
+	m_ParticlePool.resize(maxParticles);
 
 }
 
@@ -80,8 +83,8 @@ void ParticleSystem::OnRender(Hazel::OrthographicCamera& camera)
 		glm::vec4 color = glm::lerp(particle.ColorEnd, particle.ColorBegin, life);
 
 		float size = glm::lerp(particle.SizeEnd, particle.SizeBegin, life);
-
-		m_Renderer2D->DrawRotatedQuad(particle.Position, { size, size }, particle.Rotation, color);
+		glm::vec3 position = { particle.Position.x, particle.Position.y, 0.2f };
+		m_Renderer2D->DrawRotatedQuad(position, { size, size }, particle.Rotation, color);
 
 	}
 

@@ -19,9 +19,11 @@ struct ParticleProps
 class ParticleSystem
 {
 public:
-	ParticleSystem();
+	//ParticleSystem();
 
 	~ParticleSystem();
+
+	ParticleSystem(uint32_t maxParticles = 100);
 
 	void OnUpdate(Hazel::Timestep ts);
 
@@ -47,7 +49,7 @@ private:
 
 	std::vector<Particle> m_ParticlePool;
 
-	uint32_t m_PoolIndex = 999;
+	uint32_t m_PoolIndex;
 
 	Hazel::Ref<Hazel::Renderer2D> m_Renderer2D;
 
