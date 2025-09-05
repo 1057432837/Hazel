@@ -43,3 +43,6 @@
 /bin-int
 /cache
 /.vs
+*.tlog
+*.log
+*.idb
