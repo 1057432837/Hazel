@@ -5,8 +5,6 @@
 #include "Sandbox2D.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
-#define PROFILE_SCOPE(name) Hazel::Timer timer##__LINE__(name, [&](ProfileResult profileResult) { m_ProfileResults.push_back(profileResult); })
-
 Sandbox2D::Sandbox2D() : Layer("Sandbox2D") {
 	m_CameraController.reset(new Hazel::OrthographicCameraController(1280.0f / 720.0f, true));
 

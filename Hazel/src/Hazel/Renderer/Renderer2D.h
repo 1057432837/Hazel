@@ -90,12 +90,12 @@ namespace Hazel {
 
 		static void ResetStats();
 
-		static Statistics GetStats() { return s_Data.Stats; }
+		static Statistics GetStats() { return s_Data->Stats; }
 
 		static Ref<Renderer2D> Create();
 
 	private:
-		static Renderer2DData s_Data;
+		static Renderer2DData* s_Data;
 
 		static void FlushAndReset();
 
