@@ -72,11 +72,12 @@ namespace Hazel {
 		s_Data->TextureShader->SetIntArray("u_Textures", samplers, s_Data->MaxTextureSlots);						//
 		s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));											//
 																													//
-		s_Data->TextureSlots[0] = s_Data->WhiteTexture;																//
 		s_Data->QuadVertexPositions[0] = { -0.5f, -0.5f, 0.0f, 1.0f };												//
 		s_Data->QuadVertexPositions[1] = {  0.5f, -0.5f, 0.0f, 1.0f };												//
 		s_Data->QuadVertexPositions[2] = {  0.5f,  0.5f, 0.0f, 1.0f };												//
 		s_Data->QuadVertexPositions[3] = { -0.5f,  0.5f, 0.0f, 1.0f };												//
+																													//
+		s_Data->TextureSlots[0] = s_Data->WhiteTexture;																//
 																													//
 		delete[] quadIndices;																						//
 																													//
