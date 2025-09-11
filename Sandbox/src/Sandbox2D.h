@@ -54,4 +54,8 @@ private:
 
 	ParticleProps m_Particle;
 
+	/*----------------------------------------------------------------------*/
+
+	Hazel::Ref<Hazel::Texture2D> m_SpriteSheet;
+
 };
