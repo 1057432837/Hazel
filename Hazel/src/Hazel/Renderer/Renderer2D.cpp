@@ -30,8 +30,8 @@ namespace Hazel {
 			{ ShaderDataType::Float3, "a_Position" },																//
 			{ ShaderDataType::Float4, "a_Color" },																	//
 			{ ShaderDataType::Float2, "a_TexCoord" },																//
-			{ ShaderDataType::Float, "a_TexIndex" },																//
-			{ ShaderDataType::Float, "a_TilingFactor" }																//
+			{ ShaderDataType::Float,  "a_TexIndex" },																//
+			{ ShaderDataType::Float,  "a_TilingFactor" }															//
 																													//
 		});																											//
 																													//
@@ -51,13 +51,13 @@ namespace Hazel {
 																													//
 		}																											//
 																													//
-		uint32_t whiteTextureData = 0xffffffff;																		//
-																													//
-		int32_t samplers[s_Data->MaxTextureSlots];																	//
+		int32_t* samplers = new int32_t[s_Data->MaxTextureSlots];													//
 		for (uint32_t i = 0; i < s_Data->MaxTextureSlots; i++) {													//
 			samplers[i] = i;																						//
 																													//
 		}																											//
+																													//
+		uint32_t whiteTextureData = 0xffffffff;																		//
 																													//
 		s_Data->QuadVertexArray   = VertexArray::Create();															//
 		s_Data->QuadVertexBuffer  = VertexBuffer::Create(s_Data->MaxVertices * sizeof(QuadVertex));					//
