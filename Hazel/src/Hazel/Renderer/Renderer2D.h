@@ -70,7 +70,7 @@ namespace Hazel {
 
 		static void Flush();
 
-		static void Quad(const glm::mat4 transform, const glm::vec4& color, const float texIndex, const float tilingFactor);
+		static void Quad(const glm::mat4 transform, const glm::vec4& color, const glm::vec2 textureCoords[], const float texIndex, const float tilingFactor);
 
 		static void DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
 
