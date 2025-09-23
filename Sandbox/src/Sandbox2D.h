@@ -58,4 +58,6 @@ private:
 
 	Hazel::Ref<Hazel::Texture2D> m_SpriteSheet;
 
+	Hazel::Ref<Hazel::SubTexture2D> m_TextureStairs;
+
 };
