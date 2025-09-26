@@ -60,4 +60,6 @@ private:
 
 	Hazel::Ref<Hazel::SubTexture2D> m_TextureStairs;
 
+	Hazel::Ref<Hazel::SubTexture2D> m_TextureTree;
+
 };
