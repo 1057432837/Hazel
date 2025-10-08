@@ -30,6 +30,8 @@ namespace Hazel {
 
 		inline Window& GetWindow() { return *m_Window; };
 
+		void Close();
+
 	private:
 		Scope<Window> m_Window;
 

@@ -22,6 +22,8 @@ namespace Hazel {
 
 		virtual bool operator == (const Texture& other) const = 0;
 
+		virtual uint32_t GetRendererID() const = 0;
+
 	private:
 		uint32_t m_Width;
 

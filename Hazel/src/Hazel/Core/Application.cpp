@@ -175,4 +175,9 @@ namespace Hazel {
 
 	}
 
+	void Application::Close() {
+		m_Running = false;
+
+	}
+
 }
