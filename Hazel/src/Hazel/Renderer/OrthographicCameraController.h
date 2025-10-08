@@ -33,7 +33,7 @@ namespace Hazel {
 
 		const OrthographicCamera& GetCamera() const { return m_Camera; }
 
-		void SetZoomLevel(float level) { m_ZoomLevel = level; }
+		void SetZoomLevel(float level) { m_ZoomLevel = level; CalculateView(); }
 
 		float GetZoomLevel(float level) { return m_ZoomLevel; }
 
@@ -42,6 +42,8 @@ namespace Hazel {
 		static OrthographicCameraController* Create(float aspectRatio, bool rotation);
 		
 	private:
+		void CalculateView();
+
 		float m_AspectRatio;
 
 		float m_ZoomLevel = 1.0f;
