@@ -5,6 +5,23 @@
 #include "Sandbox2D.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
+static const char* s_MapTiles =
+"WDWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD"
+"WWWWWDDDWWDDWWD";
+
 Sandbox2D::Sandbox2D() : Layer("Sandbox2D") {
 	m_CameraController.reset(new Hazel::OrthographicCameraController(1280.0f / 720.0f, true));
 
@@ -19,9 +36,15 @@ void Sandbox2D::OnAttach() {
 
 	m_CheckerboardTexture = Hazel::Texture2D::Create("assets/textures/Checkerboard.png");
 	m_SpriteSheet         = Hazel::Texture2D::Create("assets/game/textures/RPGpack_sheet_2X.png");
-	m_TextureStairs       = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 7, 6 }, { 128, 128 });
+	m_TextureStairs       = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 0, 11 }, { 128, 128 });
 	m_TextureTree         = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 2, 1 }, { 128, 128 }, { 1, 2 });
 
+	m_MapWidth            = sqrt(strlen(s_MapTiles));
+	m_MapHeight           = strlen(s_MapTiles) / m_MapWidth;
+
+	s_TextureMap['D']     = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 6, 11 }, { 128, 128 });
+	s_TextureMap['W']     = Hazel::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 11, 11 }, { 128, 128 });
+	
 	m_Particle.ColorBegin        = { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
 	m_Particle.ColorEnd          = { 254 / 255.0f, 109 / 255.0f, 41 / 255.0f, 1.0f };
 	m_Particle.SizeBegin         = 0.5f, m_Particle.SizeVariation = 0.3f, m_Particle.SizeEnd = 0.0f;
@@ -29,6 +52,8 @@ void Sandbox2D::OnAttach() {
 	m_Particle.Velocity          = { 0.0f, 0.0f };
 	m_Particle.VelocityVariation = { 3.0f, 1.0f };
 	m_Particle.Position          = { 0.0f, 0.0f };
+
+	m_CameraController->SetZoomLevel(5.0f);
 
 }
 
