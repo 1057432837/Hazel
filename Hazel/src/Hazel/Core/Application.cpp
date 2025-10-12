@@ -10,9 +10,9 @@ namespace Hazel {
 
 	Application* Application::s_Instance = nullptr;
 
-	/*Application::Application() {
+	Application::Application() {
 		
-	}*/
+	}
 
 	Application::~Application() {
 		HZ_PROFILE_FUNCTION();

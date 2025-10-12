@@ -190,7 +190,7 @@ namespace Hazel {
 
 	};
 
-	Sandbox::Sandbox() {
+	Sandbox::Sandbox() : Application("Sandbox") {
 		PushLayer(new Sandbox2D());
 
 	}
