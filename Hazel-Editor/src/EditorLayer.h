@@ -1,0 +1,42 @@
+#pragma once
+
+#include "Hazel.h"
+
+namespace Hazel {
+	class EditorLayer : public Layer
+	{
+	public:
+		EditorLayer();
+
+		virtual ~EditorLayer();
+
+		virtual void OnAttach() override;
+
+		virtual void OnDetach() override;
+
+		void OnUpdate(Timestep ts) override;
+
+		virtual void OnImGuiRender() override;
+
+		void OnEvent(Event& e) override;
+
+	private:
+		Ref<VertexArray> m_SquareVA;
+
+		Ref<OrthographicCameraController> m_CameraController;
+
+		Ref<Shader> m_FlatColorShader;
+
+		Ref<Renderer> m_Renderer;
+
+		Ref<Renderer2D> m_Renderer2D;
+
+		Ref<Texture2D> m_CheckerboardTexture;
+
+		glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+
+		Ref<Framebuffer> m_Framebuffer;
+
+	};
+
+}

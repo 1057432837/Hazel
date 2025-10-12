@@ -2,57 +2,60 @@
 
 #include "Hazel.h"
 
-class ExampleLayer : public Hazel::Layer
-{
-public:
-	ExampleLayer();
+namespace Hazel {
+	class ExampleLayer : public Layer
+	{
+	public:
+		ExampleLayer();
 
-	virtual ~ExampleLayer();
+		virtual ~ExampleLayer();
 
-	void OnUpdate(Hazel::Timestep ts) override;
+		void OnUpdate(Timestep ts) override;
 
-	virtual void OnImGuiRender() override;
+		virtual void OnImGuiRender() override;
 
-	void OnEvent(Hazel::Event& e) override;
+		void OnEvent(Event& e) override;
 
-private:
-	Hazel::Ref<Hazel::BufferLayout> m_Layout;
+	private:
+		Ref<BufferLayout> m_Layout;
 
-	Hazel::Ref<Hazel::VertexArray> m_VertexArray;
+		Ref<VertexArray> m_VertexArray;
 
-	Hazel::Ref<Hazel::VertexBuffer> m_VertexBuffer;
+		Ref<VertexBuffer> m_VertexBuffer;
 
-	Hazel::Ref<Hazel::IndexBuffer> m_IndexBuffer;
+		Ref<IndexBuffer> m_IndexBuffer;
 
-	Hazel::Ref<Hazel::Shader> m_Shader;
+		Ref<Shader> m_Shader;
 
-	Hazel::Ref<Hazel::BufferLayout> m_SquareVBLayout;
+		Ref<BufferLayout> m_SquareVBLayout;
 
-	Hazel::Ref<Hazel::VertexArray> m_SquareVA;
+		Ref<VertexArray> m_SquareVA;
 
-	Hazel::Ref<Hazel::VertexBuffer> m_SquareVB;
+		Ref<VertexBuffer> m_SquareVB;
 
-	Hazel::Ref<Hazel::IndexBuffer> m_SquareIB;
+		Ref<IndexBuffer> m_SquareIB;
 
-	Hazel::Ref<Hazel::Shader> m_FlatColorShader;
+		Ref<Shader> m_FlatColorShader;
 
-	Hazel::Ref<Hazel::Texture2D> m_Texture;
+		Ref<Texture2D> m_Texture;
 
-	Hazel::Ref<Hazel::Shader> m_TextureShader;
+		Ref<Shader> m_TextureShader;
 
-	Hazel::Ref<Hazel::OrthographicCameraController> m_CameraController;
+		Ref<OrthographicCameraController> m_CameraController;
 
-	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
+		glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 
-};
+	};
 
-class Sandbox : public Hazel::Application
-{
-public:
-	Sandbox();
+	class Sandbox : public Application
+	{
+	public:
+		Sandbox();
 
-	~Sandbox();
+		~Sandbox();
 
-private:
+	private:
 
-};
+	};
+
+}

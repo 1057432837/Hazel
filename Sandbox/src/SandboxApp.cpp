@@ -8,24 +8,25 @@
 #include "Platform/OpenGL/OpenGLShader.h"
 #include "Sandbox2D.h"
 
-ExampleLayer::ExampleLayer() : Layer("Example") {
+namespace Hazel {
+	ExampleLayer::ExampleLayer() : Layer("Example") {
 	/*--------------------------------------------------------------------------------------------------------------*/
-	float vertices[3 * 7] = {																						//
-		-0.5f, -0.5f,  0.0f, 1.0f, 0.0f, 1.0f, 1.0f,																//
-		 0.5f, -0.5f,  0.0f, 0.0f, 0.0f, 1.0f, 1.0f,																//
-		 0.0f,  0.5f,  0.0f, 1.0f, 1.0f, 0.0f, 1.0f,																//
+		float vertices[3 * 7] = {																					//
+			-0.5f, -0.5f,  0.0f, 1.0f, 0.0f, 1.0f, 1.0f,															//
+			 0.5f, -0.5f,  0.0f, 0.0f, 0.0f, 1.0f, 1.0f,															//
+			 0.0f,  0.5f,  0.0f, 1.0f, 1.0f, 0.0f, 1.0f,															//
 																													//
-	};																												//
+		};																											//
 																													//
-	m_Layout = Hazel::BufferLayout::Create({																		//
-		{ Hazel::ShaderDataType::Float3, "a_Position" },															//
-		{ Hazel::ShaderDataType::Float4, "a_Color" },																//
+		m_Layout = BufferLayout::Create({																			//
+			{ ShaderDataType::Float3, "a_Position" },																//
+			{ ShaderDataType::Float4, "a_Color" },																	//
 																													//
-	});  																											//
+			});  																									//
 																													//
-	uint32_t indices[3] = { 0, 1, 2 };																				//
+		uint32_t indices[3] = { 0, 1, 2 };																			//
 																													//
-	std::string vertexSrc = R"(																						//
+		std::string vertexSrc = R"(																					//
 		#version 330 core																							//
 																													//
 		layout(location = 0) in vec3 a_Position;																	//
@@ -46,7 +47,7 @@ ExampleLayer::ExampleLayer() : Layer("Example") {
 																													//
 	)";																												//
 																													//
-	std::string fragmentSrc = R"(																					//
+		std::string fragmentSrc = R"(																				//
 		#version 330 core																							//
 																													//
 		layout(location = 0) out vec4 color;																		//
@@ -62,33 +63,33 @@ ExampleLayer::ExampleLayer() : Layer("Example") {
 																													//
 	)";																												//
 																													//
-	m_VertexArray  = Hazel::VertexArray::Create();																	//
-	m_VertexBuffer = Hazel::VertexBuffer::Create(vertices, sizeof(vertices));										//
-	m_IndexBuffer  = Hazel::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));						//
-	m_Shader       = Hazel::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);								//
+		m_VertexArray = VertexArray::Create();																		//
+		m_VertexBuffer = VertexBuffer::Create(vertices, sizeof(vertices));											//
+		m_IndexBuffer = IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));							//
+		m_Shader = Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);										//
 																													//
-	m_VertexBuffer->SetLayout(m_Layout);																			//
-	m_VertexArray->SetIndexBuffer(m_IndexBuffer);																	//
-	m_VertexArray->AddVertexBuffer(m_VertexBuffer);																	//
+		m_VertexBuffer->SetLayout(m_Layout);																		//
+		m_VertexArray->SetIndexBuffer(m_IndexBuffer);																//
+		m_VertexArray->AddVertexBuffer(m_VertexBuffer);																//
 																													//
 	/*--------------------------------------------------------------------------------------------------------------*/
-	float squareVertices[5 * 4] = {																					//
-		-0.5f, -0.5f,  0.0f, 0.0f, 0.0f,																			//
-		 0.5f, -0.5f,  0.0f, 1.0f, 0.0f,																			//
-		 0.5f,  0.5f,  0.0f, 1.0f, 1.0f,																			//
-		-0.5f,  0.5f,  0.0f, 0.0f, 1.0f,																			//
+		float squareVertices[5 * 4] = {																				//
+			-0.5f, -0.5f,  0.0f, 0.0f, 0.0f,																		//
+			 0.5f, -0.5f,  0.0f, 1.0f, 0.0f,																		//
+			 0.5f,  0.5f,  0.0f, 1.0f, 1.0f,																		//
+			-0.5f,  0.5f,  0.0f, 0.0f, 1.0f,																		//
 																													//
-	};																												//
+		};																											//
 																													//
-	m_SquareVBLayout = Hazel::BufferLayout::Create({																//
-		{ Hazel::ShaderDataType::Float3, "a_Position" },															//
-		{ Hazel::ShaderDataType::Float2, "a_TexCoord" }																//
+		m_SquareVBLayout = BufferLayout::Create({																	//
+			{ ShaderDataType::Float3, "a_Position" },																//
+			{ ShaderDataType::Float2, "a_TexCoord" }																//
 																													//
-	});																												//
+			});																										//
 																													//
-	uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };																//
+		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };															//
 																													//
-	std::string flatColorShaderVertexSrc = R"(																		//
+		std::string flatColorShaderVertexSrc = R"(																	//
 		#version 330 core																							//
 																													//
 		layout(location = 0) in vec3 a_Position;																	//
@@ -106,7 +107,7 @@ ExampleLayer::ExampleLayer() : Layer("Example") {
 																													//
 	)";																												//
 																													//
-	std::string flatColorShaderFragmentSrc = R"(																	//
+		std::string flatColorShaderFragmentSrc = R"(																//
 		#version 330 core																							//
 																													//
 		layout(location = 0) out vec4 color;																		//
@@ -122,83 +123,85 @@ ExampleLayer::ExampleLayer() : Layer("Example") {
 																													//
 	)";																												//
 																													//
-	m_SquareVA        = Hazel::VertexArray::Create();																//
-	m_SquareVB        = Hazel::VertexBuffer::Create(squareVertices, sizeof(squareVertices));						//
-	m_SquareIB        = Hazel::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));		//
-	m_FlatColorShader = Hazel::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);	//纯色
-	m_Texture         = Hazel::Texture2D::Create("assets/textures/avatar.jpg");										//
-	m_TextureShader   = Hazel::Shader::Create("assets/shaders/Texture.glsl");										//纹理色
+		m_SquareVA = VertexArray::Create();																			//
+		m_SquareVB = VertexBuffer::Create(squareVertices, sizeof(squareVertices));									//
+		m_SquareIB = IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));					//
+		m_FlatColorShader = Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);		//纯色
+		m_Texture = Texture2D::Create("assets/textures/avatar.jpg");												//
+		m_TextureShader = Shader::Create("assets/shaders/Texture.glsl");											//纹理色
 																													//
-	m_SquareVB->SetLayout(m_SquareVBLayout);																		//
-	m_SquareVA->SetIndexBuffer(m_SquareIB);																			//
-	m_SquareVA->AddVertexBuffer(m_SquareVB);																		//
+		m_SquareVB->SetLayout(m_SquareVBLayout);																	//
+		m_SquareVA->SetIndexBuffer(m_SquareIB);																		//
+		m_SquareVA->AddVertexBuffer(m_SquareVB);																	//
 																													//
-	Hazel::Cast<Hazel::OpenGLShader>(m_TextureShader)->Bind();														//
-	Hazel::Cast<Hazel::OpenGLShader>(m_TextureShader)->UploadUniformInt("m_Texture", 0);							//
+		Cast<OpenGLShader>(m_TextureShader)->Bind();																//
+		Cast<OpenGLShader>(m_TextureShader)->UploadUniformInt("m_Texture", 0);										//
 																													//
 	/*--------------------------------------------------------------------------------------------------------------*/
-	m_CameraController.reset(new Hazel::OrthographicCameraController(1280.0f / 720.0f, true));
-
-}
-
-ExampleLayer::~ExampleLayer() {
-
-}
-
-void ExampleLayer::OnUpdate(Hazel::Timestep ts) {
-	m_CameraController->OnUpdate(ts);
-
-	Hazel::Renderer::Flush({ 0.1f, 0.1f, 0.1f, 1 });
-
-	Hazel::Renderer::BeginScene(m_CameraController->GetCamera());
-
-	glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
-
-	Hazel::Cast<Hazel::OpenGLShader>(m_FlatColorShader)->Bind();
-	Hazel::Cast<Hazel::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
-
-	for (int y = 0; y < 20; y++)
-	{
-		for (int x = 0; x < 20; x++)
-		{
-			glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
-			glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-			Hazel::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
-
-		}
+		m_CameraController.reset(new OrthographicCameraController(1280.0f / 720.0f, true));
 
 	}
 
-	m_Texture->Bind();
+	ExampleLayer::~ExampleLayer() {
 
-	Hazel::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+	}
 
-	Hazel::Renderer::EndScene();
+	void ExampleLayer::OnUpdate(Timestep ts) {
+		m_CameraController->OnUpdate(ts);
 
-}
+		Renderer::Flush({ 0.1f, 0.1f, 0.1f, 1 });
 
-void ExampleLayer::OnImGuiRender() {
-	ImGui::Begin("Settings");
-	ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
-	ImGui::End();
+		Renderer::BeginScene(m_CameraController->GetCamera());
 
-}
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-void ExampleLayer::OnEvent(Hazel::Event& e) {
-	m_CameraController->OnEvent(e);
+		Cast<OpenGLShader>(m_FlatColorShader)->Bind();
+		Cast<OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
-};
+		for (int y = 0; y < 20; y++)
+		{
+			for (int x = 0; x < 20; x++)
+			{
+				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
+				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+				Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 
-Sandbox::Sandbox() {
-	PushLayer(new Sandbox2D());
+			}
 
-}
+		}
 
-Sandbox::~Sandbox() {
+		m_Texture->Bind();
 
-}
+		Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
-Hazel::Application* Hazel::CreateApplication() {
-	return new Sandbox();
+		Renderer::EndScene();
+
+	}
+
+	void ExampleLayer::OnImGuiRender() {
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+		ImGui::End();
+
+	}
+
+	void ExampleLayer::OnEvent(Event& e) {
+		m_CameraController->OnEvent(e);
+
+	};
+
+	Sandbox::Sandbox() {
+		PushLayer(new Sandbox2D());
+
+	}
+
+	Sandbox::~Sandbox() {
+
+	}
+
+	Application* CreateApplication() {
+		return new Sandbox();
+
+	}
 
 }

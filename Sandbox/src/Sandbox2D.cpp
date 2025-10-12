@@ -18,11 +18,6 @@ void Sandbox2D::OnAttach() {
 	HZ_PROFILE_FUNCTION();
 
 	m_CheckerboardTexture = Hazel::Texture2D::Create("assets/textures/Checkerboard.png");
-
-	Hazel::FramebufferSpecification fbSpec;
-	fbSpec.Width  = 1280;
-	fbSpec.Height = 720;
-	m_Framebuffer = Hazel::Framebuffer::Create(fbSpec);
 	
 	m_Particle.ColorBegin        = { 254 / 255.0f, 212 / 255.0f, 123 / 255.0f, 1.0f };
 	m_Particle.ColorEnd          = { 254 / 255.0f, 109 / 255.0f, 41 / 255.0f, 1.0f };
@@ -50,7 +45,6 @@ void Sandbox2D::OnUpdate(Hazel::Timestep ts) {
 
 	{
 		HZ_PROFILE_SCOPE("Renderer Prep");
-		m_Framebuffer->Bind();
 		m_Renderer = Hazel::Renderer::Create();
 		m_Renderer->Flush({ 0.1f, 0.1f, 0.1f, 1 });
 
@@ -86,7 +80,6 @@ void Sandbox2D::OnUpdate(Hazel::Timestep ts) {
 		}
 
 		m_Renderer2D->EndScene();
-		m_Framebuffer->Unbind();
 
 	}
 
@@ -119,70 +112,6 @@ void Sandbox2D::OnUpdate(Hazel::Timestep ts) {
 void Sandbox2D::OnImGuiRender() {
 	HZ_PROFILE_FUNCTION();
 
-	static bool dockspaceOpen  = true;
-	static bool opt_fullscreen = true;
-	static bool opt_padding    = false;
-	static ImGuiDockNodeFlags dockspace_flags = ImGuiDockNodeFlags_None;
-	ImGuiWindowFlags window_flags = ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoDocking;
-
-	if (opt_fullscreen)
-	{
-		ImGuiViewport* viewport = ImGui::GetMainViewport();
-		ImGui::SetNextWindowPos(viewport->GetWorkPos());
-		ImGui::SetNextWindowSize(viewport->GetWorkSize());
-		ImGui::SetNextWindowViewport(viewport->ID);
-		ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.0f);
-		ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.0f);
-		window_flags |= ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove;
-		window_flags |= ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoNavFocus;
-
-	}
-	else
-	{
-		dockspace_flags &= ~ImGuiDockNodeFlags_PassthruCentralNode;
-
-	}
-
-	if (dockspace_flags & ImGuiDockNodeFlags_PassthruCentralNode) {
-		window_flags |= ImGuiWindowFlags_NoBackground;
-
-	}
-
-	if (!opt_padding) {
-		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
-
-	}
-	ImGui::Begin("DockSpace Demo", &dockspaceOpen, window_flags);
-	if (!opt_padding) {
-		ImGui::PopStyleVar();
-
-	}
-	if (opt_fullscreen) {
-		ImGui::PopStyleVar(2);
-
-	}
-
-	ImGuiIO& io = ImGui::GetIO();
-	if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
-	{
-		ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
-		ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
-
-	}
-
-	if (ImGui::BeginMenuBar())
-	{
-		if (ImGui::BeginMenu("File"))
-		{
-			if (ImGui::MenuItem("Exit")) { Hazel::Application::Get().Close(); }
-			ImGui::EndMenu();
-
-		}
-
-		ImGui::EndMenuBar();
-
-	}
-
 	ImGui::Begin("Settings");
 
 	auto stats = Hazel::Renderer2D::GetStats();
@@ -194,10 +123,8 @@ void Sandbox2D::OnImGuiRender() {
 
 	ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
 
-	uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+	uint32_t textureID = m_CheckerboardTexture->GetRendererID();
 	ImGui::Image((void*)textureID, ImVec2(1280.0f, 720.0f), ImVec2(0, 1), ImVec2(1, 0));
-
-	ImGui::End();
 
 	ImGui::End();
 

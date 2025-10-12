@@ -54,8 +54,6 @@ private:
 
 	ParticleProps m_Particle;
 
-	Hazel::Ref<Hazel::Framebuffer> m_Framebuffer;
-
 	/*----------------------------------------------------------------------*/
 	uint32_t m_MapWidth, m_MapHeight;
 
