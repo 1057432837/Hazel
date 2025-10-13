@@ -3,12 +3,12 @@
 #include "Hazel.h"
 
 namespace Hazel {
-	class HazelEditor : public Application
+	class Hazelnut : public Application
 	{
 	public:
-		HazelEditor();
+		Hazelnut();
 
-		~HazelEditor();
+		~Hazelnut();
 
 	private:
 

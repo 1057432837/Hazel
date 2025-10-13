@@ -37,6 +37,8 @@ namespace Hazel {
 
 		Ref<Framebuffer> m_Framebuffer;
 
+		glm::vec2 m_ViewportSize;
+
 	};
 
 }

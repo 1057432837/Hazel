@@ -1,20 +1,20 @@
 #include "Hazel.h"
 #include "Hazel/Core/EntryPoint.h"
 #include "EditorLayer.h"
-#include "HazelEditorApp.h"
+#include "HazelnutApp.h"
 
 namespace Hazel {
-	HazelEditor::HazelEditor() : Application("Hazel Editor") {
+	Hazelnut::Hazelnut() : Application("Hazelnut") {
 		PushLayer(new EditorLayer());
 
 	}
 
-	HazelEditor::~HazelEditor() {
+	Hazelnut::~Hazelnut() {
 
 	}
 
 	Application* CreateApplication() {
-		return new HazelEditor();
+		return new Hazelnut();
 
 	}
 
