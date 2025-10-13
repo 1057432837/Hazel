@@ -172,6 +172,8 @@ namespace Hazel {
 			m_Framebuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
 			m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 			
+			m_CameraController->OnResize(viewportPanelSize.x, viewportPanelSize.y);
+
 		}
 		
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();

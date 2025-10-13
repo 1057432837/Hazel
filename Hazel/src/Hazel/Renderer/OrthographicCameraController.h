@@ -39,6 +39,8 @@ namespace Hazel {
 
 		const OrthographicCameraBounds& GetBounds() const { return m_Bounds; }
 
+		void OnResize(float width, float height);
+
 		static OrthographicCameraController* Create(float aspectRatio, bool rotation);
 		
 	private:
