@@ -34,7 +34,11 @@ namespace Hazel {
 	void EditorLayer::OnUpdate(Timestep ts) {
 		HZ_PROFILE_FUNCTION();
 
-		m_CameraController->OnUpdate(ts);
+		if (m_ViewportFocused)
+		{
+			m_CameraController->OnUpdate(ts);
+
+		}
 
 		m_Renderer2D->ResetStats();
 
@@ -166,6 +170,10 @@ namespace Hazel {
 		ImGui::End();
 
 		ImGui::Begin("Viewport");
+		m_ViewportFocused = ImGui::IsWindowFocused();
+		m_ViewportHovered = ImGui::IsWindowHovered();
+		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 		if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize))
 		{

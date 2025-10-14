@@ -32,6 +32,8 @@ namespace Hazel {
 
 		inline Window& GetWindow() { return *m_Window; };
 
+		ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
+
 		void Close();
 
 	private:
