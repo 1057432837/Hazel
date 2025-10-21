@@ -9,7 +9,7 @@
 
 namespace Hazel {
 	static void DoMath(const glm::mat4& transform) {
-	
+
 	}
 
 	static void OnTransformConstruct(entt::registry& registry, entt::entity entity) {
@@ -18,28 +18,6 @@ namespace Hazel {
 
 	Scene::Scene() {
 #if ENTT_EXAMPLE_CODE
-		struct MeshComponent {
-			bool Data;
-			MeshComponent() = default;
-
-		};
-
-		struct TransformComponent
-		{
-			glm::mat4 Transform;
-
-			TransformComponent() = default;
-
-			TransformComponent(const TransformComponent&) = default;
-
-			TransformComponent(const glm::mat4& transform) : Transform(transform) { }
-
-			operator glm::mat4& () { return Transform; }
-
-			operator const glm::mat4& () const { return Transform; }
-
-		}transform;
-
 		entt::entity entity = m_Registry.create();
 		m_Registry.emplace<TransformComponent>(entity, glm::mat4(1.0f));
 		m_Registry.on_construct<TransformComponent>().connect<&OnTransformConstruct>();
