@@ -4,6 +4,8 @@
 
 #include "Scene.h"
 #include "Hazel/Renderer/Renderer.h"
+#include "Components.h"
+#include "Hazel/Renderer/Renderer2D.h"
 
 namespace Hazel {
 	static void DoMath(const glm::mat4& transform) {
@@ -15,6 +17,7 @@ namespace Hazel {
 	}
 
 	Scene::Scene() {
+#if ENTT_EXAMPLE_CODE
 		struct MeshComponent {
 			bool Data;
 			MeshComponent() = default;
@@ -59,13 +62,32 @@ namespace Hazel {
 		for (auto entity : group)
 		{
 			auto&[transform, mesh] = group.get<TransformComponent, MeshComponent>(entity);
-			/*Renderer::Submit(mesh, transform);*/
+
+		}
+
+#endif
+
+	}
+
+	Scene::~Scene() {
+
+	}
+
+	void Scene::OnUpdate(Timestep ts) {
+		auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
+
+		for (auto entity : group)
+		{
+			auto& [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
+
+			Renderer2D::DrawQuad(transform, sprite.Color);
 
 		}
 
 	}
 
-	Scene::~Scene() {
+	entt::entity Scene::CreateEntity() {
+		return m_Registry.create();
 
 	}
 

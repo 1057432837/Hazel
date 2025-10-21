@@ -176,10 +176,12 @@ namespace Hazel {
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color) {
 		HZ_PROFILE_FUNCTION();
 
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+		
+		DrawQuad(transform, color);
+
 		const float texIndex = 0.0f;
 		const float tilingFactor = 1.0f;
-
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
 		Quad(transform, color, nullptr, texIndex, tilingFactor);
 
@@ -193,44 +195,9 @@ namespace Hazel {
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor) {
 		HZ_PROFILE_FUNCTION();
 
-		constexpr glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
-
-		float textureIndex = 0.0f;
-		if (textureIndex == 0.0f)
-		{
-			textureIndex = (float)s_Data->TextureSlotIndex;
-			s_Data->TextureSlots[s_Data->TextureSlotIndex] = texture;
-			s_Data->TextureSlotIndex++;
-
-		}
-
-		for (uint32_t i = 1; i < s_Data->TextureSlotIndex; i++)
-		{
-			if (*s_Data->TextureSlots[i].get() == *texture.get())
-			{
-				textureIndex = (float)i;
-				break;
-
-			}
-
-		}
-
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
-		Quad(transform, color, nullptr, textureIndex, tilingFactor);
-
-#if OLD_PATH
-		s_Data.TextureShader->SetFloat4("u_Color", tintColor);
-		s_Data.TextureShader->SetFloat("u_TilingFactor", tilingFactor);
-		texture->Bind();
-
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-		s_Data.TextureShader->SetMat4("u_Transform", transform);
-
-		s_Data.QuadVertexArray->Bind();
-		RenderCommand::DrawIndexed(s_Data.QuadVertexArray);
-
-#endif
+		DrawQuad(transform, texture, tilingFactor);
 
 	}
 
@@ -269,6 +236,58 @@ namespace Hazel {
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
 		Quad(transform, color, textureCoords, textureIndex, tilingFactor);
+
+#if OLD_PATH
+		s_Data.TextureShader->SetFloat4("u_Color", tintColor);
+		s_Data.TextureShader->SetFloat("u_TilingFactor", tilingFactor);
+		texture->Bind();
+
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+		s_Data.TextureShader->SetMat4("u_Transform", transform);
+
+		s_Data.QuadVertexArray->Bind();
+		RenderCommand::DrawIndexed(s_Data.QuadVertexArray);
+
+#endif
+
+	}
+
+	void Renderer2D::DrawQuad(const glm::mat4& transform, const glm::vec4& color) {
+		HZ_PROFILE_FUNCTION();
+
+		const float texIndex = 0.0f;
+		const float tilingFactor = 1.0f;
+
+		Quad(transform, color, nullptr, texIndex, tilingFactor);
+
+	}
+
+	void Renderer2D::DrawQuad(const glm::mat4& transform, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor) {
+		HZ_PROFILE_FUNCTION();
+
+		constexpr glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
+
+		float textureIndex = 0.0f;
+		if (textureIndex == 0.0f)
+		{
+			textureIndex = (float)s_Data->TextureSlotIndex;
+			s_Data->TextureSlots[s_Data->TextureSlotIndex] = texture;
+			s_Data->TextureSlotIndex++;
+
+		}
+
+		for (uint32_t i = 1; i < s_Data->TextureSlotIndex; i++)
+		{
+			if (*s_Data->TextureSlots[i].get() == *texture.get())
+			{
+				textureIndex = (float)i;
+				break;
+
+			}
+
+		}
+
+		Quad(transform, color, nullptr, textureIndex, tilingFactor);
 
 #if OLD_PATH
 		s_Data.TextureShader->SetFloat4("u_Color", tintColor);

@@ -17,6 +17,9 @@
 #include "Hazel/Renderer/Renderer2D.h"
 #include "Hazel/Renderer/RenderCommand.h"
 
+#include "Hazel/Scene/Scene.h"
+#include "Hazel/Scene/Components.h"
+
 #include "Hazel/Renderer/Buffer.h"
 #include "Hazel/Renderer/Shader.h"
 #include "Hazel/Renderer/Framebuffer.h"

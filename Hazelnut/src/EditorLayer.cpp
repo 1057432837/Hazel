@@ -24,6 +24,11 @@ namespace Hazel {
 		fbSpec.Height = 720;
 		m_Framebuffer = Framebuffer::Create(fbSpec);
 
+		m_ActiveScene = CreateRef<Scene>();
+		auto square = m_ActiveScene->CreateEntity();
+		m_ActiveScene->Reg().emplace<TransformComponent>(square);
+		m_ActiveScene->Reg().emplace<SpriteRendererComponent>(square, glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
+
 	}
 
 	void EditorLayer::OnDetach() {
@@ -51,35 +56,14 @@ namespace Hazel {
 		}
 
 		{
-			static float rotation = 0.0f;
-			rotation += ts * 50.0f;
 			HZ_PROFILE_SCOPE("Renderer Draw");
 
-
-			m_Renderer2D = Renderer2D::Create();
-
 			m_Renderer2D->BeginScene(m_CameraController->GetCamera());
 
-			m_Renderer2D->DrawRotatedQuad({ 1.0f, 0.0f }, { 0.8f, 0.8f }, glm::radians(-45.0f), { 0.8f, 0.2f, 0.3f, 1.0f });
-			m_Renderer2D->DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
-			m_Renderer2D->DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
-			m_Renderer2D->DrawQuad({ 0.0f, 0.0f, -0.1f }, { 20.0f, 20.0f }, m_CheckerboardTexture, 10.0f);
-			m_Renderer2D->DrawRotatedQuad({ -2.0f, 0.0f, 0.0f }, { 1.0f, 1.0f }, glm::radians(rotation), m_CheckerboardTexture, 20.0f);
+			m_ActiveScene->OnUpdate(ts);
 
 			m_Renderer2D->EndScene();
 
-			m_Renderer2D->BeginScene(m_CameraController->GetCamera());
-
-			for (float y = -5.0f; y < 5.0f; y += 0.5f)
-			{
-				for (float x = -5.0f; x < 5.0f; x += 0.5f)
-				{
-					glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 0.5f };
-					m_Renderer2D->DrawQuad({ x, y }, { 0.45f, 0.45f }, color);
-				}
-			}
-
-			m_Renderer2D->EndScene();
 			m_Framebuffer->Unbind();
 
 		}
