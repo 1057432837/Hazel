@@ -68,9 +68,6 @@ namespace Hazel {
 
 		}
 
-		Renderer2D::BeginScene(m_CameraController->GetCamera());
-		Renderer2D::EndScene();
-
 	}
 
 	void EditorLayer::OnImGuiRender() {
