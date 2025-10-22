@@ -45,6 +45,8 @@ namespace Hazel {
 
 		bool m_ViewportHovered = false;
 
+		Entity m_SquareEntity;
+
 	};
 
 }
