@@ -150,8 +150,15 @@ namespace Hazel {
 
 		if (m_SquareEntity)
 		{
+			ImGui::Separator();
+
+			auto& tag = m_SquareEntity.GetComponent<TagComponent>().Tag;
+			ImGui::Text("%s", tag.c_str());
+
 			auto& m_SquareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
 			ImGui::ColorEdit4("Square Color", glm::value_ptr(m_SquareColor));
+
+			ImGui::Separator();
 
 		}
 		
