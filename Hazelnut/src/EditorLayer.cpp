@@ -26,10 +26,13 @@ namespace Hazel {
 
 		m_ActiveScene = CreateRef<Scene>();
 
-		auto square = m_ActiveScene->CreateEntity("Square");
+		auto square = m_ActiveScene->CreateEntity("Green Square");
 		square.AddComponent<SpriteRendererComponent>(glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
 
 		m_SquareEntity = square;
+
+		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
+		m_CameraEntity.AddComponent<CameraComponent>(glm::ortho(-16.0f, 16.0f, -9.0f, 9.0f, -1.0f, 1.0f));
 
 	}
 
@@ -60,11 +63,7 @@ namespace Hazel {
 		{
 			HZ_PROFILE_SCOPE("Renderer Draw");
 
-			m_Renderer2D->BeginScene(m_CameraController->GetCamera());
-
 			m_ActiveScene->OnUpdate(ts);
-
-			m_Renderer2D->EndScene();
 
 			m_Framebuffer->Unbind();
 

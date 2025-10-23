@@ -47,6 +47,8 @@ namespace Hazel {
 
 		Entity m_SquareEntity;
 
+		Entity m_CameraEntity;
+
 	};
 
 }
