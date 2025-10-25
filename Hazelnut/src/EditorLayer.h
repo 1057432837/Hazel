@@ -49,6 +49,10 @@ namespace Hazel {
 
 		Entity m_CameraEntity;
 
+		Entity m_SecondCamera;
+
+		bool m_PrimaryCamera = true;
+
 	};
 
 }
