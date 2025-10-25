@@ -6,8 +6,9 @@
 #include "Hazel/Renderer/Camera.h"
 
 namespace Hazel {
-	struct TagComponent
+	class TagComponent
 	{
+	public:
 		std::string Tag;
 
 		TagComponent() = default;
@@ -16,9 +17,12 @@ namespace Hazel {
 
 		TagComponent(const std::string& tag) : Tag(tag) { }
 
+	private:
+
 	};
 
-	struct TransformComponent {
+	class TransformComponent {
+	public:
 		glm::mat4 Transform{ 1.0f };
 
 		TransformComponent() = default;
@@ -31,9 +35,12 @@ namespace Hazel {
 
 		operator const glm::mat4& () const { return Transform; }
 
+	private:
+
 	};
 
 	struct SpriteRendererComponent {
+	public:
 		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
 
 		SpriteRendererComponent() = default;
@@ -42,9 +49,12 @@ namespace Hazel {
 		
 		SpriteRendererComponent(const glm::vec4& color) : Color(color) { }
 
+	private:
+
 	};
 
 	struct CameraComponent {
+	public:
 		Camera Camera;
 
 		bool Primary = true;
@@ -56,6 +66,8 @@ namespace Hazel {
 		CameraComponent(const CameraComponent&) = default;
 		
 		CameraComponent(const glm::mat4& projection) : Camera(projection) { }
+
+	private:
 
 	};
 
