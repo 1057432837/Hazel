@@ -39,7 +39,7 @@ namespace Hazel {
 
 	};
 
-	struct SpriteRendererComponent {
+	class SpriteRendererComponent {
 	public:
 		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
 
@@ -53,7 +53,7 @@ namespace Hazel {
 
 	};
 
-	struct CameraComponent {
+	class CameraComponent {
 	public:
 		Camera Camera;
 
