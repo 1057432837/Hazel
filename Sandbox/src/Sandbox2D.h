@@ -39,10 +39,13 @@ private:
 
 	Hazel::Ref<Hazel::Renderer2D> m_Renderer2D;
 
-	struct ProfileResult
+	class ProfileResult
 	{
+	public:
 		const char* Name;
 		float Time;
+
+	private:
 
 	};
 

@@ -31,9 +31,12 @@ namespace Hazel {
 		static Ref<Renderer> Create();
 
 	private:
-		struct SceneData
+		class SceneData
 		{
+		public:
 			glm::mat4 ViewProjectionMatrix;
+
+		private:
 
 		};
 

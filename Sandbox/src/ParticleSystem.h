@@ -2,8 +2,9 @@
 
 #include "Hazel.h"
 
-struct ParticleProps
+class ParticleProps
 {
+public:
 	glm::vec2 Position;
 	glm::vec2 Velocity;
 	glm::vec2 VelocityVariation;
@@ -13,6 +14,8 @@ struct ParticleProps
 	float SizeEnd;
 	float SizeVariation;
 	float LifeTime = 1.0f;
+
+private:
 
 };
 
@@ -32,8 +35,9 @@ public:
 	void Emit(const ParticleProps& particleProps);
 
 private:
-	struct Particle
+	class Particle
 	{
+	public:
 		glm::vec2 Position;
 		glm::vec2 Velocity;
 		glm::vec4 ColorBegin, ColorEnd;
@@ -44,6 +48,8 @@ private:
 		float LifeRemaining = 0.0f;
 
 		bool Active = false;
+
+	private:
 
 	};
 

@@ -8,28 +8,35 @@
 #include "Camera.h"
 
 namespace Hazel {
-	struct QuadVertex
+	class QuadVertex
 	{
+	public:
 		glm::vec3 Position;
 		glm::vec4 Color;
 		glm::vec2 TexCoord;
 		float TexIndex;
 		float TilingFactor;
 
+	private:
+
 	};
 
-	struct Statistics
+	class Statistics
 	{
+	public:
 		uint32_t DrawCalls = 0;
 		uint32_t QuadCount = 0;
 
 		uint32_t GetTotalVertexCount() { return QuadCount * 4; }
 		uint32_t GetTotalIndexCount() { return QuadCount * 6; }
 
+	private:
+
 	};
 
-	struct Renderer2DData
+	class Renderer2DData
 	{
+	public:
 		static const uint32_t MaxQuads = 10000;
 		static const uint32_t MaxVertices = MaxQuads * 4;
 		static const uint32_t MaxIndices = MaxQuads * 6;
@@ -52,6 +59,8 @@ namespace Hazel {
 		glm::vec4 QuadVertexPositions[4];
 
 		Statistics Stats;
+
+	private:
 
 	};
 

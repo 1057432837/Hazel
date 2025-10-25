@@ -72,8 +72,9 @@ namespace Hazel {
 
 	}
 
-	struct BufferElement
+	class BufferElement
 	{
+	public:
 		std::string Name;
 		ShaderDataType Type;
 		uint32_t Size;
@@ -148,6 +149,8 @@ namespace Hazel {
 			return 0;
 
 		}
+
+	private:
 
 	};
 

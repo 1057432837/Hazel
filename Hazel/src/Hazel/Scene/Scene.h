@@ -14,14 +14,18 @@ namespace Hazel {
 
 	public:
 #if ENTT_EXAMPLE_CODE
-		struct MeshComponent {
+		class MeshComponent {
+		public:
 			bool Data;
 			MeshComponent() = default;
 
+		private:
+
 		};
 
-		struct TransformComponent
+		class TransformComponent
 		{
+		public:
 			glm::mat4 Transform;
 
 			TransformComponent() = default;
@@ -33,6 +37,8 @@ namespace Hazel {
 			operator glm::mat4& () { return Transform; }
 
 			operator const glm::mat4& () const { return Transform; }
+
+		private:
 
 		}transform;
 

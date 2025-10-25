@@ -7,17 +7,23 @@
 #include <thread>
 
 namespace Hazel {
-	struct ProfileResult
+	class ProfileResult
 	{
+	public:
 		std::string Name;
 		long long Start, End;
 		uint32_t ThreadID;
 
+	private:
+
 	};
 
-	struct InstrumentationSession
+	class InstrumentationSession
 	{
+	public:
 		std::string Name;
+
+	private:
 
 	};
 

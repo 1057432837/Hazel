@@ -6,13 +6,16 @@
 #include "Hazel/Events/MouseEvent.h"
 
 namespace Hazel {
-	struct OrthographicCameraBounds
+	class OrthographicCameraBounds
 	{
+	public:
 		float Left, Right;
 		float Bottom, Top;
 
 		float GetWidth() { return Right - Left; }
 		float GetHeight() { return Top - Bottom; }
+
+	private:
 
 	};
 

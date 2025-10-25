@@ -5,7 +5,7 @@
 #include "Hazel/Core/Window.h"
 #include "Hazel/Renderer/GraphicsContext.h"
 
-struct GLFWwindow;
+class GLFWwindow;
 
 namespace Hazel {
 	class WindowsWindow : public Window
@@ -49,8 +49,9 @@ namespace Hazel {
 		inline virtual void* GetNativeWindow() const { return m_Window; }
 
 	private:
-		struct WindowData
+		class WindowData
 		{
+		public:
 			std::string Title;
 			unsigned int Width, Height;
 			unsigned int XPos, YPos;
@@ -58,6 +59,9 @@ namespace Hazel {
 			bool VSync;
 
 			EventCallbackFn EventCallback;
+
+		private:
+
 		}m_Data;
 
 		GLFWwindow* m_Window;
