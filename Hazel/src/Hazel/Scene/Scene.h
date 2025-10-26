@@ -50,7 +50,7 @@ namespace Hazel {
 
 		void OnUpdate(Timestep ts);
 
-		Entity CreateEntity(const std::string& name);
+		Ref<Entity> CreateEntity(const std::string& name);
 
 	private:
 		entt::registry m_Registry;

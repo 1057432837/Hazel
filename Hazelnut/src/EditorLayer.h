@@ -45,11 +45,11 @@ namespace Hazel {
 
 		bool m_ViewportHovered = false;
 
-		Entity m_SquareEntity;
+		Ref<Entity> m_SquareEntity;
 
-		Entity m_CameraEntity;
+		Ref<Entity> m_CameraEntity;
 
-		Entity m_SecondCamera;
+		Ref<Entity> m_SecondCamera;
 
 		bool m_PrimaryCamera = true;
 
