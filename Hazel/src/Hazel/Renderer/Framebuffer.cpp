@@ -5,6 +5,11 @@
 #include "Hazel/Renderer/Renderer.h"
 
 namespace Hazel {
+	Ref<FramebufferSpecification> FramebufferSpecification::Create() {
+		return CreateRef<FramebufferSpecification>();
+
+	}
+
 	Framebuffer::Framebuffer() {
 
 	}

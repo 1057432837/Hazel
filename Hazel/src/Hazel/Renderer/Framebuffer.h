@@ -14,6 +14,8 @@ namespace Hazel
 
 		bool SwapChainTarget = false;
 
+		static Ref<FramebufferSpecification> Create();
+
 	private:
 
 	};

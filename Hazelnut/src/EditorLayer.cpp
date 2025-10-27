@@ -19,8 +19,9 @@ namespace Hazel {
 
 		m_CheckerboardTexture = Texture2D::Create("assets/textures/Checkerboard.png");
 
-		FramebufferSpecification fbSpec;
-		m_Framebuffer = Framebuffer::Create(fbSpec);
+		m_FbSpec = FramebufferSpecification::Create();
+
+		m_Framebuffer = Framebuffer::Create(*m_FbSpec);
 
 		m_ActiveScene = Scene::Create();
 

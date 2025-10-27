@@ -45,6 +45,8 @@ namespace Hazel {
 
 		bool m_ViewportHovered = false;
 
+		Ref<FramebufferSpecification> m_FbSpec;
+
 		Ref<Entity> m_SquareEntity;
 
 		Ref<Entity> m_CameraEntity;
