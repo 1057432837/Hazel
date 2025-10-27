@@ -96,6 +96,11 @@ namespace Hazel {
 
 	}
 
+	Ref<Scene> Scene::Create() {
+		return CreateRef<Scene>();
+
+	}
+
 	Ref<Entity> Scene::CreateEntity(const std::string& name) {
 		Entity entity = { m_Registry.create(), this };
 		entity.AddComponent<TransformComponent>();

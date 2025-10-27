@@ -50,6 +50,8 @@ namespace Hazel {
 
 		void OnUpdate(Timestep ts);
 
+		static Ref<Scene> Create();
+
 		Ref<Entity> CreateEntity(const std::string& name);
 
 	private:

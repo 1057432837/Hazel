@@ -22,7 +22,7 @@ namespace Hazel {
 		FramebufferSpecification fbSpec;
 		m_Framebuffer = Framebuffer::Create(fbSpec);
 
-		m_ActiveScene = CreateRef<Scene>();
+		m_ActiveScene = Scene::Create();
 
 		m_SquareEntity = m_ActiveScene->CreateEntity("Green Square");
 		m_SquareEntity->AddComponent<SpriteRendererComponent>(glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
