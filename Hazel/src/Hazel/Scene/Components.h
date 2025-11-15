@@ -3,7 +3,7 @@
 #include "glm/glm.hpp"
 
 #include "Hazel/Renderer/OrthoGraphicCamera.h"
-#include "Hazel/Renderer/Camera.h"
+#include "SceneCamera.h"
 
 namespace Hazel {
 	class TagComponent
@@ -55,7 +55,7 @@ namespace Hazel {
 
 	class CameraComponent {
 	public:
-		Camera Camera;
+		SceneCamera Camera;
 
 		bool Primary = true;
 
@@ -64,8 +64,6 @@ namespace Hazel {
 		CameraComponent() = default;
 		
 		CameraComponent(const CameraComponent&) = default;
-		
-		CameraComponent(const glm::mat4& projection) : Camera(projection) { }
 
 	private:
 
