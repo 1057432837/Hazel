@@ -180,6 +180,17 @@ namespace Hazel {
 		
 		}
 
+		{
+			auto& camera = m_SecondCamera->GetComponent<CameraComponent>().Camera;
+			float orthoSize = camera.GetOrthographicSize();
+			if (ImGui::DragFloat("Second Camera Ortho Size", &orthoSize))
+			{
+				camera.SetOrthographicSize(orthoSize);
+
+			}
+			
+		}
+
 		ImGui::End();
 
 		ImGui::Begin("Viewport");
