@@ -3,6 +3,7 @@
 #include "glm/gtc/type_ptr.hpp"
 
 #include "EditorLayer.h"
+#include "Hazel/Core/KeyCodes.h"
 
 namespace Hazel {
 	EditorLayer::EditorLayer() : Layer("EditorLayer") {
@@ -33,6 +34,59 @@ namespace Hazel {
 
 		m_SecondCamera = m_ActiveScene->CreateEntity("Clip-Space Entity");
 		m_SecondCamera->AddComponent<CameraComponent>().Primary = false;
+
+		class CameraController : public ScriptableEntity
+		{
+		public:
+			CameraController() {
+
+			}
+
+			~CameraController() {
+
+			}
+
+			void OnCreate() {
+				
+
+			}
+
+			void OnDestroy() {
+
+			}
+
+			void OnUpdate(Timestep ts) {
+				auto& transform = GetComponent<TransformComponent>().Transform;
+				float speed = 5.0f;
+
+				if (Input::IsKeyPressed(HZ_KEY_A))
+				{
+					transform[3][0] -= speed * ts;
+
+				}
+				if (Input::IsKeyPressed(HZ_KEY_D))
+				{
+					transform[3][0] += speed * ts;
+
+				}
+				if (Input::IsKeyPressed(HZ_KEY_W))
+				{
+					transform[3][1] += speed * ts;
+
+				}
+				if (Input::IsKeyPressed(HZ_KEY_S))
+				{
+					transform[3][1] -= speed * ts;
+
+				}
+
+			}
+
+		private:
+
+		};
+
+		m_SecondCamera->AddComponent<NativeScriptComponent>().Bind<CameraController>();
 
 	}
 
