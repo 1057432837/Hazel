@@ -10,8 +10,6 @@ namespace Hazel {
 
 	class Scene
 	{
-		friend class Entity;
-
 	public:
 #if ENTT_EXAMPLE_CODE
 		class MeshComponent {
@@ -62,6 +60,10 @@ namespace Hazel {
 		uint32_t m_ViewportWidth = 0;
 
 		uint32_t m_ViewportHeight = 0;
+
+		friend class Entity;
+
+		friend class SceneHierarchyPanel;
 
 	};
 
