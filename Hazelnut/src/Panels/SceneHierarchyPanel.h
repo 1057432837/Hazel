@@ -19,10 +19,14 @@ namespace Hazel {
 
 		void OnImGuiRender();
 
+		void DrawEntityNode(Entity entity);
+
 		static Ref<SceneHierarchyPanel> Create();
 
 	private:
 		Ref<Scene> m_Context;
+
+		Entity m_SelectionContext;
 
 	};
 
