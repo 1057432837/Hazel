@@ -1,4 +1,5 @@
 #include "imgui/imgui.h"
+#include "glm/gtc/type_ptr.hpp"
 
 #include "SceneHierarchyPanel.h"
 #include "Hazel/Scene/Components.h"
@@ -30,6 +31,12 @@ namespace Hazel {
 			DrawEntityNode(entity);
 
 		});
+
+		if (ImGui::IsMouseDown(0) && ImGui::IsWindowHovered())
+		{
+			m_SelectionContext = { };
+
+		}
 
 		ImGui::End();
 
@@ -84,6 +91,19 @@ namespace Hazel {
 
 			}
 
+		}
+
+		if (entity.HasComponent<TransformComponent>())
+		{
+			if (ImGui::TreeNodeEx((void*)typeid(TransformComponent).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Transform"));
+			{
+				auto& transform = entity.GetComponent<TransformComponent>().Transform;
+				ImGui::DragFloat3("Position", glm::value_ptr(transform[3]), 0.1f);
+
+				ImGui::TreePop();
+
+			}
+			
 		}
 
 	}
