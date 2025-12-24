@@ -36,6 +36,16 @@ namespace Hazel {
 
 		template<typename T>
 		bool HasComponent() {
+			if (!m_Scene) {
+				return false;
+
+			}
+
+			if (!m_Scene->IsEntityValid(m_EntityHandle)) {
+				return false;
+			
+			}
+
 			return m_Scene->m_Registry.all_of<T>(m_EntityHandle);
 		
 		}

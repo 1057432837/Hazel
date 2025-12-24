@@ -16,12 +16,11 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Sandbox2D.cpp" />
+    <ClCompile Include="src\ParticleSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Sandbox2D.h" />
     <ClInclude Include="src\SandboxApp.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="E:\Download\Checkerboard.png" />
+    <ClInclude Include="src\ParticleSystem.h" />
   </ItemGroup>
 </Project>

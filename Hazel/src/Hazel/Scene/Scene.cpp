@@ -130,6 +130,11 @@ namespace Hazel {
 
 	}
 
+	bool Scene::IsEntityValid(entt::entity entity) const {
+		return m_Registry.valid(entity);
+
+	}
+
 	Ref<Scene> Scene::Create() {
 		return CreateRef<Scene>();
 

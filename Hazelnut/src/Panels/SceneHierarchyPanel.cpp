@@ -33,6 +33,17 @@ namespace Hazel {
 
 		ImGui::End();
 
+		ImGui::Begin("Properties");
+
+
+		if (m_SelectionContext)
+		{
+			DrawComponents(m_SelectionContext);
+
+		}
+
+		ImGui::End();
+
 	}
 
 	void SceneHierarchyPanel::DrawEntityNode(Entity entity) {
@@ -54,6 +65,24 @@ namespace Hazel {
 
 			}
 			ImGui::TreePop();
+
+		}
+
+	}
+
+	void SceneHierarchyPanel::DrawComponents(Entity entity) {
+		if (entity.HasComponent<TagComponent>())
+		{
+			auto& tag = entity.GetComponent<TagComponent>().Tag;
+			
+			char buffer[256];
+			memset(buffer, 0, sizeof(buffer));
+			strcpy_s(buffer, sizeof(buffer), tag.c_str());
+			if (ImGui::InputText("Tag", buffer, sizeof(buffer)))
+			{
+				tag = std::string(buffer);
+
+			}
 
 		}
 

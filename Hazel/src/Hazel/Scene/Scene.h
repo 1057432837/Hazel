@@ -50,6 +50,8 @@ namespace Hazel {
 
 		void OnViewportResize(uint32_t width, uint32_t height);
 
+		bool IsEntityValid(entt::entity entity) const;
+
 		static Ref<Scene> Create();
 
 		Ref<Entity> CreateEntity(const std::string& name);

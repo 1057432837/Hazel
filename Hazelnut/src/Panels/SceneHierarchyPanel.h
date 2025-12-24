@@ -21,6 +21,8 @@ namespace Hazel {
 
 		void DrawEntityNode(Entity entity);
 
+		void DrawComponents(Entity entity);
+
 		static Ref<SceneHierarchyPanel> Create();
 
 	private:
