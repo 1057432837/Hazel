@@ -106,6 +106,25 @@ namespace Hazel {
 			
 		}
 
+		if (entity.HasComponent<CameraComponent>())
+		{
+			if (ImGui::TreeNodeEx((void*)typeid(CameraComponent).hash_code(), ImGuiTreeNodeFlags_DefaultOpen, "Camera"));
+			{
+				auto& cameraComponent = entity.GetComponent<CameraComponent>();
+
+				const char* projectionTypeStrings[] = { "Perspective", "Orthographic" };
+				const char* currentProjectionTypeString = projectionTypeStrings[(int)cameraComponent.Camera.GetProjectionType()];
+				if (ImGui::BeginCombo("Projection", currentProjectionTypeString)) {
+					ImGui::EndCombo();
+
+				}
+
+				ImGui::TreePop();
+
+			}
+
+		}
+
 	}
 
 	Ref<SceneHierarchyPanel> SceneHierarchyPanel::Create() {
