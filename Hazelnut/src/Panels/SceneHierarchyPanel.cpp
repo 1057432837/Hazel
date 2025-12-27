@@ -140,6 +140,23 @@ namespace Hazel {
 
 				if (camera.GetProjectionType() == SceneCamera::ProjectionType::Perspective)
 				{
+					float verticalFov = glm::degrees(camera.GetPerspectiveVerticalFOV());
+					if (ImGui::DragFloat("Vertical FOV", &verticalFov)) {
+						camera.SetPerspectiveVerticalFOV(glm::radians(verticalFov));
+
+					}
+
+					float orthoNear = camera.GetPerspectiveNearClip();
+					if (ImGui::DragFloat("Near", &orthoNear)) {
+						camera.SetPerspectiveNearClip(orthoNear);
+
+					}
+
+					float orthoFar = camera.GetPerspectiveFarClip();
+					if (ImGui::DragFloat("Far", &orthoFar)) {
+						camera.SetPerspectiveFarClip(orthoFar);
+
+					}
 
 				}
 
