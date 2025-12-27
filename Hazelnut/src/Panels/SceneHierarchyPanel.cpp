@@ -113,6 +113,8 @@ namespace Hazel {
 				auto& cameraComponent = entity.GetComponent<CameraComponent>();
 				auto& camera = cameraComponent.Camera;
 
+				ImGui::Checkbox("Primary", &cameraComponent.Primary);
+
 				const char* projectionTypeStrings[] = { "Perspective", "Orthographic" };
 				const char* currentProjectionTypeString = projectionTypeStrings[(int)camera.GetProjectionType()];
 				if (ImGui::BeginCombo("Projection", currentProjectionTypeString)) {
@@ -179,6 +181,8 @@ namespace Hazel {
 						camera.SetOrthographicFarClip(orthoFar);
 
 					}
+
+					ImGui::Checkbox("Fixed Aspect Ratio", &cameraComponent.FixedAspectRatio);
 
 				}
 
