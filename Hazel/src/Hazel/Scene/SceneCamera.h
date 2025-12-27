@@ -28,6 +28,16 @@ namespace Hazel {
 
 		ProjectionType GetProjectionType() const { return m_ProjectionType; }
 
+		void SetProjectionType(ProjectionType type) { m_ProjectionType = type; ReCalculateProjection(); }
+
+		float GetOrthographicNearClip() const { return m_OrthographicNear; }
+
+		void SetOrthographicNearClip(float nearClip) { m_OrthographicNear = nearClip; ReCalculateProjection(); }
+
+		float GetOrthographicFarClip() const { return m_OrthographicFar; }
+
+		void SetOrthographicFarClip(float farClip) { m_OrthographicFar = farClip; ReCalculateProjection(); }
+
 	private:
 		void ReCalculateProjection();
 
