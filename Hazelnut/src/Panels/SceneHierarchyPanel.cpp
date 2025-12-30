@@ -79,6 +79,8 @@ namespace Hazel {
 	}
 
 	static void DrawVec3Control(const std::string& label, glm::vec3& values, float resetValue = 0.0f, float columnWidth = 100.0f) {
+		ImGui::PushID(label.c_str());
+		
 		ImGui::Columns(2);
 		ImGui::SetColumnWidth(0, columnWidth);
 		ImGui::Text(label.c_str());
@@ -101,7 +103,7 @@ namespace Hazel {
 		ImGui::PopStyleColor(3);
 
 		ImGui::SameLine();
-		ImGui::DragFloat("##x", &values.x, 0.1f);
+		ImGui::DragFloat("##x", &values.x, 0.1f, 0.0f, 0.0f, "%.2f");
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
 
@@ -116,7 +118,7 @@ namespace Hazel {
 		ImGui::PopStyleColor(3);
 
 		ImGui::SameLine();
-		ImGui::DragFloat("##y", &values.y, 0.1f);
+		ImGui::DragFloat("##y", &values.y, 0.1f, 0.0f, 0.0f, "%.2f");
 		ImGui::PopItemWidth();
 		ImGui::SameLine();
 
@@ -131,12 +133,14 @@ namespace Hazel {
 		ImGui::PopStyleColor(3);
 
 		ImGui::SameLine();
-		ImGui::DragFloat("##z", &values.z, 0.1f);
+		ImGui::DragFloat("##z", &values.z, 0.1f, 0.0f, 0.0f, "%.2f");
 		ImGui::PopItemWidth();
 
 		ImGui::PopStyleVar();
 
 		ImGui::Columns(1);
+
+		ImGui::PopID();
 
 	}
 	
@@ -162,6 +166,10 @@ namespace Hazel {
 			{
 				auto& tc = entity.GetComponent<TransformComponent>();
 				DrawVec3Control("Translation", tc.Translation);
+				glm::vec3 rotaion = glm::degrees(tc.Rotation);
+				DrawVec3Control("Rotation", rotaion);
+				tc.Rotation = glm::radians(rotaion);
+				DrawVec3Control("Scale", tc.Scale, 1.0f);
 
 				ImGui::TreePop();
 
