@@ -39,6 +39,18 @@ namespace Hazel {
 
 		}
 
+		if (ImGui::BeginPopupContextWindow(0, 1, false))
+		{
+			if (ImGui::MenuItem("Create Empty Entity"))
+			{
+				m_Context->CreateEntity("Empty Entity");
+
+			}
+
+			ImGui::EndPopup();
+
+		}
+		
 		ImGui::End();
 
 		ImGui::Begin("Properties");
@@ -64,6 +76,19 @@ namespace Hazel {
 
 		}
 
+		bool entityDeleted = false;
+		if (ImGui::BeginPopupContextItem())
+		{
+			if (ImGui::MenuItem("Delete Entity"))
+			{
+				entityDeleted = true;
+
+			}
+
+			ImGui::EndPopup();
+
+		}
+
 		if (opened) {
 			ImGuiTreeNodeFlags flags = ((m_SelectionContext == entity) ? ImGuiTreeNodeFlags_Selected : 0) | ImGuiTreeNodeFlags_OpenOnArrow;
 			bool opened = ImGui::TreeNodeEx((void*)123456, flags, tag.c_str());
@@ -73,6 +98,17 @@ namespace Hazel {
 
 			}
 			ImGui::TreePop();
+
+		}
+
+		if (entityDeleted)
+		{
+			m_Context->DestroyEntity(entity);
+			if (m_SelectionContext == entity)
+			{
+				m_SelectionContext = { };
+
+			}
 
 		}
 

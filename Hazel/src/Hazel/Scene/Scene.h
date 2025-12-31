@@ -56,6 +56,8 @@ namespace Hazel {
 
 		Ref<Entity> CreateEntity(const std::string& name);
 
+		void DestroyEntity(Entity entity);
+
 	private:
 		entt::registry m_Registry;
 
