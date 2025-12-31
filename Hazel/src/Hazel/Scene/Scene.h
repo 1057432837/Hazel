@@ -59,6 +59,9 @@ namespace Hazel {
 		void DestroyEntity(Entity entity);
 
 	private:
+		template<typename T>
+		void OnComponentAdded(Entity entity, T& component);
+
 		entt::registry m_Registry;
 
 		uint32_t m_ViewportWidth = 0;
