@@ -4,6 +4,7 @@
 
 #include "EditorLayer.h"
 #include "Hazel/Core/KeyCodes.h"
+#include "Hazel/Scene/SceneSerializer.h"
 
 namespace Hazel {
 	EditorLayer::EditorLayer() : Layer("EditorLayer") {
@@ -95,6 +96,9 @@ namespace Hazel {
 
 		m_SceneHierarchyPanel = SceneHierarchyPanel::Create();
 		m_SceneHierarchyPanel->SetContext(m_ActiveScene);
+
+		SceneSerializer serializer(m_ActiveScene);
+		serializer.Serialize("assets/scenes/Example.hazel");
 
 	}
 
