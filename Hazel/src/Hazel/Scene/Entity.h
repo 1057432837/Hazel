@@ -59,7 +59,7 @@ namespace Hazel {
 		
 		}
 
-		operator bool() const { return (uint32_t)m_EntityHandle != 0; }
+		operator bool() const { return (m_Scene != nullptr) && (m_EntityHandle != entt::null); }
 
 		operator uint32_t() const { return (uint32_t)m_EntityHandle; }
 

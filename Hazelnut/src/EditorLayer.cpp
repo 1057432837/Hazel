@@ -5,6 +5,7 @@
 #include "EditorLayer.h"
 #include "Hazel/Core/KeyCodes.h"
 #include "Hazel/Scene/SceneSerializer.h"
+#include "Hazel/Utils/PlatformUtils.h"
 
 namespace Hazel {
 	EditorLayer::EditorLayer() : Layer("EditorLayer") {
@@ -210,16 +211,36 @@ namespace Hazel {
 		{
 			if (ImGui::BeginMenu("File"))
 			{
-				if (ImGui::MenuItem("Serialize")) {
-					SceneSerializer serializer(m_ActiveScene);
-					serializer.Serialize("assets/scenes/Example.hazel");
+				if (ImGui::MenuItem("New", "Ctrl+N")) {
+					m_ActiveScene = Scene::Create();
+					m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+					m_SceneHierarchyPanel->SetContext(m_ActiveScene);
 
 				}
 
-				if (ImGui::MenuItem("Deserialize")) {
-					SceneSerializer serializer(m_ActiveScene);
-					serializer.Deserialize("assets/scenes/Example.hazel");
+				if (ImGui::MenuItem("Open...", "Ctrl+O")) {
+					std::string filepath = FileDialogs::OpenFile("Hazel Scene (*.hazel)\0*.hazel\0");
+					if (!filepath.empty())
+					{
+						m_ActiveScene = Scene::Create();
+						m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+						m_SceneHierarchyPanel->SetContext(m_ActiveScene);
 
+						SceneSerializer serializer(m_ActiveScene);
+						serializer.Deserialize(filepath);
+
+					}
+
+				}
+
+				if (ImGui::MenuItem("Save as...", "Ctrl+Shift+S")) {
+					std::string filepath = FileDialogs::SaveFile("Hazel Scene (*.hazel)\0*.hazel\0");
+					if (!filepath.empty()) {
+						SceneSerializer serializer(m_ActiveScene);
+						serializer.Serialize(filepath);
+
+					}
+					
 				}
 
 				if (ImGui::MenuItem("Exit")) {
