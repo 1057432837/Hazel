@@ -42,7 +42,7 @@
 /bin
 /bin-int
 /cache
-Hazelnut/assets/scenes
+/Hazelnut/assets/scenes
 /.vs
 *.tlog
 *.log
