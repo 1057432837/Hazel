@@ -58,6 +58,8 @@ namespace Hazel {
 
 		void DestroyEntity(Entity entity);
 
+		Entity GetPrimaryCameraEntity();
+
 	private:
 		template<typename T>
 		void OnComponentAdded(Entity entity, T& component);

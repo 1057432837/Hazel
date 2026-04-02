@@ -23,6 +23,8 @@ namespace Hazel {
 
 		void DrawComponents(Entity entity);
 
+		Entity GetSelectedEntity() const{ return m_SelectionContext; }
+
 		static Ref<SceneHierarchyPanel> Create();
 
 	private:
