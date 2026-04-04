@@ -257,7 +257,7 @@ namespace Hazel {
 		ImGui::Begin("Viewport");
 		m_ViewportFocused = ImGui::IsWindowFocused();
 		m_ViewportHovered = ImGui::IsWindowHovered();
-		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+		Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused && !m_ViewportHovered);
 
 		ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 		if (m_ViewportSize != *((glm::vec2*)&viewportPanelSize) && viewportPanelSize.x > 0 && viewportPanelSize.y > 0)
@@ -273,8 +273,6 @@ namespace Hazel {
 		
 		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2(m_ViewportSize.x, m_ViewportSize.y), ImVec2(0, 1), ImVec2(1, 0));
-		
-		m_GizmoType = ImGuizmo::OPERATION::ROTATE;
 
 		Entity selectedEntity = m_SceneHierarchyPanel->GetSelectedEntity();
 		if (selectedEntity && m_GizmoType != -1)
@@ -294,7 +292,17 @@ namespace Hazel {
 			auto& tc = selectedEntity.GetComponent<TransformComponent>();
 			glm::mat4 transform = tc.GetTransform();
 			
-			ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::MODE::LOCAL, glm::value_ptr(transform));
+			bool snap = Input::IsKeyPressed(HZ_KEY_LEFT_CONTROL);
+			float snapValue = 0.5f;
+			if (m_GizmoType == ImGuizmo::OPERATION::ROTATE)
+			{
+				snapValue = 45.0f;
+
+			}
+
+			float snapValues[3] = { snapValue, snapValue, snapValue };
+			
+			ImGuizmo::Manipulate(glm::value_ptr(cameraView), glm::value_ptr(cameraProjection), (ImGuizmo::OPERATION)m_GizmoType, ImGuizmo::MODE::LOCAL, glm::value_ptr(transform), nullptr, snap ? snapValues : nullptr);
 
 			if (ImGuizmo::IsUsing())
 			{
@@ -360,6 +368,30 @@ namespace Hazel {
 				SaveSceneAs();
 
 			}
+			break;
+
+		}
+
+		case HZ_KEY_Q: {
+			m_GizmoType = -1;
+			break;
+
+		}
+
+		case HZ_KEY_W: {
+			m_GizmoType = ImGuizmo::OPERATION::TRANSLATE;
+			break;
+
+		}
+
+		case HZ_KEY_E: {
+			m_GizmoType = ImGuizmo::OPERATION::ROTATE;
+			break;
+
+		}
+
+		case HZ_KEY_R: {
+			m_GizmoType = ImGuizmo::OPERATION::SCALE;
 			break;
 
 		}
