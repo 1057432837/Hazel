@@ -66,6 +66,8 @@ namespace Hazel {
 
 		bool m_PrimaryCamera = true;
 
+		int m_GizmoType = -1;
+
 	};
 
 }
