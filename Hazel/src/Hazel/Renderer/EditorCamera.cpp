@@ -24,6 +24,7 @@ namespace Hazel {
 	}
 
 	void EditorCamera::UpdateView() {
+		//m_Yaw = m_Pitch = 0.0f;
 		m_Position = CalculatePosition();
 
 		glm::quat orientation = GetOrientation();

@@ -128,9 +128,10 @@ namespace Hazel {
 		if (m_ViewportFocused)
 		{
 			m_CameraController->OnUpdate(ts);
-			m_EditorCamera.OnUpdate(ts);
 
 		}
+
+		m_EditorCamera.OnUpdate(ts);
 
 		m_Renderer2D->ResetStats();
 
