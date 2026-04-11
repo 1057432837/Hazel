@@ -19,4 +19,7 @@
       <Filter>Panels</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="E:\Download\PinkCube.hazel" />
+  </ItemGroup>
 </Project>
