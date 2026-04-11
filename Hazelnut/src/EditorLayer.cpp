@@ -30,7 +30,7 @@ namespace Hazel {
 
 		m_ActiveScene = Scene::Create();
 
-		m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
+		m_EditorCamera = EditorCamera(30.0f, 1.0f, 0.1f, 1000.0f);
 
 #if 0
 		auto greenSquare = m_ActiveScene->CreateEntity("Green Square");
