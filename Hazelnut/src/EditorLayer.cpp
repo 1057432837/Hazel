@@ -30,6 +30,8 @@ namespace Hazel {
 
 		m_ActiveScene = Scene::Create();
 
+		m_EditorCamera = EditorCamera(30.0f, 1.778f, 0.1f, 1000.0f);
+
 #if 0
 		auto greenSquare = m_ActiveScene->CreateEntity("Green Square");
 		greenSquare->AddComponent<SpriteRendererComponent>(glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
@@ -118,7 +120,7 @@ namespace Hazel {
 		{
 			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 			m_CameraController->OnResize(m_ViewportSize.x, m_ViewportSize.y);
-
+			m_EditorCamera.SetViewportSize(m_ViewportSize.x, m_ViewportSize.y);
 			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		
 		}
@@ -126,6 +128,7 @@ namespace Hazel {
 		if (m_ViewportFocused)
 		{
 			m_CameraController->OnUpdate(ts);
+			m_EditorCamera.OnUpdate(ts);
 
 		}
 
@@ -142,7 +145,7 @@ namespace Hazel {
 		{
 			HZ_PROFILE_SCOPE("Renderer Draw");
 
-			m_ActiveScene->OnUpdate(ts);
+			m_ActiveScene->OnUpdateEditor(ts, m_EditorCamera);
 
 			m_Framebuffer->Unbind();
 
@@ -326,6 +329,7 @@ namespace Hazel {
 
 	void EditorLayer::OnEvent(Event& e) {
 		m_CameraController->OnEvent(e);
+		m_EditorCamera.OnEvent(e);
 
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<KeyPressedEvent>(HZ_BIND_EVENT_FN(EditorLayer::OnKeyPressed));

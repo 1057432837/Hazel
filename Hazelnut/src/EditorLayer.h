@@ -2,6 +2,7 @@
 
 #include "Hazel.h"
 #include "Panels/SceneHierarchyPanel.h"
+#include "Hazel/Renderer/EditorCamera.h"
 
 namespace Hazel {
 	class EditorLayer : public Layer
@@ -65,6 +66,8 @@ namespace Hazel {
 		Ref<SceneHierarchyPanel> m_SceneHierarchyPanel;
 
 		bool m_PrimaryCamera = true;
+
+		EditorCamera m_EditorCamera;
 
 		int m_GizmoType = -1;
 

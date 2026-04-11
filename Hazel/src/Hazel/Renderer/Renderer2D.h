@@ -6,6 +6,7 @@
 #include "Shader.h"
 #include "SubTexture2D.h"
 #include "Camera.h"
+#include "EditorCamera.h"
 
 namespace Hazel {
 	class QuadVertex
@@ -77,6 +78,8 @@ namespace Hazel {
 
 		static void BeginScene(const Camera& camera, const glm::mat4& transform);
 
+		static void BeginScene(const EditorCamera& camera);
+
 		static void BeginScene(const OrthographicCamera& camera);
 
 		static void EndScene();
@@ -114,6 +117,8 @@ namespace Hazel {
 		static void DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<SubTexture2D>& subtexture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f));
 
 		static void ResetStats();
+
+		static void StartBatch();
 
 		static Statistics GetStats() { return s_Data->Stats; }
 

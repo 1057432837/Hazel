@@ -4,6 +4,7 @@
 
 #include "Hazel/Core/Timestep.h"
 #include "Entity.h"
+#include "Hazel/Renderer/EditorCamera.h"
 
 namespace Hazel {
 	class Entity;
@@ -46,7 +47,9 @@ namespace Hazel {
 
 		~Scene();
 
-		void OnUpdate(Timestep ts);
+		void OnUpdateEditor(Timestep ts, EditorCamera &camera);
+
+		void OnUpdateRuntime(Timestep ts);
 
 		void OnViewportResize(uint32_t width, uint32_t height);
 
