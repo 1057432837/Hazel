@@ -67,7 +67,7 @@ namespace Hazel {
 
 		bool m_PrimaryCamera = true;
 
-		EditorCamera m_EditorCamera;
+		Ref<EditorCamera> m_EditorCamera;
 
 		int m_GizmoType = -1;
 

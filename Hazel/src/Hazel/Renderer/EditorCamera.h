@@ -66,6 +66,8 @@ namespace Hazel {
 		
 		float ZoomSpeed() const;
 
+		static Ref<Camera> Create(float fov, float aspectRatio, float nearClip, float farClip);
+
 	private:
 		float m_FOV = 45.0f, m_AspectRatio = 1.778f, m_NearClip = 0.1f, m_FarClip = 1000.0f;
 

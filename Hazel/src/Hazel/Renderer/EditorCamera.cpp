@@ -128,4 +128,9 @@ namespace Hazel {
 
 	}
 
+	Ref<Camera> EditorCamera::Create(float fov, float aspectRatio, float nearClip, float farClip) {
+		return CreateRef<EditorCamera>(fov, aspectRatio, nearClip, farClip);
+
+	}
+
 }
