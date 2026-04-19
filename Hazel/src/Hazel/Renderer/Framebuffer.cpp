@@ -5,6 +5,22 @@
 #include "Hazel/Renderer/Renderer.h"
 
 namespace Hazel {
+	FramebufferTextureSpecification::FramebufferTextureSpecification() {
+
+	}
+
+	FramebufferTextureSpecification::FramebufferTextureSpecification(FramebufferTextureFormat format) : TextureFormat(format) {
+	
+	}
+
+	FramebufferAttachmentSpecification::FramebufferAttachmentSpecification() {
+
+	}
+
+	FramebufferAttachmentSpecification::FramebufferAttachmentSpecification(const std::initializer_list<FramebufferTextureSpecification>& attachments) : Attachments(attachments) {
+
+	}
+
 	Ref<FramebufferSpecification> FramebufferSpecification::Create() {
 		return CreateRef<FramebufferSpecification>();
 

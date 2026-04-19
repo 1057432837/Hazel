@@ -33,6 +33,10 @@ namespace Hazel {
 
 		FramebufferSpecification m_Specification;
 
+		std::vector<FramebufferTextureFormat> m_ColorAttachmentFormats;
+
+		FramebufferTextureFormat m_DepthAttachmentFormat = FramebufferTextureFormat::None;
+
 	};
 
 }

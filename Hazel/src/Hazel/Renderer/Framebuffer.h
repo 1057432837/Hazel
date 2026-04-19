@@ -2,13 +2,53 @@
 
 #include "Hazel/Core/Core.h"
 
-namespace Hazel
-{
-	class FramebufferSpecification {
+namespace Hazel {
+	enum class FramebufferTextureFormat
+	{
+		None = 0,
+
+		RGBA8,
+
+		DEPTH24STENCIL8,
+
+		Depth = DEPTH24STENCIL8
+
+	};
+
+	class FramebufferTextureSpecification
+	{
 	public:
-		uint32_t Width = 1280;
+		FramebufferTextureSpecification();
+
+		FramebufferTextureSpecification(FramebufferTextureFormat format);
+
+		FramebufferTextureFormat TextureFormat;
+
+	private:
+
+	};
+
+	class FramebufferAttachmentSpecification
+	{
+	public:
+		FramebufferAttachmentSpecification();
+
+		FramebufferAttachmentSpecification(const std::initializer_list<FramebufferTextureSpecification>& attachments);
+
+		std::vector<FramebufferTextureSpecification> Attachments;
+
+	private:
+
+	};
+
+	class FramebufferSpecification
+	{
+	public:
+		uint32_t Width = 0;
 		
-		uint32_t Height = 720;
+		uint32_t Height = 0;
+
+		FramebufferAttachmentSpecification Attachments;
 
 		uint32_t Samples = 1;
 

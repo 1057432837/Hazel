@@ -7,6 +7,23 @@
 namespace Hazel {
 	static const uint32_t s_MaxFramebufferSize = 8192;
 
+	namespace Utils {
+		static bool IsDepthFormat(FramebufferTextureFormat format) {
+			switch (format)
+			{
+			case FramebufferTextureFormat::DEPTH24STENCIL8: {
+				return true;
+
+			}
+
+			}
+
+			return false;
+
+		}
+
+	}
+	
 	OpenGLFramebuffer::OpenGLFramebuffer() {
 
 	}
@@ -19,6 +36,19 @@ namespace Hazel {
 	}
 
 	OpenGLFramebuffer::OpenGLFramebuffer(const FramebufferSpecification& spec) : m_Specification(spec) {
+		for (auto format : m_Specification.Attachments.Attachments)
+		{
+			if (!Utils::IsDepthFormat(format.TextureFormat))
+			{
+				m_ColorAttachmentFormats.emplace_back(format.TextureFormat);
+
+			}else {
+				m_DepthAttachmentFormat = format.TextureFormat;
+
+			}
+
+		}
+		
 		Invalidate();
 
 	}
