@@ -233,4 +233,14 @@ namespace Hazel {
 
 	}
 
+	int OpenGLFramebuffer::ReadPixel(uint32_t attachmentIndex, int x, int y) {
+		HZ_CORE_ASSERT(attachmentIndex < m_ColorAttachments.size(), "Attachment index out of bounds!");
+		
+		glReadBuffer(GL_COLOR_ATTACHMENT0 + attachmentIndex);
+		int pixelData;
+		glReadPixels(x, y, 1, 1, GL_RED_INTEGER, GL_INT, &pixelData);
+		return pixelData;
+
+	}
+
 }

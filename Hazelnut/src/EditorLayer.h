@@ -71,6 +71,8 @@ namespace Hazel {
 
 		int m_GizmoType = -1;
 
+		glm::vec2 m_ViewportBounds[2];
+
 	};
 
 }
