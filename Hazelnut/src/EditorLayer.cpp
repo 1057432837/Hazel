@@ -25,7 +25,7 @@ namespace Hazel {
 		m_CheckerboardTexture = Texture2D::Create("assets/textures/Checkerboard.png");
 
 		m_FbSpec = FramebufferSpecification::Create();
-		m_FbSpec->Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::Depth };
+		m_FbSpec->Attachments = { FramebufferTextureFormat::RGBA8, FramebufferTextureFormat::RED_INTEGER, FramebufferTextureFormat::Depth };
 		m_FbSpec->Width = 1280;
 		m_FbSpec->Height = 720;
 		m_Framebuffer = Framebuffer::Create(*m_FbSpec);
@@ -277,7 +277,7 @@ namespace Hazel {
 
 		}
 		
-		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID(1);
+		uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 		ImGui::Image((void*)textureID, ImVec2(m_ViewportSize.x, m_ViewportSize.y), ImVec2(0, 1), ImVec2(1, 0));
 
 		Entity selectedEntity = m_SceneHierarchyPanel->GetSelectedEntity();
