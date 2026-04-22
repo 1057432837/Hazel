@@ -15,11 +15,11 @@ out float v_TexIndex;
 out float v_TilingFactor;
 
 void main() {
-	v_Color     = a_Color;
-	v_TexCoord  = a_TexCoord;
-	v_TexIndex  = a_TexIndex;
-	v_TilingFactor  = a_TilingFactor;
-	gl_Position = u_ViewProjection * vec4(a_Position, 1.0);
+	v_Color        = a_Color;
+	v_TexCoord     = a_TexCoord;
+	v_TexIndex     = a_TexIndex;
+	v_TilingFactor = a_TilingFactor;
+	gl_Position    = u_ViewProjection * vec4(a_Position, 1.0);
 
 }
 

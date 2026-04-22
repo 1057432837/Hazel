@@ -73,6 +73,8 @@ namespace Hazel {
 
 		glm::vec2 m_ViewportBounds[2];
 
+		Entity m_HoveredEntity;
+
 	};
 
 }
