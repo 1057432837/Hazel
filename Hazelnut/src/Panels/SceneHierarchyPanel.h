@@ -25,6 +25,8 @@ namespace Hazel {
 
 		Entity GetSelectedEntity() const{ return m_SelectionContext; }
 
+		void SetSelectedEntity(Entity entity) { m_SelectionContext = entity; }
+
 		static Ref<SceneHierarchyPanel> Create();
 
 	private:

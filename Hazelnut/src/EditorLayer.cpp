@@ -5,6 +5,7 @@
 
 #include "EditorLayer.h"
 #include "Hazel/Core/KeyCodes.h"
+#include "Hazel/Core/MouseCodes.h"
 #include "Hazel/Scene/SceneSerializer.h"
 #include "Hazel/Utils/PlatformUtils.h"
 #include "Hazel/Math/Math.h"
@@ -381,6 +382,7 @@ namespace Hazel {
 
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<KeyPressedEvent>(HZ_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
+		dispatcher.Dispatch<MouseButtonPressedEvent>(HZ_BIND_EVENT_FN(EditorLayer::OnMouseButtonPressed));
 
 	}
 
@@ -449,6 +451,21 @@ namespace Hazel {
 		}
 
 		}
+
+	}
+
+	bool EditorLayer::OnMouseButtonPressed(MouseButtonPressedEvent& e) {
+		if (e.GetMouseButton() == HZ_MOUSE_BUTTON_LEFT)
+		{
+			if (m_ViewportHovered)
+			{
+				m_SceneHierarchyPanel->SetSelectedEntity(m_HoveredEntity);
+
+			}
+			
+		}
+
+		return false;
 
 	}
 
