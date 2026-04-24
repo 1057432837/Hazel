@@ -27,11 +27,12 @@ namespace Hazel {
 		s_Data->QuadVertexBufferBase = new QuadVertex[s_Data->MaxVertices];											//
 																													//
 		s_Data->QuadBufferLayout = BufferLayout::Create({															//
-			{ ShaderDataType::Float3, "a_Position" },																//
-			{ ShaderDataType::Float4, "a_Color" },																	//
-			{ ShaderDataType::Float2, "a_TexCoord" },																//
-			{ ShaderDataType::Float,  "a_TexIndex" },																//
-			{ ShaderDataType::Float,  "a_TilingFactor" }															//
+			{ ShaderDataType::Float3, "a_Position"     },															//
+			{ ShaderDataType::Float4, "a_Color"        },															//
+			{ ShaderDataType::Float2, "a_TexCoord"     },															//
+			{ ShaderDataType::Float,  "a_TexIndex"     },															//
+			{ ShaderDataType::Float,  "a_TilingFactor" },															//
+			{ ShaderDataType::Int,    "a_EntityID"     }															//
 																													//
 		});																											//
 																													//
@@ -154,7 +155,7 @@ namespace Hazel {
 
 	}
 
-	void Renderer2D::Quad(const glm::mat4 transform, const glm::vec4& color, const glm::vec2 textureCoords[], const float texIndex, const float tilingFactor) {
+	void Renderer2D::Quad(const glm::mat4 transform, const glm::vec4& color, const glm::vec2 textureCoords[], const float texIndex, const float tilingFactor, int entityID) {
 		if (s_Data->QuadIndexCount >= Renderer2DData::MaxIndices)
 		{
 			FlushAndReset();
@@ -179,6 +180,7 @@ namespace Hazel {
 			s_Data->QuadVertexBufferPtr->TexCoord = textureCoords[i];
 			s_Data->QuadVertexBufferPtr->TexIndex = texIndex;
 			s_Data->QuadVertexBufferPtr->TilingFactor = tilingFactor;
+			s_Data->QuadVertexBufferPtr->EntityID = entityID;
 			s_Data->QuadVertexBufferPtr++;
 
 		}
@@ -189,16 +191,16 @@ namespace Hazel {
 
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color) {
-		DrawQuad({ position.x, position.y, 0.0f }, size, color);
+void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color) {
+	DrawQuad({ position.x, position.y, 0.0f }, size, color);
 
-	}
+}
 
-	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color) {
+void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color) {
 		HZ_PROFILE_FUNCTION();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-		
+
 		DrawQuad(transform, color);
 
 		const float texIndex = 0.0f;
@@ -208,26 +210,26 @@ namespace Hazel {
 
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor) {
-		DrawQuad({ position.x, position.y, 0.0f }, size, texture, tilingFactor, tintColor);
+void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor) {
+	DrawQuad({ position.x, position.y, 0.0f }, size, texture, tilingFactor, tintColor);
 
-	}
+}
 
-	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor) {
+void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor) {
 		HZ_PROFILE_FUNCTION();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
-
+		
 		DrawQuad(transform, texture, tilingFactor);
 
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<SubTexture2D>& subtexture, float tilingFactor, const glm::vec4& tintColor) {
-		DrawQuad({ position.x, position.y, 0.0f }, size, subtexture, tilingFactor, tintColor);
+void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<SubTexture2D>& subtexture, float tilingFactor, const glm::vec4& tintColor) {
+	DrawQuad({ position.x, position.y, 0.0f }, size, subtexture, tilingFactor, tintColor);
 
-	}
+}
 
-	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<SubTexture2D>& subtexture, float tilingFactor, const glm::vec4& tintColor) {
+void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const Ref<SubTexture2D>& subtexture, float tilingFactor, const glm::vec4& tintColor) {
 		HZ_PROFILE_FUNCTION();
 
 		constexpr glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -254,9 +256,9 @@ namespace Hazel {
 
 		}
 
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+	glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
-		Quad(transform, color, textureCoords, textureIndex, tilingFactor);
+	Quad(transform, color, textureCoords, textureIndex, tilingFactor);
 
 #if OLD_PATH
 		s_Data.TextureShader->SetFloat4("u_Color", tintColor);
@@ -273,17 +275,17 @@ namespace Hazel {
 
 	}
 
-	void Renderer2D::DrawQuad(const glm::mat4& transform, const glm::vec4& color) {
+	void Renderer2D::DrawQuad(const glm::mat4& transform, const glm::vec4& color, int entityID) {
 		HZ_PROFILE_FUNCTION();
 
 		const float texIndex = 0.0f;
 		const float tilingFactor = 1.0f;
 
-		Quad(transform, color, nullptr, texIndex, tilingFactor);
+		Quad(transform, color, nullptr, texIndex, tilingFactor, entityID);
 
 	}
 
-	void Renderer2D::DrawQuad(const glm::mat4& transform, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor) {
+	void Renderer2D::DrawQuad(const glm::mat4& transform, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor, int entityID) {
 		HZ_PROFILE_FUNCTION();
 
 		constexpr glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -308,7 +310,7 @@ namespace Hazel {
 
 		}
 
-		Quad(transform, color, nullptr, textureIndex, tilingFactor);
+		Quad(transform, color, nullptr, textureIndex, tilingFactor, entityID);
 
 #if OLD_PATH
 		s_Data.TextureShader->SetFloat4("u_Color", tintColor);
@@ -413,6 +415,11 @@ namespace Hazel {
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), rotation, { 0.0f, 0.0f, 1.0f }) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
 		Quad(transform, color, textureCoords, textureIndex, tilingFactor);
+
+	}
+
+	void Renderer2D::DrawSprite(const glm::mat4& transform, SpriteRendererComponent& src, int entityID) {
+		Quad(transform, src.Color, nullptr, 0.0f, 1.0f, entityID);
 
 	}
 
