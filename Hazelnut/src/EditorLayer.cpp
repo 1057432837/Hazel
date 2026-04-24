@@ -457,7 +457,7 @@ namespace Hazel {
 	bool EditorLayer::OnMouseButtonPressed(MouseButtonPressedEvent& e) {
 		if (e.GetMouseButton() == HZ_MOUSE_BUTTON_LEFT)
 		{
-			if (m_ViewportHovered)
+			if (m_ViewportHovered && !ImGuizmo::IsOver() && !Input::IsKeyPressed(HZ_KEY_LEFT_ALT))
 			{
 				m_SceneHierarchyPanel->SetSelectedEntity(m_HoveredEntity);
 
