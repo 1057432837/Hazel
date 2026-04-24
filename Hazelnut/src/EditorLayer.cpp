@@ -164,7 +164,7 @@ namespace Hazel {
 			{
 				int pixelData = m_Framebuffer->ReadPixel(1, mouseX, mouseY);
 				HZ_CORE_WARN("Pixel Data = {0}", pixelData);
-				//m_HoveredEntity = pixelData == -1 ? Entity() : Entity((entt::entity)pixelData, m_ActiveScene.get());
+				m_HoveredEntity = pixelData == -1 ? Entity() : Entity((entt::entity)pixelData, m_ActiveScene.get());
 
 			}
 
@@ -269,14 +269,14 @@ namespace Hazel {
 
 		ImGui::Begin("Stats");
 
-		//std::string name = "None";
-		//if (m_HoveredEntity)
-		//{
-		//	name = m_HoveredEntity.GetComponent<TagComponent>().Tag;
+		std::string name = "None";
+		if (m_HoveredEntity)
+		{
+			name = m_HoveredEntity.GetComponent<TagComponent>().Tag;
 
-		//}
+		}
 
-		//ImGui::Text("Hovered Entity: %s", name.c_str());
+		ImGui::Text("Hovered Entity: %s", name.c_str());
 
 		auto stats = Renderer2D::GetStats();
 		ImGui::Text("Renderer2D Stats: ");
@@ -288,7 +288,11 @@ namespace Hazel {
 		ImGui::End();
 
 		ImGui::Begin("Viewport");
-		auto viewportOffset = ImGui::GetCursorPos();
+		auto viewportMinRegion = ImGui::GetWindowContentRegionMax();
+		auto viewportMaxRegion = ImGui::GetWindowContentRegionMin();
+		auto viewportOffset = ImGui::GetWindowPos();
+		m_ViewportBounds[0] = { viewportMinRegion.x + viewportOffset.x, viewportMinRegion.y + viewportOffset.y };
+		m_ViewportBounds[1] = { viewportMaxRegion.x + viewportOffset.x, viewportMaxRegion.y + viewportOffset.y };
 
 		m_ViewportFocused = ImGui::IsWindowFocused();
 		m_ViewportHovered = ImGui::IsWindowHovered();
