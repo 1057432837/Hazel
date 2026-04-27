@@ -267,8 +267,8 @@ namespace Hazel {
 		}
 
 		m_SceneHierarchyPanel->OnImGuiRender();
-		m_ContextBrowserPanel = ContextBrowserPanel::Create();
-		m_ContextBrowserPanel->OnImGuiRender();
+		m_ContentBrowserPanel = ContentBrowserPanel::Create();
+		m_ContentBrowserPanel->OnImGuiRender();
 
 		ImGui::Begin("Stats");
 

@@ -3,7 +3,7 @@
 #include "Hazel.h"
 #include "Panels/SceneHierarchyPanel.h"
 #include "Hazel/Renderer/EditorCamera.h"
-#include "Panels/ContextBrowserPanel.h"
+#include "Panels/ContentBrowserPanel.h"
 
 namespace Hazel {
 	class EditorLayer : public Layer
@@ -78,7 +78,7 @@ namespace Hazel {
 
 		Entity m_HoveredEntity;
 
-		Ref<ContextBrowserPanel> m_ContextBrowserPanel;
+		Ref<ContentBrowserPanel> m_ContentBrowserPanel;
 
 	};
 
