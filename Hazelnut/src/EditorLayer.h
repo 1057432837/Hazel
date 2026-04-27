@@ -3,6 +3,7 @@
 #include "Hazel.h"
 #include "Panels/SceneHierarchyPanel.h"
 #include "Hazel/Renderer/EditorCamera.h"
+#include "Panels/ContextBrowserPanel.h"
 
 namespace Hazel {
 	class EditorLayer : public Layer
@@ -76,6 +77,8 @@ namespace Hazel {
 		glm::vec2 m_ViewportBounds[2];
 
 		Entity m_HoveredEntity;
+
+		Ref<ContextBrowserPanel> m_ContextBrowserPanel;
 
 	};
 
