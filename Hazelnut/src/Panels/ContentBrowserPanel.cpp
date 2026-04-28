@@ -6,9 +6,9 @@
 #include "ContentBrowserPanel.h"
 
 namespace Hazel {
-	static const std::filesystem::path s_AssetPath = "assets";
+	extern const std::filesystem::path g_AssetPath = "assets";
 
-	ContentBrowserPanel::ContentBrowserPanel() : m_CurrentDirectory(s_AssetPath) {
+	ContentBrowserPanel::ContentBrowserPanel() : m_CurrentDirectory(g_AssetPath) {
 		m_DirectoryIcon = Texture2D::Create("assets/icons/DirectoryIcon.png");
 		m_FileIcon = Texture2D::Create("assets/icons/FileIcon.png");
 
@@ -48,9 +48,10 @@ namespace Hazel {
 		for (auto& directoryEntry : std::filesystem::directory_iterator(m_CurrentDirectory))
 		{
 			const auto& path = directoryEntry.path();
-			auto relativePath = std::filesystem::relative(path, s_AssetPath);
+			auto relativePath = std::filesystem::relative(path, g_AssetPath);
 			std::string filenameString = relativePath.filename().string();
 
+			ImGui::PushID(filenameString.c_str());
 			Ref<Texture2D> icon = directoryEntry.is_directory() ? m_DirectoryIcon : m_FileIcon;
 			ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
 			ImGui::ImageButton((ImTextureID)icon->GetRendererID(), { thumbnailSize, thumbnailSize }, { 0, 1 }, { 1, 0 });
@@ -79,6 +80,8 @@ namespace Hazel {
 			ImGui::TextWrapped(filenameString.c_str());
 
 			ImGui::NextColumn();
+
+			ImGui::PopID();
 
 		}
 
