@@ -35,6 +35,8 @@ namespace Hazel {
 
 		m_EditorCamera = CreateRef<EditorCamera>(30.0f, 1.0f, 0.1f, 1000.0f);
 
+		m_ContentBrowserPanel = ContentBrowserPanel::Create();
+
 #if 0
 		auto greenSquare = m_ActiveScene->CreateEntity("Green Square");
 		greenSquare->AddComponent<SpriteRendererComponent>(glm::vec4{0.0f, 1.0f, 0.0f, 1.0f});
@@ -267,7 +269,7 @@ namespace Hazel {
 		}
 
 		m_SceneHierarchyPanel->OnImGuiRender();
-		m_ContentBrowserPanel = ContentBrowserPanel::Create();
+		
 		m_ContentBrowserPanel->OnImGuiRender();
 
 		ImGui::Begin("Stats");
