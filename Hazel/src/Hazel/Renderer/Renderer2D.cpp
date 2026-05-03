@@ -203,11 +203,6 @@ void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, cons
 
 		DrawQuad(transform, color);
 
-		const float texIndex = 0.0f;
-		const float tilingFactor = 1.0f;
-
-		Quad(transform, color, nullptr, texIndex, tilingFactor);
-
 	}
 
 void Renderer2D::DrawQuad(const glm::vec2& position, const glm::vec2& size, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor) {
@@ -335,12 +330,9 @@ void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, cons
 	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const glm::vec4& color) {
 		HZ_PROFILE_FUNCTION();
 
-		const float texIndex = 0.0f;
-		const float tilingFactor = 1.0f;
-
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), rotation, { 0.0f, 0.0f, 1.0f }) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
-		Quad(transform, color, nullptr, texIndex, tilingFactor);
+		DrawQuad(transform, color);
 
 	}
 
@@ -352,31 +344,9 @@ void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, cons
 	void Renderer2D::DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor, const glm::vec4& tintColor) {
 		HZ_PROFILE_FUNCTION();
 
-		constexpr glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
-
-		float textureIndex = 0.0f;
-		if (textureIndex == 0.0f)
-		{
-			textureIndex = (float)s_Data->TextureSlotIndex;
-			s_Data->TextureSlots[s_Data->TextureSlotIndex] = texture;
-			s_Data->TextureSlotIndex++;
-
-		}
-
-		for (uint32_t i = 1; i < s_Data->TextureSlotIndex; i++)
-		{
-			if (*s_Data->TextureSlots[i].get() == *texture.get())
-			{
-				textureIndex = (float)i;
-				break;
-
-			}
-
-		}
-
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), rotation, { 0.0f, 0.0f, 1.0f }) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
-		Quad(transform, color, nullptr, textureIndex, tilingFactor);
+		DrawQuad(transform, texture, tilingFactor, tintColor);
 
 	}
 
