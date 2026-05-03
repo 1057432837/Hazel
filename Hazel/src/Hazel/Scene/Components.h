@@ -8,6 +8,7 @@
 #include "Hazel/Renderer/OrthoGraphicCamera.h"
 #include "SceneCamera.h"
 #include "ScriptableEntity.h"
+#include "Hazel/Renderer/Texture.h"
 
 namespace Hazel {
 	class TagComponent
@@ -54,6 +55,10 @@ namespace Hazel {
 		SpriteRendererComponent(const SpriteRendererComponent&) = default;
 		
 		SpriteRendererComponent(const glm::vec4& color) : Color(color) { }
+
+		Ref<Texture2D> Texture;
+
+		float TilingFactor = 1.0f;
 
 	private:
 

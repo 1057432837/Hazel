@@ -419,8 +419,15 @@ void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, cons
 	}
 
 	void Renderer2D::DrawSprite(const glm::mat4& transform, SpriteRendererComponent& src, int entityID) {
-		Quad(transform, src.Color, nullptr, 0.0f, 1.0f, entityID);
+		if (src.Texture)
+		{
+			DrawQuad(transform, src.Texture, src.TilingFactor, src.Color, entityID);
 
+		}else {
+			DrawQuad(transform, src.Color, entityID);
+
+		}
+		
 	}
 
 	void Renderer2D::ResetStats() {
