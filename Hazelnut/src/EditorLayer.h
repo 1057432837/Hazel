@@ -24,6 +24,14 @@ namespace Hazel {
 		void OnEvent(Event& e) override;
 
 	private:
+		enum class SceneState
+		{
+			Edit = 0,
+			Play = 1,
+			Simulate = 2
+
+		};
+
 		bool OnKeyPressed(KeyPressedEvent& e);
 
 		bool OnMouseButtonPressed(MouseButtonPressedEvent& e);
@@ -35,6 +43,12 @@ namespace Hazel {
 		void OpenScene(const std::filesystem::path& path);
 
 		void SaveSceneAs();
+
+		void UI_Toolbar();
+
+		void OnScenePlay();
+
+		void OnSceneStop();
 
 		Ref<VertexArray> m_SquareVA;
 
@@ -81,6 +95,10 @@ namespace Hazel {
 		Entity m_HoveredEntity;
 
 		Ref<ContentBrowserPanel> m_ContentBrowserPanel;
+
+		SceneState m_SceneState = SceneState::Edit;
+
+		Ref<Texture2D> m_IconPlay, m_IconStop;
 
 	};
 
