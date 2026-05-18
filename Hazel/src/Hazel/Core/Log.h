@@ -2,6 +2,8 @@
 
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
+#define GLM_ENABLE_EXPERIMENTAL
+#include "glm/gtx/string_cast.hpp"
 
 #include "Core.h"
 
