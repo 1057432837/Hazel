@@ -72,6 +72,8 @@ namespace Hazel {
 
 		void OnRuntimeStop();
 
+		static Ref<Scene> Copy(Ref<Scene> other);
+
 	private:
 		template<typename T>
 		void OnComponentAdded(Entity entity, T& component);

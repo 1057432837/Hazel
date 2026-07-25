@@ -68,6 +68,10 @@ namespace Hazel {
 
 		Ref<Scene> m_ActiveScene;
 
+		Ref<Scene> m_EditorScene;
+
+		Ref<Scene> m_RuntimeScene;
+
 		glm::vec2 m_ViewportSize = {0.0f, 0.0f};
 
 		bool m_ViewportFocused = false;
